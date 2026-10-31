@@ -5,8 +5,11 @@ import { getLogo } from '../lib/media';
 interface Props {
   slug: string;
   name: string;
-  /** 'md' for homepage placards, 'lg' for case-study heroes. */
-  size?: 'md' | 'lg';
+  /**
+   * 'md' for homepage placards, 'lg' for case-study heroes,
+   * 'sm' for a compact inline mark beside real project imagery (keeps the logo's own shape).
+   */
+  size?: 'sm' | 'md' | 'lg';
   /** The logo file's own background color (see Project.logoBackground). */
   background?: string;
   class?: string;
@@ -15,13 +18,13 @@ interface Props {
 const { slug, name, size = 'md', background = '#ffffff', class: className = '' } = Astro.props;
 const logo = getLogo(slug);
 // Source width for the optimized file: roughly 2× the largest rendered size.
-const width = size === 'lg' ? 440 : 280;
+const width = size === 'lg' ? 440 : size === 'sm' ? 320 : 280;
 ---
 
 {logo && (
   <span
     class:list={['logo-mark', `logo-${size}`, className]}
-    style={`--logo-bg:${background}`}
+    style={`--logo-bg:${background}${logo && size === 'sm' ? `;aspect-ratio:${logo.width}/${logo.height}` : ''}`}
     data-logo
   >
     <Image
@@ -55,6 +58,16 @@ const width = size === 'lg' ? 440 : 280;
   }
   .logo-lg {
     width: clamp(8.5rem, 17vw, 12.5rem);
+  }
+  .logo-sm {
+    height: 3.5rem;
+    width: auto;
+    box-shadow: 0 0 0 1px rgb(28 26 24 / 0.06);
+  }
+  .logo-sm .logo-img {
+    inset: 0;
+    width: 100%;
+    height: 100%;
   }
   /* Absolutely placed so the size never depends on intrinsic image dimensions */
   .logo-img {

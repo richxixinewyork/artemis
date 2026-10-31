@@ -1,9 +1,10 @@
 ---
 import ProjectCover from './ProjectCover.astro';
 import BrandPanel from './BrandPanel.astro';
+import LogoTile from './LogoTile.astro';
 import StatusTag from './StatusTag.astro';
 import { projects } from '../content/projects';
-import { getProjectMedia } from '../lib/media';
+import { getProjectMedia, getLogo } from '../lib/media';
 import { url } from '../lib/url';
 
 // Asymmetric image-led layouts — used for projects that have a real cover image.
@@ -12,7 +13,7 @@ const layouts = [
   { media: 'lg:col-span-6 lg:col-start-7 lg:row-start-1 aspect-[4/3] lg:aspect-[4/5]', text: 'lg:col-span-4 lg:col-start-2 lg:row-start-1 lg:self-center', sizes: '(min-width: 1024px) 48vw, 100vw' },
   { media: 'lg:col-span-5 lg:col-start-1 aspect-[4/3] lg:aspect-[3/4]', text: 'lg:col-span-5 lg:col-start-7 lg:self-start lg:pt-24', sizes: '(min-width: 1024px) 40vw, 100vw' },
   { media: 'lg:col-span-6 lg:col-start-6 aspect-[4/3] lg:aspect-[5/4]', text: 'lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:self-end', sizes: '(min-width: 1024px) 48vw, 100vw' },
-  { media: 'lg:col-span-12 aspect-[4/3] lg:aspect-[21/9]', text: 'lg:col-span-6 lg:col-start-7', sizes: '100vw' },
+  { media: 'lg:col-span-12 aspect-[2/1] lg:aspect-[21/9]', text: 'lg:col-span-6 lg:col-start-7 lg:pt-10', sizes: '100vw' },
 ];
 
 // Compact layouts — a neutral brand panel alternating sides, for projects without imagery yet.
@@ -47,6 +48,12 @@ const compact = [
                   <span class="font-display text-2xl text-accent tabular-nums">{n}</span>
                   <StatusTag status={p.status} />
                 </div>
+                {/* With real imagery as the main visual, the logo appears here as a supporting mark */}
+                {hasCover && getLogo(p.slug) && (
+                  <div class="mt-6">
+                    <LogoTile slug={p.slug} name={p.org} size="sm" background={p.logoBackground} />
+                  </div>
+                )}
                 <h3 class="mt-5 font-display text-[clamp(2.6rem,4.4vw,3.6rem)] leading-[0.95]">{p.org}</h3>
                 <p class="mt-3 font-display text-xl leading-snug text-ink-soft italic">{p.title}</p>
                 <p class="mt-5 leading-relaxed text-ink-soft">{p.summary}</p>

@@ -87,7 +87,10 @@ npm run preview
 - **Project images:** drop files into `src/assets/projects/<slug>/` (`tantan`, `momo`, `missingcity`, `esoteric-studios`, `baoxiang`):
   - `cover.jpg` replaces the typographic cover on the homepage and case study.
   - `01.jpg`, `02.jpg`, … appear as a gallery on the case study.
-  - Add alt text/captions in `projects.ts` → `images: { cover: { alt: '…' }, '01': { alt: '…', caption: '…' } }`.
+  - **Videos:** `02.mp4`, `03.mp4`, … (or `.webm`) appear in the same gallery, in file-name order, as silent looping clips that play only while on screen (and don't autoplay for visitors who prefer reduced motion). Add a still frame named like the video plus `.poster`, e.g. `02.poster.jpg`. Keep each clip short and under ~5 MB.
+  - Add alt text/captions in `projects.ts` → `images: { cover: { alt: '…' }, '01': { alt: '…', caption: '…' } }` (videos use the same keys, e.g. `'02'`).
+  - When a project has a `cover`, the homepage switches it to a large image layout and shows its logo as a small mark beside the text; without one, it shows a compact logo panel.
+  - Example: `src/assets/projects/baoxiang/` (cover banner, product photo, two videos with posters).
 - **Logos:** `src/assets/logos/<slug>.png` (or .jpg/.svg/.webp), e.g. `momo.png`, appears centered on that project's cover and case-study header. Crop away empty margins first. If the logo file has a colored background, set `logoBackground: '#rrggbb'` on the project in `projects.ts` so the mark sits on its own color (white is the default). Logos are never stretched or cropped.
 
 Use large JPGs (around 2000–2500px on the long side). The build automatically creates AVIF/WebP versions at several sizes and lazy-loads them. Only use real, authorized images; the site intentionally shows typographic covers until then.
@@ -111,9 +114,10 @@ Use large JPGs (around 2000–2500px on the long side). The build automatically 
 
 **Media**
 - [ ] Optional second portrait (`src/assets/portraits/about.jpg`) — appears beside the About story automatically
-- [ ] Project covers and gallery images for each of the five projects. Until then each project shows a labelled "Project imagery forthcoming" placard. Suggested real materials: product screenshots or launch visuals (Momo / Tantan, if Hello Group permits), storefront and product photography (Missingcity, Esoteric Studios), concept sketches or candle prototypes (Baoxiang).
+- [x] Baoxiang / The Eternal Path: cover artwork, product photo, two animated clips and logo added.
+- [ ] Project covers and gallery images for the other four projects. Until then each project shows a labelled "Project imagery forthcoming" placard. Suggested real materials: product screenshots or launch visuals (Momo / Tantan, if Hello Group permits), storefront and product photography (Missingcity, Esoteric Studios), concept sketches or candle prototypes (Baoxiang).
 - [x] Logos for Tantan, Momo and Esoteric Studios (added)
-- [ ] Optional logos for Missingcity and Baoxiang
+- [ ] Optional logo for Missingcity
 
 **Optional**
 - [ ] Custom domain

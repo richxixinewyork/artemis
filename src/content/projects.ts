@@ -264,6 +264,16 @@ export const projects: Project[] = [
   },
   {
     slug: 'baoxiang',
+    logoBackground: '#704d4b',
+    images: {
+      cover: { alt: 'Illustration of the twelve Chinese zodiac animals around a dragon, Baoxiang brand artwork' },
+      '01': {
+        alt: 'White tiger statue candle on its Eternal Path packaging, labeled Animal Statue Candle, soy wax',
+        caption: 'Tiger statue candle and packaging — The Eternal Path zodiac collection.',
+      },
+      '02': { alt: 'Animated monkey character from the zodiac illustration', caption: 'Monkey — animated character study.' },
+      '03': { alt: 'Animated rabbit character from the zodiac illustration', caption: 'Rabbit — animated character study.' },
+    },
     org: 'Baoxiang',
     title: 'The Eternal Path — Cultural Design Project',
     discipline: 'Cultural Design · Collectible Objects',
