@@ -99,7 +99,7 @@ Use large JPGs (around 2000–2500px on the long side). The build automatically 
 **Confirm (site now follows the latest résumé, `Artemis_Wang Resume.pdf`)**
 - [ ] **School name** for the Master in Art Business (New York, Aug 2026 – 2027) — not named in the résumé. Earlier drafts listed UIBE, Beijing. Set `education.school` in `site.ts`.
 - [x] **Baoxiang** kept on the site as "In development" (it is not in the latest résumé PDF).
-- [ ] **Phone number:** the downloadable PDF includes a phone number. Swap in a version without it if it shouldn't be public.
+- [x] **Phone number:** the downloadable PDF includes a phone number — kept intentionally.
 - [x] **Email** set to `Artemisnewyork@outlook.com`.
 - [x] **Approved PDF résumé** published at `public/resume/Artemis-Wang-Resume.pdf`.
 
