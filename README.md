@@ -9,7 +9,7 @@ src/
   content/projects.ts    ← the five case studies (text, results, status)
   assets/portraits/      ← hero.jpg (required), about.jpg (optional)
   assets/projects/<slug>/← cover.jpg + 01.jpg, 02.jpg … for each project
-  assets/logos/          ← project logos named by slug, e.g. momo.jpg
+  assets/logos/          ← project logos named by slug, e.g. momo.png
 public/resume/           ← put the approved PDF résumé here
 .github/workflows/deploy.yml ← automatic deployment to GitHub Pages
 ```
@@ -74,7 +74,7 @@ npm run preview
 | Case studies | `src/content/projects.ts` |
 | Hero headline emphasis | wrap a word in `*asterisks*` to set it in italic red |
 
-**Social links:** a link appears on the site only when it has a real `url` **and** no `demo: true`. Paste the full profile address (e.g. `https://www.linkedin.com/in/…`) and delete `demo: true` to publish it. Never use a platform homepage as a placeholder.
+**Social links:** an empty `url: ''` hides a link. Entries marked `demo: true` (and commented `PLACEHOLDER`) are shown with a small "Placeholder" tag so visitors don't mistake them for her accounts, and are kept out of search-engine data. To publish a real profile, paste its full address (e.g. `https://www.linkedin.com/in/…`) and delete `demo: true`.
 
 **Résumé PDF:** copy the approved file to `public/resume/Artemis-Wang-Resume.pdf`, then in `site.ts` set
 `resume.pdf: '/resume/Artemis-Wang-Resume.pdf'`. "Download PDF" buttons appear automatically.
@@ -88,7 +88,7 @@ npm run preview
   - `cover.jpg` replaces the typographic cover on the homepage and case study.
   - `01.jpg`, `02.jpg`, … appear as a gallery on the case study.
   - Add alt text/captions in `projects.ts` → `images: { cover: { alt: '…' }, '01': { alt: '…', caption: '…' } }`.
-- **Logos:** `src/assets/logos/<slug>.jpg` (or .png/.svg), e.g. `momo.jpg`, appears as a small tile on that project's cover and case-study header. Square images work best.
+- **Logos:** `src/assets/logos/<slug>.png` (or .jpg/.svg/.webp), e.g. `momo.png`, appears centered on that project's cover and case-study header. Crop away empty margins first. If the logo file has a colored background, set `logoBackground: '#rrggbb'` on the project in `projects.ts` so the mark sits on its own color (white is the default). Logos are never stretched or cropped.
 
 Use large JPGs (around 2000–2500px on the long side). The build automatically creates AVIF/WebP versions at several sizes and lazy-loads them. Only use real, authorized images; the site intentionally shows typographic covers until then.
 
@@ -99,11 +99,11 @@ Use large JPGs (around 2000–2500px on the long side). The build automatically 
 **Confirm (site now follows the latest résumé, `Artemis_Wang Resume.pdf`)**
 - [ ] **School name** for the Master in Art Business (New York, Aug 2026 – 2027) — not named in the résumé. Earlier drafts listed UIBE, Beijing. Set `education.school` in `site.ts`.
 - [x] **Baoxiang** kept on the site as "In development" (it is not in the latest résumé PDF).
-- [x] **Phone number:** the downloadable PDF includes a phone number — kept intentionally.
+- [x] **Phone number** removed from the downloadable résumé PDF and from the site for privacy (the old PDF was also purged from Git history). Only email and social profiles are published as contact methods.
 - [x] **Email** set to `Artemisnewyork@outlook.com`.
 - [x] **Approved PDF résumé** published at `public/resume/Artemis-Wang-Resume.pdf`.
 
-**Links (hidden on the site until real URLs are added)**
+**Links (shown as tagged placeholders until real URLs are added)**
 - [ ] LinkedIn profile URL
 - [ ] Instagram profile URL
 - [ ] Xiaohongshu / RED profile URL
