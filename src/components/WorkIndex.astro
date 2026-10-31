@@ -1,16 +1,24 @@
 ---
 import ProjectCover from './ProjectCover.astro';
+import BrandPanel from './BrandPanel.astro';
 import StatusTag from './StatusTag.astro';
 import { projects } from '../content/projects';
+import { getProjectMedia } from '../lib/media';
 import { url } from '../lib/url';
 
-// Asymmetric editorial layout — one entry per project, cycling if more are added.
+// Asymmetric image-led layouts — used for projects that have a real cover image.
 const layouts = [
   { media: 'lg:col-span-7 aspect-[4/3]', text: 'lg:col-span-4 lg:col-start-9 lg:self-end', sizes: '(min-width: 1024px) 56vw, 100vw' },
   { media: 'lg:col-span-6 lg:col-start-7 lg:row-start-1 aspect-[4/3] lg:aspect-[4/5]', text: 'lg:col-span-4 lg:col-start-2 lg:row-start-1 lg:self-center', sizes: '(min-width: 1024px) 48vw, 100vw' },
   { media: 'lg:col-span-5 lg:col-start-1 aspect-[4/3] lg:aspect-[3/4]', text: 'lg:col-span-5 lg:col-start-7 lg:self-start lg:pt-24', sizes: '(min-width: 1024px) 40vw, 100vw' },
   { media: 'lg:col-span-6 lg:col-start-6 aspect-[4/3] lg:aspect-[5/4]', text: 'lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:self-end', sizes: '(min-width: 1024px) 48vw, 100vw' },
   { media: 'lg:col-span-12 aspect-[4/3] lg:aspect-[21/9]', text: 'lg:col-span-6 lg:col-start-7', sizes: '100vw' },
+];
+
+// Compact layouts — a neutral brand panel alternating sides, for projects without imagery yet.
+const compact = [
+  { media: 'sm:max-w-md lg:max-w-none lg:col-span-4', text: 'lg:col-span-6 lg:col-start-6 lg:self-center', sizes: '' },
+  { media: 'sm:max-w-md lg:max-w-none lg:col-span-4 lg:col-start-9 lg:row-start-1', text: 'lg:col-span-6 lg:col-start-2 lg:row-start-1 lg:self-center', sizes: '' },
 ];
 ---
 
@@ -25,13 +33,14 @@ const layouts = [
 
     <ol class="mt-20 space-y-24 md:mt-32 md:space-y-40">
       {projects.map((p, i) => {
-        const l = layouts[i % layouts.length];
+        const hasCover = Boolean(getProjectMedia(p).cover);
+        const l = hasCover ? layouts[i % layouts.length] : compact[i % compact.length];
         const n = String(i + 1).padStart(2, '0');
         return (
           <li>
             <a href={url(`/work/${p.slug}/`)} class="work-item group grid grid-cols-12 gap-x-6 gap-y-8 lg:gap-y-0">
               <div class:list={['col-span-12', l.media]} data-reveal>
-                <ProjectCover project={p} sizes={l.sizes} class="h-full w-full" />
+                {hasCover ? <ProjectCover project={p} sizes={l.sizes} class="h-full w-full" /> : <BrandPanel project={p} />}
               </div>
               <div class:list={['col-span-12 md:max-w-2xl lg:max-w-none', l.text]} data-reveal style="--d:1">
                 <div class="flex items-center justify-between gap-4">
