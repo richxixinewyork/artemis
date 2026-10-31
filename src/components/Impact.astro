@@ -3,27 +3,33 @@ import { impact } from '../content/site';
 ---
 
 <section id="impact" class="bg-ink py-24 text-ivory md:py-36" aria-labelledby="impact-title">
-  <div class="wrap">
-    <div class="grid grid-cols-12 gap-x-6 gap-y-6" data-reveal>
-      <p class="eyebrow col-span-12 !text-ivory/60 md:col-span-3">Impact</p>
-      <h2 id="impact-title" class="display-lg col-span-12 md:col-span-9">
-        Growth measured in communities, <em class="!text-[#e3a08f]">not just numbers</em>.
-      </h2>
+  <div class="wrap grid grid-cols-12 gap-x-6 gap-y-14">
+    <!-- Heading column stays in view while the figures scroll past -->
+    <div class="col-span-12 lg:col-span-4">
+      <div class="lg:sticky lg:top-32" data-reveal>
+        <p class="eyebrow !text-ivory/60">Impact</p>
+        <h2 id="impact-title" class="display-lg mt-6 !text-[clamp(2.5rem,4.2vw,4.2rem)]">
+          Growth measured in communities, <em class="!text-[#e3a08f]">not just numbers</em>.
+        </h2>
+        <p class="mt-8 max-w-sm text-sm leading-relaxed text-ivory/60">
+          All figures come from Artemis’s résumé. Platform metrics at Momo and Tantan are team outcomes her work
+          contributed to; Missingcity figures reflect the business she founded and runs.
+        </p>
+      </div>
     </div>
 
-    <dl class="mt-16 grid grid-cols-1 gap-x-10 sm:grid-cols-2 md:mt-24 lg:grid-cols-3">
+    <ol class="col-span-12 lg:col-span-7 lg:col-start-6">
       {impact.map((m, i) => (
-        <div class="flex flex-col border-t border-ivory/20 pt-8 pb-12" data-reveal style={`--d:${i % 3}`}>
-          <dt class="order-2 mt-4 text-lg leading-snug text-ivory">{m.label}</dt>
-          <dd class="order-1 font-display text-6xl leading-none tracking-tight md:text-7xl">{m.value}</dd>
-          <dd class="order-3 mt-3 text-sm leading-relaxed text-ivory/60">{m.source}</dd>
-        </div>
+        <li class="grid grid-cols-[auto_minmax(0,1fr)] items-baseline gap-x-6 border-t border-ivory/15 py-8 last:border-b md:grid-cols-[2.5rem_minmax(0,0.9fr)_minmax(0,1fr)] md:gap-x-8 md:py-10" data-reveal>
+          <span class="hidden text-xs text-ivory/50 tabular-nums md:block">{String(i + 1).padStart(2, '0')}</span>
+          <span class="col-span-2 font-display text-[clamp(3.2rem,6vw,5rem)] leading-[0.9] tracking-tight whitespace-nowrap md:col-span-1">{m.value}</span>
+          <span class="col-span-2 mt-3 md:col-span-1 md:mt-0">
+            <span class="block text-lg leading-snug">{m.label}</span>
+            <span class="mt-2 block text-sm leading-relaxed text-ivory/55">{m.source}</span>
+          </span>
+        </li>
       ))}
-    </dl>
-
-    <p class="mt-10 max-w-2xl text-sm leading-relaxed text-ivory/60" data-reveal>
-      All figures are taken from Artemis’s résumé. Platform metrics at Momo and Tantan are team outcomes that her work
-      contributed to; Missingcity figures reflect the business she founded and runs.
-    </p>
+    </ol>
   </div>
 </section>
+

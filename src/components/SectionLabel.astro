@@ -1,0 +1,18 @@
+---
+/** Numbered section label used in the left column of case-study sections. */
+interface Props {
+  id: string;
+  n: number;
+  label: string;
+  dark?: boolean;
+}
+
+const { id, n, label, dark = false } = Astro.props;
+---
+
+<h2 id={id} class="col-span-12 md:col-span-3" data-reveal>
+  <span class:list={['eyebrow flex items-baseline gap-3 md:sticky md:top-28', dark && '!text-ivory/60']}>
+    <span class:list={['font-display text-lg tracking-normal normal-case tabular-nums', dark ? 'text-[#e3a08f]' : 'text-accent']}>{String(n).padStart(2, '0')}</span>
+    {label}
+  </span>
+</h2>

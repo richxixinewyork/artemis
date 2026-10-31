@@ -68,13 +68,13 @@ npm run preview
 
 | To change… | Edit |
 | --- | --- |
-| Headline, intro, About story, timeline, languages | `src/content/site.ts` |
+| Hero name line, statement, intro; About lead & chapters; timeline; languages | `src/content/site.ts` |
 | Email, LinkedIn, Instagram, RED, websites | `site.socials` and `site.contact` in `src/content/site.ts` |
 | Impact numbers on the homepage | `impact` at the bottom of `src/content/site.ts` |
 | Case studies | `src/content/projects.ts` |
 | Hero headline emphasis | wrap a word in `*asterisks*` to set it in italic red |
 
-**Social links:** an empty `url: ''` hides the link. `demo: true` marks a temporary link — replace the URL with the real profile and delete `demo: true`.
+**Social links:** a link appears on the site only when it has a real `url` **and** no `demo: true`. Paste the full profile address (e.g. `https://www.linkedin.com/in/…`) and delete `demo: true` to publish it. Never use a platform homepage as a placeholder.
 
 **Résumé PDF:** copy the approved file to `public/resume/Artemis-Wang-Resume.pdf`, then in `site.ts` set
 `resume.pdf: '/resume/Artemis-Wang-Resume.pdf'`. "Download PDF" buttons appear automatically.
@@ -103,15 +103,15 @@ Use large JPGs (around 2000–2500px on the long side). The build automatically 
 - [x] **Email** set to `Artemisnewyork@outlook.com`.
 - [x] **Approved PDF résumé** published at `public/resume/Artemis-Wang-Resume.pdf`.
 
-**Links (currently demo / hidden)**
-- [ ] LinkedIn — demo link (`linkedin.com` homepage)
-- [ ] Instagram — demo link (`instagram.com` homepage)
-- [ ] Xiaohongshu / RED — demo link (`xiaohongshu.com` homepage)
+**Links (hidden on the site until real URLs are added)**
+- [ ] LinkedIn profile URL
+- [ ] Instagram profile URL
+- [ ] Xiaohongshu / RED profile URL
 - [ ] WeChat, Missingcity website/store, Esoteric Studios website — hidden until URLs are provided
 
 **Media**
-- [ ] Optional second portrait (`about.jpg`)
-- [ ] Project covers and gallery images for each of the five projects
+- [ ] Optional second portrait (`src/assets/portraits/about.jpg`) — appears beside the About story automatically
+- [ ] Project covers and gallery images for each of the five projects. Until then each project shows a labelled "Project imagery forthcoming" placard. Suggested real materials: product screenshots or launch visuals (Momo / Tantan, if Hello Group permits), storefront and product photography (Missingcity, Esoteric Studios), concept sketches or candle prototypes (Baoxiang).
 - [x] Logos for Tantan, Momo and Esoteric Studios (added)
 - [ ] Optional logos for Missingcity and Baoxiang
 

@@ -24,29 +24,44 @@ export const site = {
   copyrightYear: new Date().getFullYear(),
 
   hero: {
-    eyebrow: 'Growth · Creator Partnerships · Brand Building',
+    /** Discipline line under the name. */
+    eyebrow: 'Growth Strategy · Creator Partnerships · Brand Building',
     /*
-     * Headline options considered:
+     * Statement options considered:
      *   A. "Where culture meets commerce."
      *   B. "Building communities around things worth wanting."
      *   C. "From creator ecosystems to collectible objects."
      *   D. "Strategy, with a curator’s eye."   ← chosen
      * Wrap a word in *asterisks* to set it in italic accent.
      */
-    headline: "Strategy, with a curator’s *eye*.",
+    headline: 'Strategy, with a curator’s *eye*.',
     intro:
-      "I build creator ecosystems, communities and brands. At Hello Group I worked on consumer launches across AI beauty and live audio; as a founder I’ve spent nearly a decade bringing independent fashion and professional beauty across borders. Now based in New York, I’m extending that work into art business and cultural design.",
+      'I build creator programs, communities and brands where consumer technology, beauty, fashion and culture meet — from 0-to-1 AI and live-audio launches at Hello Group to two cross-border businesses of my own. Now based in New York, I’m bringing that work into art business and cultural design.',
+    /** Small vertical caption beside the portrait. */
+    caption: 'Beijing — New York',
     portraitAlt: 'Portrait of Artemis Wang in a navy ribbed top against a pale studio backdrop',
   },
 
   about: {
     heading: 'Commercial rigor, *cultural fluency*.',
-    paragraphs: [
-      'My work sits where audiences, creators and products meet. At Hello Group (Nasdaq: MOMO) I worked on two 0-to-1 consumer launches — AI face, hair and makeup products at Momo, and the live-audio Voice Rooms feature at Tantan — building the creator programs, incentive structures and partnership frameworks behind their growth.',
-      'Alongside that corporate path runs a founder’s one. Since 2017 I have run Missingcity, an online boutique introducing emerging international designers to global consumers. In 2023 I launched Esoteric Studios, bringing Korean professional salon and skincare brands to Chinese-speaking customers. Both were built on curation, supplier relationships and community rather than paid reach.',
-      'I have also worked inside the cultural sector — as an exhibition assistant at No Space Gallery in Beijing, and as project assistant on “Beauty and Sharing,” an international cultural exchange program co-produced by CCTV and the Ministry of Culture and Tourism.',
-      'Today I am extending that curatorial instinct into culture: studying for a Master in Art Business in New York, and developing Baoxiang — a collectible-objects concept drawn from Chinese zodiac symbolism and Five Elements philosophy.',
+    /** Opening statement, set large. */
+    lead: 'Nearly a decade of building creator programs, communities and businesses — across consumer technology, fashion and beauty, and now art and culture.',
+    /** The story in three chapters. */
+    chapters: [
+      {
+        label: 'Consumer technology',
+        body: 'At Hello Group (Nasdaq: MOMO) I worked on 0-to-1 consumer launches — the AI face, hair and makeup products ZAO and Moxie at Momo, and the live-audio Voice Rooms feature at Tantan. I built the creator programs, partner contracting, incentive structures and payment processes behind their growth, and led intern teams taking them into Japan, South Korea, Vietnam, Taiwan, Hong Kong and Germany.',
+      },
+      {
+        label: 'Entrepreneurship',
+        body: 'Alongside that path runs a founder’s one. Since 2017 I have run Missingcity, an online boutique introducing emerging international designers to global consumers. In 2023 I launched Esoteric Studios, bringing Korean professional salon and skincare brands to Chinese-speaking customers. Both grew on curation, trusted relationships and community rather than paid reach.',
+      },
+      {
+        label: 'Art & culture',
+        body: 'I have also worked inside the cultural sector — at No Space Gallery in Beijing, and on “Beauty and Sharing,” an international cultural exchange program co-produced by CCTV and the Ministry of Culture and Tourism. Today I am studying for a Master in Art Business in New York and developing Baoxiang, a collectible-objects concept drawn from Chinese zodiac symbolism and Five Elements philosophy.',
+      },
     ],
+    /** "What I bring" columns. */
     capabilities: [
       {
         title: 'Growth & Creators',

@@ -7,50 +7,62 @@ import { url, emphasize } from '../lib/url';
 
 const portrait = getPortrait('hero');
 const { hero } = site;
+const [first, ...rest] = site.name.split(' ');
 ---
 
-<section class="relative overflow-hidden pt-24 md:pt-32" aria-labelledby="hero-title">
-  <div class="wrap grid grid-cols-12 gap-x-6 gap-y-10 pb-16 md:pb-24">
-    <div class="col-span-12 flex flex-col justify-between lg:col-span-7">
-      <div>
-        <p class="eyebrow intro-rise" style="--d:0">{hero.eyebrow}</p>
-        <h1 id="hero-title" class="display-xl intro-rise mt-6 md:mt-10" style="--d:1">
-          <span class="sr-only">{site.name} — </span><Fragment set:html={emphasize(hero.headline)} />
-        </h1>
-      </div>
-
-      <div class="mt-10 max-w-xl lg:mt-16">
-        <p class="intro-rise text-[1.05rem] leading-relaxed text-ink-soft md:text-lg" style="--d:2">{hero.intro}</p>
-        <div class="intro-rise mt-9 flex flex-wrap gap-3" style="--d:3">
-          <a href={url('/#work')} class="btn btn-solid">Explore my work <span class="arrow" aria-hidden="true">→</span></a>
-          <a href={url('/resume/')} class="btn btn-ghost">View resume</a>
-          <a href={url('/#contact')} class="btn btn-ghost">Get in touch</a>
-        </div>
-      </div>
+<section class="hero relative" aria-labelledby="hero-title">
+  <div class="wrap grid grid-cols-12 gap-x-6 lg:min-h-[100svh] lg:grid-rows-[1fr_auto]">
+    <!-- Masthead: name + discipline -->
+    <div class="col-span-12 pt-24 md:pt-32 lg:col-span-8 lg:row-start-1 lg:self-end lg:pt-28">
+      <p class="eyebrow intro-rise flex items-center gap-3" style="--d:0">
+        <span class="h-px w-8 bg-ink-mute" aria-hidden="true"></span>Portfolio · {site.location}
+      </p>
+      <h1 id="hero-title" class="display-name intro-rise relative z-10 mt-6 md:mt-8" style="--d:1">
+        {first}<br /><span class="inline-block pl-[0.55em] lg:pl-[0.9em]">{rest.join(' ')}</span>
+      </h1>
+      <p class="intro-rise mt-6 max-w-md text-[0.78rem] leading-relaxed tracking-[0.16em] text-ink-soft uppercase md:mt-8" style="--d:2">
+        {hero.eyebrow}
+      </p>
     </div>
 
-    <figure class="col-span-12 sm:col-span-8 sm:col-start-3 lg:col-span-5 lg:col-start-8">
-      <div class="intro-unveil relative aspect-[4/5] overflow-hidden bg-cream">
-        {portrait ? (
+    <!-- Portrait: bleeds to the viewport edge; multiply blends the studio white into the page tone -->
+    <figure class="relative col-span-12 -mx-[clamp(1rem,4vw,3.5rem)] mt-10 lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1 lg:mt-0 lg:ml-0">
+      <div class="intro-unveil portrait-frame relative aspect-[4/5] overflow-hidden mix-blend-multiply sm:aspect-[5/5] lg:aspect-auto lg:h-full">
+        {portrait && (
           <Picture
             src={portrait}
             alt={hero.portraitAlt}
             widths={[480, 768, 1080, 1440]}
-            sizes="(min-width: 1024px) 38vw, (min-width: 640px) 66vw, 100vw"
+            sizes="(min-width: 1024px) 60vw, 100vw"
             formats={['avif', 'webp']}
             loading="eager"
             fetchpriority="high"
-            class="h-full w-full object-cover object-[50%_20%]"
+            class="h-full w-full object-cover object-[50%_18%] lg:object-[50%_30%]"
           />
-        ) : (
-          <div class="flex h-full items-center justify-center text-ink-mute">Add src/assets/portraits/hero.jpg</div>
         )}
       </div>
-      <figcaption class="intro-rise mt-3 flex justify-between text-xs tracking-[0.12em] text-ink-mute uppercase" style="--d:4">
-        <span>{site.name}</span>
-        <span>{site.location}</span>
+      <figcaption class="vertical-caption intro-rise absolute top-28 -left-8 hidden text-[0.68rem] tracking-[0.24em] whitespace-nowrap text-ink-mute uppercase lg:block" style="--d:4">
+        {hero.caption}
       </figcaption>
     </figure>
+
+    <!-- Scroll cue sits in the empty column between text and portrait -->
+    <a href={url('/#work')} class="intro-rise col-start-8 row-start-2 hidden flex-col items-center gap-3 self-end justify-self-center pb-16 text-[0.68rem] tracking-[0.24em] text-ink-mute uppercase xl:flex" style="--d:6" aria-label="Scroll to selected work">
+      <span aria-hidden="true">Scroll</span><span class="scroll-cue-line" aria-hidden="true"></span>
+    </a>
+
+    <!-- Statement + intro -->
+    <div class="col-span-12 pt-10 pb-14 md:pb-20 lg:col-span-7 lg:row-start-2 lg:pt-10 lg:pb-12">
+      <div class="grid gap-x-10 gap-y-6 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1fr)]">
+        <p class="display-md intro-rise" style="--d:3" set:html={emphasize(hero.headline)} />
+        <p class="intro-rise leading-relaxed text-ink-soft md:text-[1.05rem]" style="--d:4">{hero.intro}</p>
+      </div>
+      <div class="intro-rise mt-8 flex flex-wrap gap-3 lg:mt-10" style="--d:5">
+        <a href={url('/#work')} class="btn btn-solid">Explore my work <span class="arrow" aria-hidden="true">→</span></a>
+        <a href={url('/resume/')} class="btn btn-ghost">View resume</a>
+        <a href={url('/#contact')} class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
   </div>
 
   <div class="rule">
@@ -62,3 +74,13 @@ const { hero } = site;
     </div>
   </div>
 </section>
+
+<style>
+  .portrait-frame {
+    background: #fff;
+  }
+  .vertical-caption {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+</style>

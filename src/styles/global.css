@@ -160,6 +160,55 @@
     border-top: 1px solid var(--color-line);
   }
 
+  /* Masthead-scale name in the hero */
+  .display-name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(4.4rem, min(11.5vw, 19svh), 11.5rem);
+    line-height: 0.84;
+    letter-spacing: -0.035em;
+  }
+
+  /* Fine paper grain for typographic plates */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.22;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Hairline scroll cue */
+  .scroll-cue-line {
+    position: relative;
+    display: block;
+    width: 1px;
+    height: 3.5rem;
+    background: var(--color-line);
+    overflow: hidden;
+  }
+  .scroll-cue-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 40%;
+    background: var(--color-ink);
+    animation: cue 2.4s var(--ease-editorial) infinite;
+  }
+  @keyframes cue {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(250%); }
+  }
+
   .prose-editorial p + p {
     margin-top: 1.25em;
   }

@@ -25,7 +25,7 @@ const groups = [
         <p class="intro-rise mt-5 text-lg text-ink-soft" style="--d:2">{resume.headline}</p>
       </div>
       <div class="no-print intro-rise col-span-12 flex flex-wrap gap-3 md:col-span-4 md:justify-end" style="--d:3">
-        {resume.pdf && <a href={url(resume.pdf)} class="btn btn-solid" download>Download PDF <span class="arrow" aria-hidden="true">↓</span></a>}
+        {resume.pdf && <a href={url(resume.pdf)} class="btn btn-solid" download type="application/pdf">Download resume <span class="arrow" aria-hidden="true">↓</span></a>}
         <button type="button" class="btn btn-ghost" data-print>Print</button>
       </div>
     </header>
@@ -34,7 +34,7 @@ const groups = [
       <aside class="col-span-12 border-b border-line py-8 md:col-span-3 md:border-b-0 md:py-12 md:pr-6">
         <dl class="space-y-6 text-sm">
           <div><dt class="eyebrow">Based in</dt><dd class="mt-1">{site.location}</dd></div>
-          {contact.email && <div><dt class="eyebrow">Email</dt><dd class="mt-1 break-all"><a class="link-draw" href={`mailto:${contact.email}`}>{contact.email}</a></dd></div>}
+          {contact.email && <div><dt class="eyebrow">Email</dt><dd class="mt-1"><a class="link-draw" href={`mailto:${contact.email}`}>{contact.email.split('@')[0]}<wbr />@{contact.email.split('@')[1]}</a></dd></div>}
           <div>
             <dt class="eyebrow">Languages</dt>
             {about.languages.map((l) => <dd class="mt-1">{l.name} <span class="text-ink-mute">— {l.level}</span></dd>)}

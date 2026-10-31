@@ -6,9 +6,10 @@ const links = [
   { label: 'Work', href: url('/#work') },
   { label: 'Impact', href: url('/#impact') },
   { label: 'About', href: url('/#about') },
-  { label: 'Resume', href: url('/resume/') },
   { label: 'Contact', href: url('/#contact') },
 ];
+const resumeHref = url('/resume/');
+const onResume = Astro.url.pathname.replace(/\/$/, '').endsWith('/resume');
 ---
 
 <header role="banner" class="site-header fixed inset-x-0 top-0 z-50 transition-colors duration-500" data-header>
@@ -23,6 +24,13 @@ const links = [
         {links.map((l) => (
           <li><a href={l.href} class="link-draw py-1 text-ink-soft transition-colors hover:text-ink">{l.label}</a></li>
         ))}
+        <li>
+          <a
+            href={resumeHref}
+            class="inline-flex items-center gap-2 rounded-full border border-ink px-4 py-2 transition-colors duration-500 hover:bg-ink hover:text-ivory aria-[current=page]:bg-ink aria-[current=page]:text-ivory"
+            aria-current={onResume ? 'page' : undefined}
+          >Resume</a>
+        </li>
       </ul>
     </nav>
 
@@ -41,13 +49,25 @@ const links = [
   <div id="mobile-menu" class="mobile-menu md:hidden" hidden data-menu>
     <nav aria-label="Mobile" class="wrap flex h-full flex-col justify-between pt-24 pb-10">
       <ul class="space-y-2">
-        {links.map((l, i) => (
+        {[...links, { label: 'Resume', href: resumeHref }].map((l, i) => (
           <li style={`--i:${i}`}>
             <a href={l.href} class="font-display block py-1 text-5xl leading-tight" data-menu-link>{l.label}</a>
           </li>
         ))}
       </ul>
-      <p class="eyebrow">{site.location}</p>
+      <div class="space-y-4 border-t border-line pt-6 text-sm">
+        {site.resume.pdf && (
+          <a href={url(site.resume.pdf)} download type="application/pdf" class="flex min-h-11 items-center justify-between" data-menu-link>
+            <span>Download resume (PDF)</span><span aria-hidden="true">↓</span>
+          </a>
+        )}
+        {site.contact.email && (
+          <a href={`mailto:${site.contact.email}`} class="flex min-h-11 items-center justify-between break-all" data-menu-link>
+            <span>{site.contact.email}</span><span aria-hidden="true">↗</span>
+          </a>
+        )}
+        <p class="eyebrow">{site.location}</p>
+      </div>
     </nav>
   </div>
 </header>

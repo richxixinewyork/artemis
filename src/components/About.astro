@@ -10,7 +10,7 @@ const degree = [education.degree, education.field].filter(Boolean).join(' in ');
 ---
 
 <section id="about" class="py-24 md:py-40" aria-labelledby="about-title">
-  <div class="wrap grid grid-cols-12 gap-x-6 gap-y-14">
+  <div class="wrap grid grid-cols-12 gap-x-6 gap-y-12">
     <div class="col-span-12 md:col-span-3" data-reveal>
       <p class="eyebrow">About</p>
       {portrait && (
@@ -25,16 +25,32 @@ const degree = [education.degree, education.field].filter(Boolean).join(' in ');
       )}
     </div>
 
-    <div class="col-span-12 md:col-span-9 lg:col-span-8">
-      <h2 id="about-title" class="display-lg" data-reveal set:html={emphasize(about.heading)} />
-      <div class="prose-editorial mt-10 max-w-2xl text-lg leading-relaxed text-ink-soft md:mt-14 md:text-xl md:leading-relaxed" data-reveal>
-        {about.paragraphs.map((p) => <p>{p}</p>)}
-      </div>
+    <div class="col-span-12 md:col-span-9">
+      <h2 id="about-title" class="display-lg max-w-4xl" data-reveal set:html={emphasize(about.heading)} />
+      <p class="mt-10 max-w-3xl font-display text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.2] text-ink-soft md:mt-14" data-reveal>
+        {about.lead}
+      </p>
+    </div>
 
-      <div class="mt-16 grid gap-10 sm:grid-cols-3 md:mt-20">
-        {about.capabilities.map((c, i) => (
-          <div class="rule pt-5" data-reveal style={`--d:${i}`}>
-            <h3 class="eyebrow !text-ink">{c.title}</h3>
+    <!-- Three chapters, set as magazine columns on wide screens -->
+    <ol class="col-span-12 grid gap-x-10 gap-y-12 md:col-span-9 md:col-start-4 lg:grid-cols-3">
+      {about.chapters.map((c, i) => (
+        <li class="border-t border-ink pt-5" data-reveal style={`--d:${i}`}>
+          <p class="flex items-baseline gap-3">
+            <span class="font-display text-xl text-accent tabular-nums">{String(i + 1).padStart(2, '0')}</span>
+            <span class="eyebrow !text-ink">{c.label}</span>
+          </p>
+          <p class="mt-5 leading-relaxed text-ink-soft">{c.body}</p>
+        </li>
+      ))}
+    </ol>
+
+    <div class="col-span-12 md:col-span-9 md:col-start-4" data-reveal>
+      <h3 class="eyebrow mt-6">What I bring</h3>
+      <div class="mt-6 grid gap-10 sm:grid-cols-3">
+        {about.capabilities.map((c) => (
+          <div class="rule pt-5">
+            <h4 class="font-display text-2xl leading-tight">{c.title}</h4>
             <ul class="mt-4 space-y-2 text-[0.95rem] text-ink-soft">
               {c.items.map((it) => <li>{it}</li>)}
             </ul>
@@ -48,9 +64,16 @@ const degree = [education.degree, education.field].filter(Boolean).join(' in ');
   <div class="wrap mt-24 md:mt-36">
     <div class="grid grid-cols-12 gap-x-6">
       <h3 class="eyebrow col-span-12 mb-8 md:col-span-3" data-reveal>Career timeline</h3>
-      <ol class="col-span-12 md:col-span-9">
+      <ol class="col-span-12 border-b border-line md:col-span-9">
+        <li class="grid grid-cols-12 gap-x-6 gap-y-1 border-t border-line py-6 md:py-8" data-reveal>
+          <span class="col-span-12 text-sm tracking-[0.08em] text-ink-mute tabular-nums md:col-span-3">{education.period}</span>
+          <span class="col-span-12 font-display text-3xl leading-tight md:col-span-5">{degree}</span>
+          <span class="col-span-12 text-ink-soft md:col-span-4">
+            {education.school || education.location}<br /><span class="text-sm text-ink-mute">Education · {education.status.toLowerCase()}</span>
+          </span>
+        </li>
         {timeline.map((t, i) => (
-          <li class="timeline-row grid grid-cols-12 gap-x-6 gap-y-1 border-t border-line py-6 md:py-8" data-reveal style={`--d:${i}`}>
+          <li class="grid grid-cols-12 gap-x-6 gap-y-1 border-t border-line py-6 md:py-8" data-reveal style={`--d:${i}`}>
             <span class="col-span-12 text-sm tracking-[0.08em] text-ink-mute tabular-nums md:col-span-3">{t.years}</span>
             <span class="col-span-12 font-display text-3xl leading-tight md:col-span-5">{t.title}</span>
             <span class="col-span-12 text-ink-soft md:col-span-4">
@@ -58,13 +81,6 @@ const degree = [education.degree, education.field].filter(Boolean).join(' in ');
             </span>
           </li>
         ))}
-        <li class="grid grid-cols-12 gap-x-6 gap-y-1 border-y border-line py-6 md:py-8" data-reveal>
-          <span class="col-span-12 text-sm tracking-[0.08em] text-ink-mute tabular-nums md:col-span-3">{education.period}</span>
-          <span class="col-span-12 font-display text-3xl leading-tight md:col-span-5">{degree}</span>
-          <span class="col-span-12 text-ink-soft md:col-span-4">
-            {education.school || education.location}<br /><span class="text-sm text-ink-mute">Education · {education.status.toLowerCase()}</span>
-          </span>
-        </li>
       </ol>
     </div>
 
@@ -79,11 +95,3 @@ const degree = [education.degree, education.field].filter(Boolean).join(' in ');
   </div>
 </section>
 
-<style>
-  .timeline-row {
-    transition: background-color 0.5s var(--ease-editorial);
-  }
-  .timeline-row:hover {
-    background-color: var(--color-cream);
-  }
-</style>

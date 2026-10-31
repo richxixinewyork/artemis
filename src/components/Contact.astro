@@ -1,10 +1,10 @@
 ---
 import { site } from '../content/site';
-import { emphasize } from '../lib/url';
+import { emphasize, url } from '../lib/url';
 
-const { contact } = site;
-// Links with an empty url are hidden until a real value is supplied.
-const socials = site.socials.filter((s) => s.url);
+const { contact, resume } = site;
+// Only real profiles are shown: empty urls and demo placeholders stay hidden.
+const socials = site.socials.filter((s) => s.url && !s.demo);
 ---
 
 <section id="contact" class="bg-cream py-24 md:py-40" aria-labelledby="contact-title">
@@ -26,8 +26,21 @@ const socials = site.socials.filter((s) => s.url);
         </a>
       )}
 
+      <dl class="mt-14 grid gap-x-10 gap-y-6 text-sm sm:grid-cols-3" data-reveal style="--d:3">
+        <div><dt class="eyebrow">Based in</dt><dd class="mt-2 text-base">{site.location}</dd></div>
+        <div><dt class="eyebrow">Open to</dt><dd class="mt-2 text-base">Roles, partnerships &amp; collaborations</dd></div>
+        {resume.pdf && (
+          <div>
+            <dt class="eyebrow">Resume</dt>
+            <dd class="mt-2 text-base">
+              <a href={url(resume.pdf)} download type="application/pdf" class="link-draw inline-flex min-h-11 items-center gap-2 sm:min-h-0">Download PDF <span aria-hidden="true">↓</span></a>
+            </dd>
+          </div>
+        )}
+      </dl>
+
       {socials.length > 0 && (
-        <ul class="mt-16 grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-3" data-reveal style="--d:3">
+        <ul class="mt-14 grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-3" data-reveal style="--d:4">
           {socials.map((s) => (
             <li class="border-b border-line">
               <a
@@ -35,8 +48,7 @@ const socials = site.socials.filter((s) => s.url);
                 target="_blank"
                 rel="noopener noreferrer"
                 class="group flex items-center justify-between py-5 pr-2 text-[0.95rem] transition-colors hover:text-accent sm:pr-8"
-                data-demo-link={s.demo ? '' : undefined}
-              >
+                              >
                 <span>{s.label}<span class="sr-only"> (opens in a new tab)</span></span>
                 <span class="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true">↗</span>
               </a>
