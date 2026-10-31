@@ -40,6 +40,11 @@ export type Project = {
   results: Metric[];
   /** Shown instead of results for projects without outcomes yet. */
   nextSteps?: string[];
+  /**
+   * Background color of the logo file in src/assets/logos/<slug>.png, so the
+   * logo sits on its own color instead of a mismatched box. Defaults to white.
+   */
+  logoBackground?: string;
   /** Muted tone used for the typographic cover when no image exists. */
   tone: 'clay' | 'sage' | 'stone' | 'blush' | 'ink';
   images?: Record<string, { alt: string; caption?: string }>;
@@ -215,6 +220,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'esoteric-studios',
+    logoBackground: '#baa46a',
     org: 'Esoteric Studios',
     title: 'Cross-Border Professional Beauty',
     discipline: 'Beauty · Cross-Border E-Commerce',

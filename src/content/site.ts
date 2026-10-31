@@ -175,11 +175,17 @@ export const site = {
     email: 'Artemisnewyork@outlook.com',
   },
 
-  /** Social & business links. Empty url = hidden. demo: true = placeholder to replace. */
+  /**
+   * Social & business links.
+   *  - url: ''      → hidden
+   *  - demo: true   → PLACEHOLDER. Shown with a visible "Placeholder" tag and kept out
+   *                   of search-engine structured data. Replace the url with Artemis's
+   *                   real profile and delete `demo: true` to publish it as hers.
+   */
   socials: [
-    { label: 'LinkedIn', url: 'https://www.linkedin.com/', demo: true },
-    { label: 'Instagram', url: 'https://www.instagram.com/', demo: true },
-    { label: 'Xiaohongshu / RED', url: 'https://www.xiaohongshu.com/', demo: true },
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/', demo: true }, // PLACEHOLDER — replace with real profile URL
+    { label: 'Instagram', url: 'https://www.instagram.com/', demo: true }, // PLACEHOLDER — replace with real profile URL
+    { label: 'Xiaohongshu / RED', url: 'https://www.xiaohongshu.com/', demo: true }, // PLACEHOLDER — replace with real profile URL
     { label: 'WeChat', url: '' },
     { label: 'Missingcity', url: '' },
     { label: 'Esoteric Studios', url: '' },

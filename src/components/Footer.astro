@@ -2,7 +2,7 @@
 import { site } from '../content/site';
 import { url } from '../lib/url';
 
-const socials = site.socials.filter((s) => s.url && !s.demo);
+const socials = site.socials.filter((s) => s.url);
 const links = [
   { label: 'Work', href: url('/#work') },
   { label: 'Impact', href: url('/#impact') },
@@ -26,7 +26,7 @@ const links = [
       <div class="col-span-6 space-y-2 text-sm text-ivory/70 md:col-span-2">
         {site.contact.email && <a href={`mailto:${site.contact.email}`} class="link-draw block break-all hover:text-ivory">Email</a>}
         {socials.map((s) => (
-          <a href={s.url} target="_blank" rel="noopener noreferrer" class="link-draw block hover:text-ivory">{s.label}<span class="sr-only"> (opens in a new tab)</span></a>
+          <a href={s.url} target="_blank" rel="noopener noreferrer" class="link-draw block hover:text-ivory" title={s.demo ? 'Placeholder — profile link coming soon' : undefined}>{s.label}{s.demo && <span class="ml-2 text-[0.62rem] tracking-[0.14em] text-ivory/50 uppercase">Placeholder</span>}<span class="sr-only">{s.demo ? ' (placeholder link, not her profile yet;' : ' ('} opens in a new tab)</span></a>
         ))}
         <p>{site.location}</p>
       </div>

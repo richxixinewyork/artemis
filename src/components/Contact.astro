@@ -3,8 +3,8 @@ import { site } from '../content/site';
 import { emphasize, url } from '../lib/url';
 
 const { contact, resume } = site;
-// Only real profiles are shown: empty urls and demo placeholders stay hidden.
-const socials = site.socials.filter((s) => s.url && !s.demo);
+// Links with a url are shown; demo entries carry a visible "Placeholder" tag.
+const socials = site.socials.filter((s) => s.url);
 ---
 
 <section id="contact" class="bg-cream py-24 md:py-40" aria-labelledby="contact-title">
@@ -47,9 +47,14 @@ const socials = site.socials.filter((s) => s.url && !s.demo);
                 href={s.url}
                 target="_blank"
                 rel="noopener noreferrer"
+                title={s.demo ? 'Placeholder — Artemis’s profile link will be added soon' : undefined}
                 class="group flex items-center justify-between py-5 pr-2 text-[0.95rem] transition-colors hover:text-accent sm:pr-8"
                               >
-                <span>{s.label}<span class="sr-only"> (opens in a new tab)</span></span>
+                <span class="flex items-baseline gap-3">
+                  {s.label}
+                  {s.demo && <span class="rounded-full border border-line px-2 py-0.5 text-[0.62rem] tracking-[0.14em] text-ink-mute uppercase">Placeholder</span>}
+                  <span class="sr-only">{s.demo ? ' (placeholder link, not her profile yet;' : ' ('} opens in a new tab)</span>
+                </span>
                 <span class="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true">↗</span>
               </a>
             </li>

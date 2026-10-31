@@ -45,12 +45,12 @@ const pad = (x: number) => String(x).padStart(2, '0');
           <span class="hidden tabular-nums sm:inline">{pad(n)} / {pad(projects.length)}</span>
         </span>
 
-        <span class="flex flex-1 items-center justify-center py-6" aria-hidden="true">
-          {hasLogo ? (
-            <LogoTile slug={project.slug} name={project.org} size={variant === 'hero' ? 168 : 104} />
-          ) : (
-            <span class:list={['monogram font-display italic', variant === 'hero' && 'monogram-lg']}>{project.org.charAt(0)}</span>
+        <span class="flex flex-1 items-center justify-center py-6" aria-hidden="true" data-logo-wrap>
+          {hasLogo && (
+            <LogoTile slug={project.slug} name={project.org} size={variant === 'hero' ? 'lg' : 'md'} background={project.logoBackground} />
           )}
+          {/* Initial shown when there is no logo, or if the logo image fails to load */}
+          <span class:list={['monogram font-display italic', variant === 'hero' && 'monogram-lg', hasLogo && 'monogram-fallback']}>{project.org.charAt(0)}</span>
         </span>
 
         <span class="flex items-end justify-end gap-4 text-[0.66rem] sm:justify-between tracking-[0.22em] uppercase">
@@ -93,6 +93,15 @@ const pad = (x: number) => String(x).padStart(2, '0');
     font-size: clamp(3.5rem, 8vw, 5.5rem);
     line-height: 1;
     padding-bottom: 0.08em;
+  }
+  .monogram-fallback {
+    display: none;
+  }
+  [data-logo-failed] .monogram-fallback {
+    display: grid;
+  }
+  [data-logo-failed] :global([data-logo]) {
+    display: none;
   }
   .monogram-lg {
     width: clamp(8rem, 18vw, 13rem);

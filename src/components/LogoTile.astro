@@ -5,27 +5,63 @@ import { getLogo } from '../lib/media';
 interface Props {
   slug: string;
   name: string;
-  /** Rendered size in px (square). */
-  size?: number;
+  /** 'md' for homepage placards, 'lg' for case-study heroes. */
+  size?: 'md' | 'lg';
+  /** The logo file's own background color (see Project.logoBackground). */
+  background?: string;
   class?: string;
 }
 
-const { slug, name, size = 64, class: className = '' } = Astro.props;
+const { slug, name, size = 'md', background = '#ffffff', class: className = '' } = Astro.props;
 const logo = getLogo(slug);
+// Source width for the optimized file: roughly 2× the largest rendered size.
+const width = size === 'lg' ? 440 : 280;
 ---
 
 {logo && (
   <span
-    class:list={['inline-block aspect-square shrink-0 overflow-hidden rounded-[22%] bg-white shadow-[0_0_0_1px_rgba(28,26,24,0.08),0_24px_48px_-28px_rgba(28,26,24,0.45)]', className]}
-    style={`width:min(${size}px, 28vw)`}
+    class:list={['logo-mark', `logo-${size}`, className]}
+    style={`--logo-bg:${background}`}
+    data-logo
   >
     <Image
       src={logo}
       alt={`${name} logo`}
-      width={size * 2}
-      height={size * 2}
+      width={Math.min(width, logo.width)}
       format="webp"
-      class="h-full w-full object-cover"
+      loading="eager"
+      decoding="async"
+      class="logo-img"
+      onerror="this.closest('[data-logo-wrap]')?.setAttribute('data-logo-failed','')"
     />
   </span>
 )}
+
+<style>
+  /* Square mark on the logo's own background; the artwork is never stretched or cropped. */
+  .logo-mark {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    aspect-ratio: 1;
+    border-radius: 4px;
+    background: var(--logo-bg);
+    box-shadow:
+      0 0 0 1px rgb(28 26 24 / 0.06),
+      0 22px 44px -28px rgb(28 26 24 / 0.5);
+  }
+  .logo-md {
+    width: clamp(5.75rem, 10vw, 8rem);
+  }
+  .logo-lg {
+    width: clamp(8.5rem, 17vw, 12.5rem);
+  }
+  /* Absolutely placed so the size never depends on intrinsic image dimensions */
+  .logo-img {
+    position: absolute;
+    inset: 15%;
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+</style>
