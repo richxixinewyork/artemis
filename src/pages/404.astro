@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import { url } from '../lib/url';
+---
+
+<Base title="Page not found" noindex>
+  <section class="wrap flex min-h-[80dvh] flex-col justify-center pt-28 pb-20">
+    <p class="eyebrow intro-rise">Error 404</p>
+    <h1 class="display-xl intro-rise mt-6" style="--d:1">This page has <em>wandered off</em>.</h1>
+    <div class="intro-rise mt-10" style="--d:2">
+      <a href={url('/')} class="btn btn-solid">Return home <span class="arrow" aria-hidden="true">→</span></a>
+    </div>
+  </section>
+</Base>

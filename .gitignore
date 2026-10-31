@@ -1,0 +1,26 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs & env
+npm-debug.log*
+.env
+.env.*
+
+# macOS
+.DS_Store
+
+# Source material kept OFF the public repository (contains phone number / drafts)
+*.docx
+/Artemis_Wang_final.pdf
+/pic_xixi.JPG
+/tantan.JPG
+/momo.JPG
+/esoteric.jpg
+/Artemis_Wang Resume.pdf
+
+# local editor config
+.claude/

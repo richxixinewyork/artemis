@@ -1,0 +1,89 @@
+---
+import { Picture } from 'astro:assets';
+import { site } from '../content/site';
+import { getPortrait } from '../lib/media';
+import { emphasize } from '../lib/url';
+
+const { about, timeline, education } = site;
+const portrait = getPortrait('about');
+const degree = [education.degree, education.field].filter(Boolean).join(' in ');
+---
+
+<section id="about" class="py-24 md:py-40" aria-labelledby="about-title">
+  <div class="wrap grid grid-cols-12 gap-x-6 gap-y-14">
+    <div class="col-span-12 md:col-span-3" data-reveal>
+      <p class="eyebrow">About</p>
+      {portrait && (
+        <Picture
+          src={portrait}
+          alt={`Portrait of ${site.name}`}
+          widths={[480, 768]}
+          sizes="(min-width: 768px) 22vw, 60vw"
+          formats={['avif', 'webp']}
+          class="mt-8 aspect-[3/4] w-3/5 object-cover md:w-full"
+        />
+      )}
+    </div>
+
+    <div class="col-span-12 md:col-span-9 lg:col-span-8">
+      <h2 id="about-title" class="display-lg" data-reveal set:html={emphasize(about.heading)} />
+      <div class="prose-editorial mt-10 max-w-2xl text-lg leading-relaxed text-ink-soft md:mt-14 md:text-xl md:leading-relaxed" data-reveal>
+        {about.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+
+      <div class="mt-16 grid gap-10 sm:grid-cols-3 md:mt-20">
+        {about.capabilities.map((c, i) => (
+          <div class="rule pt-5" data-reveal style={`--d:${i}`}>
+            <h3 class="eyebrow !text-ink">{c.title}</h3>
+            <ul class="mt-4 space-y-2 text-[0.95rem] text-ink-soft">
+              {c.items.map((it) => <li>{it}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="wrap mt-24 md:mt-36">
+    <div class="grid grid-cols-12 gap-x-6">
+      <h3 class="eyebrow col-span-12 mb-8 md:col-span-3" data-reveal>Career timeline</h3>
+      <ol class="col-span-12 md:col-span-9">
+        {timeline.map((t, i) => (
+          <li class="timeline-row grid grid-cols-12 gap-x-6 gap-y-1 border-t border-line py-6 md:py-8" data-reveal style={`--d:${i}`}>
+            <span class="col-span-12 text-sm tracking-[0.08em] text-ink-mute tabular-nums md:col-span-3">{t.years}</span>
+            <span class="col-span-12 font-display text-3xl leading-tight md:col-span-5">{t.title}</span>
+            <span class="col-span-12 text-ink-soft md:col-span-4">
+              {t.role}<br /><span class="text-sm text-ink-mute">{t.note}</span>
+            </span>
+          </li>
+        ))}
+        <li class="grid grid-cols-12 gap-x-6 gap-y-1 border-y border-line py-6 md:py-8" data-reveal>
+          <span class="col-span-12 text-sm tracking-[0.08em] text-ink-mute tabular-nums md:col-span-3">{education.period}</span>
+          <span class="col-span-12 font-display text-3xl leading-tight md:col-span-5">{degree}</span>
+          <span class="col-span-12 text-ink-soft md:col-span-4">
+            {education.school || education.location}<br /><span class="text-sm text-ink-mute">Education · {education.status.toLowerCase()}</span>
+          </span>
+        </li>
+      </ol>
+    </div>
+
+    <div class="mt-16 grid grid-cols-12 gap-x-6 gap-y-8" data-reveal>
+      <p class="eyebrow col-span-12 md:col-span-3">Languages</p>
+      <ul class="col-span-12 flex flex-wrap gap-x-12 gap-y-4 md:col-span-9">
+        {about.languages.map((l) => (
+          <li><span class="font-display text-2xl">{l.name}</span> <span class="ml-1 text-sm text-ink-mute">{l.level}</span></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline-row {
+    transition: background-color 0.5s var(--ease-editorial);
+  }
+  .timeline-row:hover {
+    background-color: var(--color-cream);
+  }
+</style>

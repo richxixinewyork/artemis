@@ -1,0 +1,62 @@
+---
+import { Picture } from 'astro:assets';
+import { statusLabel, type Project } from '../content/projects';
+import { getProjectMedia } from '../lib/media';
+import LogoTile from './LogoTile.astro';
+
+interface Props {
+  project: Project;
+  sizes: string;
+  eager?: boolean;
+  class?: string;
+}
+
+const { project, sizes, eager = false, class: className = '' } = Astro.props;
+const { cover } = getProjectMedia(project);
+const dark = project.tone === 'ink';
+---
+
+<div class:list={['cover relative overflow-hidden', className]} style={`--tone: var(--color-tone-${project.tone})`}>
+  {cover ? (
+    <Picture
+      src={cover.src}
+      alt={cover.alt}
+      widths={[480, 768, 1080, 1440, 1920]}
+      sizes={sizes}
+      formats={['avif', 'webp']}
+      loading={eager ? 'eager' : 'lazy'}
+      class="cover-media h-full w-full object-cover"
+    />
+  ) : (
+    /* Typographic plate — a deliberate placeholder until real, authorized imagery is added */
+    <div class:list={['cover-media plate flex h-full w-full flex-col justify-between p-5 md:p-8', dark ? 'text-ivory' : 'text-ink']} aria-hidden="true">
+      <span class="flex items-start justify-between gap-4">
+        <span class="text-[0.68rem] tracking-[0.2em] uppercase opacity-70">{project.discipline}</span>
+        <LogoTile slug={project.slug} name={project.org} size={52} />
+      </span>
+      <span class="plate-mark font-display leading-[0.8]">{project.org}</span>
+      <span class="flex justify-between text-[0.68rem] tracking-[0.2em] uppercase opacity-70">
+        <span>{project.period}</span><span>{statusLabel[project.status]}</span>
+      </span>
+    </div>
+  )}
+</div>
+
+<style>
+  .cover {
+    background: var(--tone);
+  }
+  .cover-media {
+    transition: transform 1.4s var(--ease-editorial);
+  }
+  .plate {
+    background:
+      radial-gradient(120% 90% at 85% 10%, color-mix(in srgb, white 22%, transparent), transparent 60%),
+      var(--tone);
+  }
+  .plate-mark {
+    font-size: clamp(2.6rem, 7vw, 6.5rem);
+    letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
+  }
+</style>

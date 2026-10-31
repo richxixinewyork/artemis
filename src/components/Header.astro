@@ -1,0 +1,122 @@
+---
+import { site } from '../content/site';
+import { url } from '../lib/url';
+
+const links = [
+  { label: 'Work', href: url('/#work') },
+  { label: 'Impact', href: url('/#impact') },
+  { label: 'About', href: url('/#about') },
+  { label: 'Resume', href: url('/resume/') },
+  { label: 'Contact', href: url('/#contact') },
+];
+---
+
+<header role="banner" class="site-header fixed inset-x-0 top-0 z-50 transition-colors duration-500" data-header>
+  <div class="wrap flex h-16 items-center justify-between md:h-20">
+    <a href={url('/')} class="group flex items-baseline gap-2" aria-label={`${site.name} — home`}>
+      <span class="font-display text-2xl leading-none tracking-tight md:text-[1.7rem]">{site.name}</span>
+      <span class="size-1.5 rounded-full bg-accent transition-transform duration-500 group-hover:scale-150" aria-hidden="true"></span>
+    </a>
+
+    <nav aria-label="Primary" class="hidden md:block">
+      <ul class="flex items-center gap-9 text-[0.8rem] tracking-[0.08em] uppercase">
+        {links.map((l) => (
+          <li><a href={l.href} class="link-draw py-1 text-ink-soft transition-colors hover:text-ink">{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+
+    <button
+      type="button"
+      class="relative -mr-2 flex size-11 items-center justify-center md:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <span class="sr-only" data-menu-label>Open menu</span>
+      <span class="menu-icon" aria-hidden="true"><span></span><span></span></span>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="mobile-menu md:hidden" hidden data-menu>
+    <nav aria-label="Mobile" class="wrap flex h-full flex-col justify-between pt-24 pb-10">
+      <ul class="space-y-2">
+        {links.map((l, i) => (
+          <li style={`--i:${i}`}>
+            <a href={l.href} class="font-display block py-1 text-5xl leading-tight" data-menu-link>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+      <p class="eyebrow">{site.location}</p>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header[data-scrolled],
+  .site-header[data-open] {
+    background: color-mix(in srgb, var(--color-ivory) 88%, transparent);
+    backdrop-filter: saturate(1.2) blur(14px);
+    -webkit-backdrop-filter: saturate(1.2) blur(14px);
+    box-shadow: 0 1px 0 var(--color-line);
+  }
+  .menu-icon {
+    position: relative;
+    width: 22px;
+    height: 10px;
+  }
+  .menu-icon span {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1.5px;
+    background: currentColor;
+    transition: transform 0.45s var(--ease-editorial), top 0.45s var(--ease-editorial);
+  }
+  .menu-icon span:first-child { top: 0; }
+  .menu-icon span:last-child { top: 8.5px; }
+  [aria-expanded='true'] .menu-icon span:first-child { top: 4.25px; transform: rotate(45deg); }
+  [aria-expanded='true'] .menu-icon span:last-child { top: 4.25px; transform: rotate(-45deg); }
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--color-ivory);
+    height: 100dvh;
+  }
+  .mobile-menu li {
+    animation: rise 0.7s var(--ease-editorial) both;
+    animation-delay: calc(var(--i) * 60ms + 80ms);
+  }
+</style>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]')!;
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]')!;
+  const label = document.querySelector<HTMLElement>('[data-menu-label]')!;
+  const menu = document.querySelector<HTMLElement>('[data-menu]')!;
+
+  const onScroll = () => header.toggleAttribute('data-scrolled', window.scrollY > 24);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  const setOpen = (open: boolean) => {
+    toggle.setAttribute('aria-expanded', String(open));
+    label.textContent = open ? 'Close menu' : 'Open menu';
+    menu.hidden = !open;
+    header.toggleAttribute('data-open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) menu.querySelector<HTMLAnchorElement>('a')?.focus();
+  };
+
+  toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+  menu.querySelectorAll('[data-menu-link]').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !menu.hidden) {
+      setOpen(false);
+      toggle.focus();
+    }
+  });
+  window.matchMedia('(min-width: 768px)').addEventListener('change', (e) => e.matches && setOpen(false));
+</script>

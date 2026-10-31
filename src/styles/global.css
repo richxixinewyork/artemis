@@ -1,0 +1,236 @@
+@import 'tailwindcss';
+@import '@fontsource/instrument-serif/400.css';
+@import '@fontsource/instrument-serif/400-italic.css';
+@import '@fontsource-variable/inter';
+
+/* ── Design tokens ─────────────────────────────────────────── */
+@theme static {
+  --color-ivory: #f7f3ec;
+  --color-cream: #efe8db;
+  --color-sand: #e4dac9;
+  --color-line: #d5c9b6;
+  --color-ink: #1c1a18;
+  --color-ink-soft: #57514a; /* 7.0:1 on ivory */
+  --color-ink-mute: #6f675e; /* 5.1:1 on ivory */
+  --color-accent: #9a3f2c; /* cinnabar — 6.4:1 on ivory */
+  --color-accent-deep: #7a2f20;
+
+  /* Muted plate tones for project covers without imagery */
+  --color-tone-clay: #c9a58d;
+  --color-tone-sage: #a9ae98;
+  --color-tone-stone: #b9b0a2;
+  --color-tone-blush: #d8b7aa;
+  --color-tone-ink: #2a2724;
+
+  --font-display: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+@layer base {
+  html {
+    background: var(--color-ivory);
+    color: var(--color-ink);
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-ivory);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  em {
+    font-style: italic;
+  }
+}
+
+/* ── Components ───────────────────────────────────────────── */
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 90rem;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 3.5rem);
+  }
+
+  /* Small uppercase label used throughout */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+
+  .display-xl,
+  .display-lg,
+  .display-md {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  .display-xl {
+    font-size: clamp(3.2rem, 9.5vw, 9.5rem);
+    line-height: 0.92;
+  }
+  .display-lg {
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 0.98;
+  }
+  .display-md {
+    font-size: clamp(1.9rem, 3.6vw, 3.2rem);
+    line-height: 1.04;
+  }
+  .display-xl em,
+  .display-lg em,
+  .display-md em {
+    color: var(--color-accent);
+  }
+
+  /* Underline that draws in on hover */
+  .link-draw {
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+    transition: background-size 0.5s var(--ease-editorial);
+  }
+  .link-draw:hover,
+  .link-draw:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.95rem 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid var(--color-ink);
+    border-radius: 999px;
+    transition:
+      background-color 0.4s var(--ease-editorial),
+      color 0.4s var(--ease-editorial),
+      border-color 0.4s var(--ease-editorial);
+  }
+  .btn-solid {
+    background: var(--color-ink);
+    color: var(--color-ivory);
+  }
+  .btn-solid:hover {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+  .btn-ghost:hover {
+    background: var(--color-ink);
+    color: var(--color-ivory);
+  }
+  .btn .arrow {
+    transition: transform 0.4s var(--ease-editorial);
+  }
+  .btn:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .rule {
+    border-top: 1px solid var(--color-line);
+  }
+
+  .prose-editorial p + p {
+    margin-top: 1.25em;
+  }
+}
+
+/* ── Motion ───────────────────────────────────────────────── */
+
+/* Scroll reveal (enabled by JS adding .js to <html>, so content never hides without JS) */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 1.1s var(--ease-editorial),
+    transform 1.1s var(--ease-editorial);
+  transition-delay: calc(var(--d, 0) * 90ms);
+}
+.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Hero intro sequence */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(0.4em); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes unveil {
+  from { clip-path: inset(100% 0 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes settle {
+  from { transform: scale(1.08); }
+  to { transform: scale(1); }
+}
+.intro-rise {
+  animation: rise 1.2s var(--ease-editorial) both;
+  animation-delay: calc(var(--d, 0) * 120ms + 150ms);
+}
+.intro-unveil {
+  animation: unveil 1.4s var(--ease-editorial) both 0.1s;
+}
+.intro-unveil img {
+  animation: settle 2.2s var(--ease-editorial) both 0.1s;
+}
+
+/* Cross-document page transitions (no JS; supported browsers only) */
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.45s;
+  animation-timing-function: var(--ease-editorial);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+  .js [data-reveal] { opacity: 1; transform: none; }
+  @view-transition { navigation: none; }
+}
+
+/* ── Print (résumé page prints cleanly) ───────────────────── */
+@media print {
+  header[role='banner'], footer, .no-print { display: none !important; }
+  html, body { background: #fff; }
+  .js [data-reveal] { opacity: 1 !important; transform: none !important; }
+  a { text-decoration: none; }
+}

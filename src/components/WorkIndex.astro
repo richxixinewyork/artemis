@@ -1,0 +1,71 @@
+---
+import ProjectCover from './ProjectCover.astro';
+import StatusTag from './StatusTag.astro';
+import { projects } from '../content/projects';
+import { url } from '../lib/url';
+
+// Asymmetric editorial layout — one entry per project, cycling if more are added.
+const layouts = [
+  { media: 'md:col-span-7 aspect-[4/3]', text: 'md:col-span-4 md:col-start-9 md:self-end', sizes: '(min-width: 768px) 56vw, 100vw' },
+  { media: 'md:col-span-6 md:col-start-7 md:row-start-1 aspect-[4/5]', text: 'md:col-span-4 md:col-start-2 md:row-start-1 md:self-center', sizes: '(min-width: 768px) 48vw, 100vw' },
+  { media: 'md:col-span-5 md:col-start-1 aspect-[3/4]', text: 'md:col-span-5 md:col-start-7 md:self-start md:pt-24', sizes: '(min-width: 768px) 40vw, 100vw' },
+  { media: 'md:col-span-6 md:col-start-6 aspect-[5/4]', text: 'md:col-span-4 md:col-start-1 md:row-start-1 md:self-end', sizes: '(min-width: 768px) 48vw, 100vw' },
+  { media: 'md:col-span-12 aspect-[4/3] md:aspect-[21/9]', text: 'md:col-span-6 md:col-start-7', sizes: '100vw' },
+];
+---
+
+<section id="work" class="py-24 md:py-40" aria-labelledby="work-title">
+  <div class="wrap">
+    <div class="grid grid-cols-12 gap-x-6 gap-y-6" data-reveal>
+      <p class="eyebrow col-span-12 md:col-span-3">Selected work <span class="text-ink-mute">({String(projects.length).padStart(2, '0')})</span></p>
+      <h2 id="work-title" class="display-lg col-span-12 md:col-span-9">
+        Five chapters across consumer tech, fashion, beauty <em>&amp; culture</em>.
+      </h2>
+    </div>
+
+    <ol class="mt-20 space-y-24 md:mt-32 md:space-y-40">
+      {projects.map((p, i) => {
+        const l = layouts[i % layouts.length];
+        const n = String(i + 1).padStart(2, '0');
+        return (
+          <li>
+            <a href={url(`/work/${p.slug}/`)} class="work-item group grid grid-cols-12 gap-x-6 gap-y-6 md:gap-y-0" aria-label={`${p.org} — ${p.title}. View case study`}>
+              <div class:list={['col-span-12', l.media]} data-reveal>
+                <ProjectCover project={p} sizes={l.sizes} class="h-full w-full" />
+              </div>
+              <div class:list={['col-span-12', l.text]} data-reveal style="--d:1">
+                <div class="flex items-center justify-between gap-4">
+                  <span class="font-display text-2xl text-accent">{n}</span>
+                  <StatusTag status={p.status} />
+                </div>
+                <h3 class="mt-4 font-display text-4xl leading-none md:text-5xl">{p.org}</h3>
+                <p class="mt-2 text-lg leading-snug">{p.title}</p>
+                <p class="mt-1 text-sm text-ink-mute">{p.role} · {p.period}</p>
+                <p class="mt-5 leading-relaxed text-ink-soft">{p.summary}</p>
+                <span class="mt-6 inline-flex items-center gap-2 text-[0.78rem] tracking-[0.14em] uppercase">
+                  <span class="link-draw">View case study</span>
+                  <span class="transition-transform duration-500 group-hover:translate-x-1" aria-hidden="true">→</span>
+                </span>
+              </div>
+            </a>
+          </li>
+        );
+      })}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .work-item:hover :global(.cover-media) {
+    transform: scale(1.035);
+  }
+  .work-item:hover h3 {
+    color: var(--color-accent);
+  }
+  .work-item h3 {
+    transition: color 0.5s var(--ease-editorial);
+  }
+  .work-item:hover .link-draw {
+    background-size: 100% 1px;
+  }
+</style>

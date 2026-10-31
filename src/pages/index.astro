@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import WorkIndex from '../components/WorkIndex.astro';
+import Impact from '../components/Impact.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import { site } from '../content/site';
+import { url } from '../lib/url';
+---
+
+<Base>
+  <Hero />
+  <WorkIndex />
+  <Impact />
+  <About />
+
+  <section class="rule" aria-labelledby="resume-teaser">
+    <div class="wrap grid grid-cols-12 items-end gap-x-6 gap-y-8 py-20 md:py-28" data-reveal>
+      <p class="eyebrow col-span-12 md:col-span-3">Resume</p>
+      <h2 id="resume-teaser" class="display-md col-span-12 md:col-span-6">
+        The full record — roles, results and education, <em>on one page</em>.
+      </h2>
+      <div class="col-span-12 flex flex-wrap gap-3 md:col-span-3 md:justify-end">
+        <a href={url('/resume/')} class="btn btn-solid">View resume <span class="arrow" aria-hidden="true">→</span></a>
+        {site.resume.pdf && <a href={url(site.resume.pdf)} class="btn btn-ghost" download>Download PDF</a>}
+      </div>
+    </div>
+  </section>
+
+  <Contact />
+</Base>

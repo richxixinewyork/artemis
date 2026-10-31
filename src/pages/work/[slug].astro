@@ -1,0 +1,166 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import ProjectCover from '../../components/ProjectCover.astro';
+import StatusTag from '../../components/StatusTag.astro';
+import { projects, type Project } from '../../content/projects';
+import LogoTile from '../../components/LogoTile.astro';
+import { getProjectMedia } from '../../lib/media';
+import { url } from '../../lib/url';
+
+export function getStaticPaths() {
+  return projects.map((project, i) => ({
+    params: { slug: project.slug },
+    props: { project, index: i },
+  }));
+}
+
+interface Props {
+  project: Project;
+  index: number;
+}
+
+const { project: p, index } = Astro.props;
+const next = projects[(index + 1) % projects.length];
+const { gallery } = getProjectMedia(p);
+const n = String(index + 1).padStart(2, '0');
+
+const facts = [
+  { k: 'Role', v: p.role },
+  { k: 'Period', v: p.period },
+  ...(p.location ? [{ k: 'Location', v: p.location }] : []),
+  { k: 'Discipline', v: p.discipline },
+];
+---
+
+<Base title={`${p.org} — ${p.title}`} description={p.summary}>
+  <article>
+    <header class="pt-28 md:pt-40">
+      <div class="wrap">
+        <nav aria-label="Breadcrumb" class="intro-rise eyebrow flex items-center gap-3" style="--d:0">
+          <a href={url('/#work')} class="link-draw">Selected work</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{n}</span>
+        </nav>
+
+        <div class="mt-10 grid grid-cols-12 items-end gap-x-6 gap-y-8 md:mt-14">
+          <div class="col-span-12 lg:col-span-8">
+            <div class="intro-rise flex flex-wrap items-center gap-4" style="--d:1">
+              <LogoTile slug={p.slug} name={p.org} size={72} />
+              <StatusTag status={p.status} />
+            </div>
+            <h1 class="display-xl intro-rise mt-6" style="--d:2">{p.org}</h1>
+            <p class="intro-rise mt-5 font-display text-3xl leading-tight text-ink-soft md:text-4xl" style="--d:3">{p.title}</p>
+          </div>
+          <dl class="intro-rise col-span-12 grid grid-cols-2 gap-x-6 gap-y-5 text-sm lg:col-span-4 lg:grid-cols-1" style="--d:4">
+            {facts.map((f) => (
+              <div class="border-t border-line pt-3">
+                <dt class="eyebrow">{f.k}</dt>
+                <dd class="mt-1 text-ink">{f.v}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <div class="wrap mt-14 md:mt-20">
+        <div class="intro-unveil">
+          <ProjectCover project={p} sizes="100vw" eager class="aspect-[4/3] md:aspect-[21/9]" />
+        </div>
+      </div>
+    </header>
+
+    <!-- Overview -->
+    <section class="wrap grid grid-cols-12 gap-x-6 gap-y-8 py-20 md:py-32" aria-labelledby="overview">
+      <h2 id="overview" class="eyebrow col-span-12 md:col-span-3" data-reveal>Overview</h2>
+      <div class="col-span-12 md:col-span-9 lg:col-span-7" data-reveal>
+        <p class="font-display text-[clamp(1.6rem,2.8vw,2.4rem)] leading-[1.18]">{p.overview}</p>
+        {p.context && <p class="mt-8 text-lg leading-relaxed text-ink-soft"><span class="eyebrow mr-3 !text-accent">Context</span>{p.context}</p>}
+        <p class="mt-6 text-lg leading-relaxed text-ink-soft"><span class="eyebrow mr-3 !text-accent">Role</span>{p.roleDetail}</p>
+      </div>
+    </section>
+
+    <!-- Contributions -->
+    <section class="rule" aria-labelledby="contrib">
+      <div class="wrap grid grid-cols-12 gap-x-6 gap-y-8 py-20 md:py-32">
+        <h2 id="contrib" class="eyebrow col-span-12 md:col-span-3" data-reveal>Strategy &amp; contributions</h2>
+        <ol class="col-span-12 grid gap-x-10 gap-y-12 sm:grid-cols-2 md:col-span-9">
+          {p.contributions.map((c, i) => (
+            <li data-reveal style={`--d:${i % 2}`}>
+              <span class="font-display text-xl text-accent">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="mt-2 font-display text-[1.75rem] leading-tight">{c.heading}</h3>
+              <p class="mt-3 leading-relaxed text-ink-soft">{c.body}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <!-- Results / status -->
+    {p.results.length > 0 ? (
+      <section class="bg-ink text-ivory" aria-labelledby="results">
+        <div class="wrap grid grid-cols-12 gap-x-6 gap-y-8 py-20 md:py-32">
+          <h2 id="results" class="eyebrow col-span-12 !text-ivory/60 md:col-span-3" data-reveal>Results &amp; impact</h2>
+          <dl class="col-span-12 grid gap-x-10 sm:grid-cols-2 md:col-span-9 lg:grid-cols-3">
+            {p.results.map((r, i) => (
+              <div class="flex flex-col border-t border-ivory/20 pt-6 pb-10" data-reveal style={`--d:${i % 3}`}>
+                <dt class="order-2 mt-3 text-lg leading-snug">{r.label}</dt>
+                <dd class="order-1 font-display text-6xl leading-none">{r.value}</dd>
+                {r.note && <dd class="order-3 mt-2 text-sm leading-relaxed text-ivory/60">{r.note}</dd>}
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+    ) : (
+      <section class="bg-cream" aria-labelledby="status">
+        <div class="wrap grid grid-cols-12 gap-x-6 gap-y-8 py-20 md:py-32">
+          <h2 id="status" class="eyebrow col-span-12 md:col-span-3" data-reveal>Where it stands</h2>
+          <div class="col-span-12 md:col-span-9" data-reveal>
+            <p class="display-md">This project is <em>in development</em>. No outcomes are reported yet.</p>
+            {p.nextSteps && (
+              <ul class="mt-10 border-t border-line">
+                {p.nextSteps.map((s) => <li class="border-b border-line py-4 text-lg text-ink-soft">{s}</li>)}
+              </ul>
+            )}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Gallery (only when real images exist) -->
+    {gallery.length > 0 && (
+      <section class="wrap py-20 md:py-32" aria-label={`${p.org} images`}>
+        <div class="grid grid-cols-12 gap-x-6 gap-y-10">
+          {gallery.map((g, i) => (
+            <figure class:list={['col-span-12', i % 3 === 0 ? 'md:col-span-12' : 'md:col-span-6']} data-reveal>
+              <Picture
+                src={g.src}
+                alt={g.alt}
+                widths={[480, 768, 1080, 1440, 1920]}
+                sizes={i % 3 === 0 ? '100vw' : '(min-width: 768px) 48vw, 100vw'}
+                formats={['avif', 'webp']}
+                class="w-full bg-cream"
+              />
+              {g.caption && <figcaption class="mt-3 text-sm text-ink-mute">{g.caption}</figcaption>}
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <!-- Next project -->
+    <nav class="rule" aria-label="Next project">
+      <a href={url(`/work/${next.slug}/`)} class="next group block">
+        <div class="wrap flex flex-col gap-4 py-20 md:flex-row md:items-end md:justify-between md:py-28">
+          <div>
+            <p class="eyebrow">Next project</p>
+            <p class="display-lg mt-4 transition-colors duration-500 group-hover:text-accent">{next.org}</p>
+            <p class="mt-2 text-ink-soft">{next.title}</p>
+          </div>
+          <span class="font-display text-6xl transition-transform duration-700 group-hover:translate-x-3" aria-hidden="true">→</span>
+        </div>
+      </a>
+    </nav>
+  </article>
+</Base>

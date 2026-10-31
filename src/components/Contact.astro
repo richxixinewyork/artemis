@@ -1,0 +1,49 @@
+---
+import { site } from '../content/site';
+import { emphasize } from '../lib/url';
+
+const { contact } = site;
+// Links with an empty url are hidden until a real value is supplied.
+const socials = site.socials.filter((s) => s.url);
+---
+
+<section id="contact" class="bg-cream py-24 md:py-40" aria-labelledby="contact-title">
+  <div class="wrap grid grid-cols-12 gap-x-6 gap-y-12">
+    <p class="eyebrow col-span-12 md:col-span-3" data-reveal>Contact</p>
+    <div class="col-span-12 md:col-span-9">
+      <h2 id="contact-title" class="display-xl" data-reveal set:html={emphasize(contact.heading)} />
+      <p class="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft" data-reveal style="--d:1">{contact.blurb}</p>
+
+      {contact.email && (
+        <a
+          href={`mailto:${contact.email}`}
+          class="email group mt-12 inline-flex max-w-full items-baseline gap-4 border-b border-ink pb-3 font-display text-[clamp(1.6rem,4.6vw,3.6rem)] leading-none break-all transition-colors hover:border-accent hover:text-accent"
+          data-reveal
+          style="--d:2"
+        >
+          {contact.email}
+          <span class="shrink-0 text-[0.6em] transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true">↗</span>
+        </a>
+      )}
+
+      {socials.length > 0 && (
+        <ul class="mt-16 grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-3" data-reveal style="--d:3">
+          {socials.map((s) => (
+            <li class="border-b border-line">
+              <a
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center justify-between py-5 pr-2 text-[0.95rem] transition-colors hover:text-accent sm:pr-8"
+                data-demo-link={s.demo ? '' : undefined}
+              >
+                <span>{s.label}<span class="sr-only"> (opens in a new tab)</span></span>
+                <span class="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </div>
+</section>

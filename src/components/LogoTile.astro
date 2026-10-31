@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import { getLogo } from '../lib/media';
+
+interface Props {
+  slug: string;
+  name: string;
+  /** Rendered size in px (square). */
+  size?: number;
+  class?: string;
+}
+
+const { slug, name, size = 64, class: className = '' } = Astro.props;
+const logo = getLogo(slug);
+---
+
+{logo && (
+  <span
+    class:list={['inline-block shrink-0 overflow-hidden rounded-[22%] bg-white shadow-[0_0_0_1px_rgba(28,26,24,0.08)]', className]}
+    style={`width:${size}px;height:${size}px`}
+  >
+    <Image
+      src={logo}
+      alt={`${name} logo`}
+      width={size * 2}
+      height={size * 2}
+      format="webp"
+      class="h-full w-full object-cover"
+    />
+  </span>
+)}
