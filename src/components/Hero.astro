@@ -28,7 +28,7 @@ const [first, ...rest] = site.name.split(' ');
 
     <!-- Portrait: bleeds to the viewport edge; multiply blends the studio white into the page tone -->
     <figure class="relative col-span-12 -mx-[clamp(1rem,4vw,3.5rem)] mt-10 lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1 lg:mt-0 lg:ml-0">
-      <div class="intro-unveil portrait-frame relative aspect-[10/11] overflow-hidden mix-blend-multiply sm:aspect-[25/22] lg:absolute lg:right-0 lg:bottom-0 lg:aspect-auto lg:h-[88%] lg:w-[88%]">
+      <div class="intro-unveil portrait-frame relative aspect-[10/9] overflow-hidden mix-blend-multiply sm:aspect-[25/18] lg:absolute lg:right-0 lg:bottom-0 lg:aspect-auto lg:h-[72%] lg:w-[88%]">
         {portrait && (
           <Picture
             src={portrait}
@@ -42,7 +42,7 @@ const [first, ...rest] = site.name.split(' ');
           />
         )}
       </div>
-      <figcaption class="vertical-caption intro-rise absolute top-[calc(12%+7rem)] left-[calc(12%-2rem)] hidden text-[0.68rem] tracking-[0.24em] whitespace-nowrap text-ink-mute uppercase lg:block" style="--d:4">
+      <figcaption class="vertical-caption intro-rise absolute top-[calc(28%+3rem)] left-[calc(12%-2rem)] hidden text-[0.68rem] tracking-[0.24em] whitespace-nowrap text-ink-mute uppercase lg:block" style="--d:4">
         {hero.caption}
       </figcaption>
     </figure>

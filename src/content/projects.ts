@@ -68,7 +68,7 @@ export const projects: Project[] = [
     status: 'completed',
     tone: 'ink',
     summary:
-      'Building the creator operating model for Voice Rooms, a new live-audio feature — from incentives and partner payments to expansion in three markets.',
+      'Led the launch and growth of live-audio communities, building creator partnerships, monetization programs, and international operations across multiple markets.',
     highlights: [
       'Built the creator operating model end to end and the platform’s first creator commercialization framework.',
       'Single-handedly designed domestic and international partner payment and compliance processes, including a third-party provider to pay partners in Taiwan.',
@@ -77,38 +77,29 @@ export const projects: Project[] = [
       'Led a team of interns on expansion to Taiwan, Hong Kong and Germany.',
     ],
     overview:
-      'Voice Rooms was a new live-audio social feature inside Tan Tan, part of Hello Group, built around engagement and monetization. As operations lead, Artemis built how creators were sourced, onboarded, evaluated, rewarded and paid — and led the feature’s expansion outside mainland China.',
-    roleDetail: 'Operations Lead, Voice Communities. Led a team of interns on international expansion.',
+      'Voice Rooms was a new live-audio social feature inside Tan Tan, part of Hello Group, built around engagement and monetization. As operations lead, Artemis took it from concept to launch, built how creators were recruited, onboarded, rewarded and paid, and led its expansion outside mainland China.',
+    roleDetail: 'Operations Lead, Voice Communities. Worked across product, Finance, Legal and Tax; led a team of interns on international expansion.',
     contributions: [
       {
-        heading: 'Creator operating model',
-        body: 'Built the model end to end — sourcing, recruitment, onboarding, evaluation, partnership terms and revenue sharing — and the platform’s first creator commercialization framework for virtual gifting, rewards and partner compensation.',
+        heading: 'Product launch & content strategy',
+        body: 'Led product and content operations for Voice Rooms from concept to launch. Ran the pre-launch market and competitor analysis, helped define feature requirements, and set the content review standards and moderation keyword lists used by third-party moderators. After launch, developed room themes, conversation topics and interactive formats to encourage participation and repeat visits, and brought host and user feedback to product managers to refine the live-audio experience.',
       },
       {
-        heading: 'Partner payments & compliance',
-        body: 'Designed and launched domestic and international partner payment and compliance processes single-handedly, including integrating a third-party payment provider to pay partners in Taiwan.',
+        heading: 'Creator ecosystem & international expansion',
+        body: 'Led a team of interns on expansion into Taiwan, Hong Kong and Germany — market research, local culture, competitor analysis and cold-start content. Recruited overseas hosts through talent agencies, MCNs, influencers, micro-creators and first-time hosts, and coordinated creator acquisition and the international partnerships behind it.',
       },
       {
-        heading: 'Incentives & community programs',
-        body: 'Redesigned partner incentives and community programs to bring creators back to host.',
+        heading: 'Monetization & partner operations',
+        body: 'Built the platform’s first creator monetization program: virtual gifting campaigns, agency revenue-sharing rates and performance incentives. Built domestic and international partner payout workflows, coordinating with Finance, Legal and Tax on contracts, compliance documentation, invoicing, reconciliation and disbursement, and led the integration of a third-party payment provider to launch partner payouts in Taiwan.',
       },
       {
-        heading: 'Onboarding, rebuilt from research',
-        body: 'Rebuilt creator onboarding using user research and controlled experiments, focused on getting new hosts to launch their first rooms.',
-      },
-      {
-        heading: 'Expansion to three markets',
-        body: 'Led a team of interns on expansion to Taiwan, Hong Kong and Germany: market research, local culture, competitor analysis, cold-start content, and creator recruitment with agencies, influencers, MCNs and content partners.',
-      },
-      {
-        heading: 'Feedback loops into product',
-        body: 'Set up recurring creator and core-user feedback programs and brought the insights to product teams, informing usability, interface and creator-experience improvements.',
+        heading: 'Growth & measurable impact',
+        body: 'Redesigned creator incentives and community programs, and the feature’s daily active users rose 67%. Rebuilt creator onboarding through user research and controlled experiments; the number of rooms creators launched in their first week rose 600%.',
       },
     ],
     results: [
-      { value: '67%', label: 'increase in the feature’s daily active users', note: 'Following the redesign of partner incentives and community programs.' },
-      { value: '600%', label: 'increase in first-week room launches', note: 'After onboarding was rebuilt through research and controlled experiments.' },
-      { value: '3', label: 'new markets', note: 'Taiwan, Hong Kong and Germany.' },
+      { value: '+67%', label: 'daily active users for the Voice Rooms feature', note: 'After she redesigned creator incentives and community programs.' },
+      { value: '+600%', label: 'rooms launched by creators in their first week', note: 'After she rebuilt creator onboarding through user research and controlled experiments.' },
     ],
   },
   {
