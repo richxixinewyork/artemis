@@ -25,7 +25,7 @@ export const site = {
 
   hero: {
     /** Discipline line under the name. */
-    eyebrow: 'Growth Strategy · Creator Partnerships · Brand Building',
+    eyebrow: 'Growth Strategy · Creator Partnerships · Marketing · Media & Content · Brand Building · Art',
     /*
      * Statement options considered:
      *   A. "Where culture meets commerce."
@@ -38,7 +38,7 @@ export const site = {
     intro:
       'I build creator programs, communities and brands where consumer technology, beauty, fashion and culture meet — from 0-to-1 AI and live-audio launches at Hello Group to two cross-border businesses of my own. Now based in New York, I’m bringing that work into art business and cultural design.',
     /** Small vertical caption beside the portrait. */
-    caption: 'Beijing — New York',
+    caption: 'Beijing — Seoul — New York',
     portraitAlt: 'Portrait of Artemis Wang in a navy ribbed top against a pale studio backdrop',
   },
 
@@ -50,7 +50,7 @@ export const site = {
     chapters: [
       {
         label: 'Consumer technology',
-        body: 'At Hello Group (Nasdaq: MOMO) I worked on 0-to-1 consumer launches — the AI face, hair and makeup products ZAO and Moxie at Momo, and the live-audio Voice Rooms feature at Tantan. I built the creator programs, partner contracting, incentive structures and payment processes behind their growth, and led intern teams taking them into Japan, South Korea, Vietnam, Taiwan, Hong Kong and Germany.',
+        body: 'At Hello Group (Nasdaq: MOMO) I worked on 0-to-1 consumer launches — the AI face, hair and makeup products ZAO and Moxie at Momo, and the live-audio Voice Rooms feature at Tan Tan. I built the creator programs, partner contracting, incentive structures and payment processes behind their growth, and led intern teams taking them into Japan, South Korea, Vietnam, Taiwan, Hong Kong and Germany.',
       },
       {
         label: 'Entrepreneurship',
@@ -107,7 +107,7 @@ export const site = {
     { years: '2023 — Now', title: 'Esoteric Studios', role: 'Founder & Brand Director', note: 'Cross-border professional beauty' },
     { years: '2023', title: 'No Space Gallery', role: 'Exhibition Assistant Intern (part-time)', note: 'Beijing · spring 2023' },
     { years: '2022 — 2023', title: 'Communication University of China', role: 'Project Assistant, School of Drama and Film', note: 'Beijing · cultural exchange programs' },
-    { years: '2021 — 2022', title: 'Tantan (Hello Group)', role: 'Operations Lead, Voice Communities', note: 'Beijing' },
+    { years: '2021 — 2022', title: 'Tan Tan (Hello Group)', role: 'Operations Lead, Voice Communities', note: 'Beijing' },
     { years: '2020 — 2021', title: 'Momo Inc. (Hello Group)', role: 'Senior Product Operations, AI Products', note: 'Beijing' },
     { years: '2017 — Now', title: 'Missingcity', role: 'Founder & Curator', note: 'Online designer boutique' },
   ],
@@ -202,7 +202,7 @@ export const impact = [
   {
     value: '67%',
     label: 'increase in Voice Rooms daily active users',
-    source: 'Tantan · following her redesign of partner incentives and community programs',
+    source: 'Tan Tan · following her redesign of partner incentives and community programs',
   },
   {
     value: '45%',

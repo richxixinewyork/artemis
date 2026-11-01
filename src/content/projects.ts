@@ -59,7 +59,7 @@ export const statusLabel: Record<ProjectStatus, string> = {
 export const projects: Project[] = [
   {
     slug: 'tantan',
-    org: 'Tantan',
+    org: 'Tan Tan',
     title: 'Voice Communities & Creator Growth',
     discipline: 'Consumer Tech · Live Audio',
     role: 'Operations Lead, Voice Communities',
@@ -77,7 +77,7 @@ export const projects: Project[] = [
       'Led a team of interns on expansion to Taiwan, Hong Kong and Germany.',
     ],
     overview:
-      'Voice Rooms was a new live-audio social feature inside Tantan, part of Hello Group, built around engagement and monetization. As operations lead, Artemis built how creators were sourced, onboarded, evaluated, rewarded and paid — and led the feature’s expansion outside mainland China.',
+      'Voice Rooms was a new live-audio social feature inside Tan Tan, part of Hello Group, built around engagement and monetization. As operations lead, Artemis built how creators were sourced, onboarded, evaluated, rewarded and paid — and led the feature’s expansion outside mainland China.',
     roleDetail: 'Operations Lead, Voice Communities. Led a team of interns on international expansion.',
     contributions: [
       {

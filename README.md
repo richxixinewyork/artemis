@@ -115,8 +115,8 @@ Use large JPGs (around 2000–2500px on the long side). The build automatically 
 **Media**
 - [ ] Optional second portrait (`src/assets/portraits/about.jpg`) — appears beside the About story automatically
 - [x] Baoxiang / The Eternal Path: cover artwork, product photo, two animated clips and logo added.
-- [ ] Project covers and gallery images for the other four projects. Until then each project shows a labelled "Project imagery forthcoming" placard. Suggested real materials: product screenshots or launch visuals (Momo / Tantan, if Hello Group permits), storefront and product photography (Missingcity, Esoteric Studios), concept sketches or candle prototypes (Baoxiang).
-- [x] Logos for Tantan, Momo and Esoteric Studios (added)
+- [ ] Project covers and gallery images for the other four projects. Until then each project shows a labelled "Project imagery forthcoming" placard. Suggested real materials: product screenshots or launch visuals (Momo / Tan Tan, if Hello Group permits), storefront and product photography (Missingcity, Esoteric Studios), concept sketches or candle prototypes (Baoxiang).
+- [x] Logos for Tan Tan, Momo and Esoteric Studios (added)
 - [ ] Optional logo for Missingcity
 
 **Optional**

@@ -20,14 +20,15 @@ const [first, ...rest] = site.name.split(' ');
       <h1 id="hero-title" class="display-name intro-rise relative z-10 mt-6 md:mt-8" style="--d:1">
         {first}<br /><span class="inline-block pl-[0.55em] lg:pl-[0.9em]">{rest.join(' ')}</span>
       </h1>
-      <p class="intro-rise mt-6 max-w-md text-[0.78rem] leading-relaxed tracking-[0.16em] text-ink-soft uppercase md:mt-8" style="--d:2">
-        {hero.eyebrow}
+      <!-- Specialties wrap only between items, never mid-phrase -->
+      <p class="intro-rise mt-6 max-w-xl text-[0.78rem] leading-[1.9] tracking-[0.16em] text-ink-soft uppercase md:mt-8" style="--d:2">
+        {hero.eyebrow.split(' · ').map((s, i, all) => <><span class="whitespace-nowrap">{s}{i < all.length - 1 && <span class="pl-[0.6em] text-ink-mute">·</span>}</span>{' '}</>)}
       </p>
     </div>
 
     <!-- Portrait: bleeds to the viewport edge; multiply blends the studio white into the page tone -->
     <figure class="relative col-span-12 -mx-[clamp(1rem,4vw,3.5rem)] mt-10 lg:col-span-4 lg:col-start-9 lg:row-span-2 lg:row-start-1 lg:mt-0 lg:ml-0">
-      <div class="intro-unveil portrait-frame relative aspect-[4/5] overflow-hidden mix-blend-multiply sm:aspect-[5/5] lg:aspect-auto lg:h-full">
+      <div class="intro-unveil portrait-frame relative aspect-[10/11] overflow-hidden mix-blend-multiply sm:aspect-[25/22] lg:absolute lg:right-0 lg:bottom-0 lg:aspect-auto lg:h-[88%] lg:w-[88%]">
         {portrait && (
           <Picture
             src={portrait}
@@ -41,7 +42,7 @@ const [first, ...rest] = site.name.split(' ');
           />
         )}
       </div>
-      <figcaption class="vertical-caption intro-rise absolute top-28 -left-8 hidden text-[0.68rem] tracking-[0.24em] whitespace-nowrap text-ink-mute uppercase lg:block" style="--d:4">
+      <figcaption class="vertical-caption intro-rise absolute top-[calc(12%+7rem)] left-[calc(12%-2rem)] hidden text-[0.68rem] tracking-[0.24em] whitespace-nowrap text-ink-mute uppercase lg:block" style="--d:4">
         {hero.caption}
       </figcaption>
     </figure>
