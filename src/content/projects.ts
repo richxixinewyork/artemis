@@ -25,6 +25,8 @@ export type Project = {
   title: string;
   discipline: string;
   role: string;
+  /** Employer, when the project is named after a product rather than the company. */
+  company?: string;
   period: string;
   location?: string;
   status: ProjectStatus;
@@ -36,6 +38,8 @@ export type Project = {
   /** Only what the résumé documents. Omit when unknown. */
   context?: string;
   roleDetail: string;
+  /** Public app-store listing for the product, verified before adding. */
+  app?: { name: string; url: string; source: string };
   contributions: { heading: string; body: string }[];
   results: Metric[];
   /** Shown instead of results for projects without outcomes yet. */
@@ -104,16 +108,17 @@ export const projects: Project[] = [
   },
   {
     slug: 'momo',
-    org: 'Momo',
-    title: 'AI Beauty Products & Creator Partnerships',
+    org: 'Moxie / Momo',
+    title: 'AI Beauty & Product Growth',
     discipline: 'Consumer AI · Beauty',
     role: 'Senior Product Operations, AI Products (Deep Lab)',
+    company: 'Momo Inc. / Deep Lab (Hello Group)',
     period: 'Apr 2020 – Jun 2021',
     location: 'Beijing',
     status: 'completed',
     tone: 'blush',
     summary:
-      'Taking the consumer AI products ZAO and Moxie from concept to launch — and building the creator partnerships, data and quality systems behind them.',
+      'Led product operations for an AI-powered beauty application, building creator partnerships, international launch programs, and data-driven product improvements.',
     highlights: [
       'Managed 500+ creator and influencer partnerships for ZAO and Moxie; daily active users rose 45% and active users 200%.',
       'Built partner contracting with Legal and Finance, owning signing for MCN agencies and individual creators.',
@@ -122,51 +127,41 @@ export const projects: Project[] = [
       'Organized real-model shoots (~500 participants, 3,000 samples in one week) and built 40,000+ image datasets, cutting data-preparation time by about 40%.',
     ],
     overview:
-      'At Momo’s Deep Lab, Artemis led operations for ZAO and Moxie — consumer AI products for virtual face, hair and makeup transformation — from concept through launch, building the creator partnerships that drove adoption and the data and quality processes behind the AI.',
-    context: 'Momo Inc. (now Hello Group, Nasdaq: MOMO). ZAO and Moxie were 0-to-1 consumer AI launches.',
+      'Moxie (芒西) was an AI beauty app from Momo’s Deep Lab: from a single selfie, users could try on hairstyles, hair colors and makeup looks virtually. Artemis led its product operations from concept through launch — building the creator community around it, taking it into new markets, and shaping the training data and quality standards behind its AI.',
+    context:
+      'Momo Inc. (now Hello Group, Nasdaq: MOMO), Deep Lab. Alongside Moxie, Artemis also managed creator and influencer partnerships for ZAO, Deep Lab’s AI face-swapping app.',
     roleDetail:
-      'Senior Product Operations, AI Products (Deep Lab). Operations owner between creators, Legal and Finance, and Deep Lab engineers; led a team of interns on overseas expansion.',
+      'Senior Product Operations, AI Products (Deep Lab). Worked between creators, Legal and Finance, the corporate risk team and Deep Lab engineers; led an intern team on international expansion.',
+    app: {
+      name: '芒西 Moxie – 百变造型',
+      url: 'https://appraven.net/app/15298843',
+      source: 'A Momo Inc. product · iOS app listing on AppRaven',
+    },
     contributions: [
       {
-        heading: 'Creator & influencer partnerships',
-        body: 'Managed 500+ creator and influencer partnerships, and trained creators on product features and usage.',
+        heading: 'Product launch & creator growth',
+        body: 'Led Moxie’s product operations from concept through launch and built its beauty creator program — sourcing content, training creators on product features and coordinating campaigns. The program generated more than 20,000 AI creations, and one festival-makeup campaign reached 35% next-day retention among participants. Across Moxie and ZAO, she managed more than 500 creator and influencer partnerships, whose campaigns contributed to 45% growth in daily active users and 200% growth in active users.',
       },
       {
-        heading: 'Partner contracting',
-        body: 'Built partner contracting with Legal and Finance — contract templates, signing workflows and payment approvals — and owned signing for both MCN agencies and individual creators.',
+        heading: 'International expansion',
+        body: 'Led an intern team supporting expansion into Japan, South Korea and Vietnam: competitor research, analysis of local beauty preferences, launch content and marketing campaigns adapted to each market, and recruiting local creators.',
       },
       {
-        heading: 'Launch & overseas expansion',
-        body: 'Led operations for ZAO and Moxie from concept through launch, and led a team of interns on expansion to Japan, South Korea and Vietnam: market research, consumer preferences, competitor analysis, local culture and religious considerations, localized marketing, cold-start content and creator recruitment.',
+        heading: 'AI product development & quality',
+        body: 'Spotted gaps in the training data behind virtual hairstyle generation and partnered with a Beijing salon to photograph hairstyles from multiple angles — about 500 participants and 3,000 samples in one week — contributing to a dataset of more than 40,000 images and cutting data-preparation time by about 40%. Helped set quality standards for AI-generated looks and specified a batch review tool for comparing results, spotting defects and approving content. Turned creator feedback and usage data into requirements for Deep Lab engineers across three product iterations, which lifted feature engagement and content-save rates by 40%.',
       },
       {
-        heading: 'Feedback into product',
-        body: 'Relayed product requirements and improvement recommendations to Deep Lab engineers, and turned user feedback into three product iterations.',
-      },
-      {
-        heading: 'Beauty creator program',
-        body: 'Built a beauty creator program from launch that generated 20,000+ AI creations.',
-      },
-      {
-        heading: 'Real-model shoots & training data',
-        body: 'Organized real-model shoots with a leading Beijing salon partner — about 500 participants and 3,000 samples in one week — and built datasets of 40,000+ images.',
-      },
-      {
-        heading: 'AI-output quality',
-        body: 'Helped define AI-output quality standards and proposed an internal batch-testing tool to review results by style and angle and add approved outputs to the content library in one click.',
-      },
-      {
-        heading: 'Trust & safety',
-        body: 'Co-developed content standards and community guidelines with the corporate security and risk-control team to support responsible growth.',
+        heading: 'Business operations',
+        body: 'Standardized creator contracting with Legal and Finance — contract templates and signing workflows for MCNs and individual creators — and managed contracts through signing and payment approval. Worked with the corporate risk team on content standards and community guidelines.',
       },
     ],
     results: [
-      { value: '45%', label: 'increase in daily active users', note: 'Team outcome to which her 500+ creator partnerships contributed.' },
-      { value: '200%', label: 'increase in active users', note: 'Team outcome to which her 500+ creator partnerships contributed.' },
-      { value: '20,000+', label: 'AI creations generated', note: 'Through the beauty creator program she built.' },
-      { value: '35%', label: 'next-day retention on one festival-makeup topic', note: 'A single topic within the beauty creator program.' },
-      { value: '40%', label: 'lift in feature engagement and content-save rates', note: 'Across three feedback-driven product iterations.' },
-      { value: '~40%', label: 'less data-preparation time', note: 'Building datasets of 40,000+ images.' },
+      { value: '20,000+', label: 'AI creations generated', note: 'Through the Moxie beauty creator program she built.' },
+      { value: '+45%', label: 'daily active users', note: 'Campaigns across Moxie and ZAO, supported by her 500+ creator partnerships, contributed to this team outcome.' },
+      { value: '+200%', label: 'active users', note: 'Same campaigns and partnerships across Moxie and ZAO; a team outcome.' },
+      { value: '+40%', label: 'feature engagement and content-save rates', note: 'Across three product iterations she supported.' },
+      { value: '35%', label: 'next-day retention', note: 'Among participants in one festival-makeup campaign.' },
+      { value: '~40%', label: 'less data-preparation time', note: 'While building a dataset of 40,000+ images.' },
     ],
   },
   {
