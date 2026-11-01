@@ -25,8 +25,6 @@ export type Project = {
   title: string;
   discipline: string;
   role: string;
-  /** Employer, when the project is named after a product rather than the company. */
-  company?: string;
   period: string;
   location?: string;
   status: ProjectStatus;
@@ -38,8 +36,8 @@ export type Project = {
   /** Only what the résumé documents. Omit when unknown. */
   context?: string;
   roleDetail: string;
-  /** Public app-store listing for the product, verified before adding. */
-  app?: { name: string; url: string; source: string };
+  /** External references (app listings, press), each verified before adding. */
+  links?: { label: string; name: string; url: string; source: string }[];
   contributions: { heading: string; body: string }[];
   results: Metric[];
   /** Shown instead of results for projects without outcomes yet. */
@@ -108,11 +106,10 @@ export const projects: Project[] = [
   },
   {
     slug: 'momo',
-    org: 'Moxie / Momo',
-    title: 'AI Beauty & Product Growth',
+    org: 'Momo',
+    title: 'Moxie & ZAO — AI Product Growth',
     discipline: 'Consumer AI · Beauty',
     role: 'Senior Product Operations, AI Products (Deep Lab)',
-    company: 'Momo Inc. / Deep Lab (Hello Group)',
     period: 'Apr 2020 – Jun 2021',
     location: 'Beijing',
     status: 'completed',
@@ -127,16 +124,15 @@ export const projects: Project[] = [
       'Organized real-model shoots (~500 participants, 3,000 samples in one week) and built 40,000+ image datasets, cutting data-preparation time by about 40%.',
     ],
     overview:
-      'Moxie (芒西) was an AI beauty app from Momo’s Deep Lab: from a single selfie, users could try on hairstyles, hair colors and makeup looks virtually. Artemis led its product operations from concept through launch — building the creator community around it, taking it into new markets, and shaping the training data and quality standards behind its AI.',
+      'At Momo’s Deep Lab, Artemis worked on two AI products: Moxie (芒西), a beauty app for trying on hairstyles, hair colors and makeup from a single selfie, and ZAO, a face-swapping app. She led Moxie’s product operations from concept through launch — building its creator community, taking it into new markets, and shaping the training data and quality standards behind its AI — and managed creator and influencer partnerships across both products.',
     context:
-      'Momo Inc. (now Hello Group, Nasdaq: MOMO), Deep Lab. Alongside Moxie, Artemis also managed creator and influencer partnerships for ZAO, Deep Lab’s AI face-swapping app.',
+      'Momo Inc. (now Hello Group, Nasdaq: MOMO). Moxie and ZAO were both AI products from its Deep Lab.',
     roleDetail:
       'Senior Product Operations, AI Products (Deep Lab). Worked between creators, Legal and Finance, the corporate risk team and Deep Lab engineers; led an intern team on international expansion.',
-    app: {
-      name: '芒西 Moxie – 百变造型',
-      url: 'https://appraven.net/app/15298843',
-      source: 'A Momo Inc. product · iOS app listing on AppRaven',
-    },
+    links: [
+      { label: 'Moxie app', name: '芒西 Moxie – 百变造型', url: 'https://appraven.net/app/15298843', source: 'iOS app listing on AppRaven' },
+      { label: 'ZAO in the news', name: 'The Future Is Zao: How A Chinese Deepfake App Went Viral', url: 'https://www.youtube.com/watch?v=dJYTMhKXCAc', source: 'NBC News on YouTube · Sept 2019' },
+    ],
     contributions: [
       {
         heading: 'Product launch & creator growth',

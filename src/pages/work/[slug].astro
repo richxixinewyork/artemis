@@ -34,7 +34,6 @@ const pad = (x: number) => String(x).padStart(2, '0');
 const keyResult = p.results[0];
 
 const facts = [
-  ...(p.company ? [{ k: 'Company', v: p.company }] : []),
   { k: 'Role', v: p.role },
   { k: 'Timeframe', v: p.period },
   ...(p.location ? [{ k: 'Location', v: p.location }] : []),
@@ -105,16 +104,16 @@ const facts = [
             <h3 class="eyebrow !text-accent">Artemis’s role</h3>
             <p class="mt-3 leading-relaxed text-ink-soft">{p.roleDetail}</p>
           </div>
-          {p.app && (
+          {p.links?.map((l) => (
             <div class="border-t border-line pt-5">
-              <h3 class="eyebrow !text-accent">The app</h3>
-              <a href={p.app.url} target="_blank" rel="noopener noreferrer" class="group mt-3 inline-flex items-baseline gap-2 leading-relaxed text-ink">
-                <span class="link-draw">{p.app.name}</span><span class="transition-transform duration-500 group-hover:translate-x-1" aria-hidden="true">↗</span>
+              <h3 class="eyebrow !text-accent">{l.label}</h3>
+              <a href={l.url} target="_blank" rel="noopener noreferrer" class="group mt-3 inline-flex items-baseline gap-2 leading-relaxed text-ink">
+                <span class="link-draw">{l.name}</span><span class="transition-transform duration-500 group-hover:translate-x-1" aria-hidden="true">↗</span>
                 <span class="sr-only">(opens in a new tab)</span>
               </a>
-              <p class="mt-1 text-sm text-ink-mute">{p.app.source}</p>
+              <p class="mt-1 text-sm text-ink-mute">{l.source}</p>
             </div>
-          )}
+          ))}
         </div>
       </div>
     </section>
