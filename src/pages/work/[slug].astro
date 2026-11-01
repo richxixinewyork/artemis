@@ -35,6 +35,7 @@ const keyResult = p.results[0];
 
 const facts = [
   { k: 'Role', v: p.role },
+  ...(p.products ? [{ k: 'Products', v: p.products }] : []),
   { k: 'Timeframe', v: p.period },
   ...(p.location ? [{ k: 'Location', v: p.location }] : []),
   { k: 'Category', v: p.discipline },

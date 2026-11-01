@@ -25,6 +25,8 @@ export type Project = {
   title: string;
   discipline: string;
   role: string;
+  /** Products she worked on, when the project is named after the company. */
+  products?: string;
   period: string;
   location?: string;
   status: ProjectStatus;
@@ -110,6 +112,7 @@ export const projects: Project[] = [
     title: 'Moxie & ZAO — AI Product Growth',
     discipline: 'Consumer AI · Beauty',
     role: 'Senior Product Operations, AI Products (Deep Lab)',
+    products: 'Moxie (AI beauty try‑on) · ZAO (AI face swap)',
     period: 'Apr 2020 – Jun 2021',
     location: 'Beijing',
     status: 'completed',
