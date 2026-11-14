@@ -19,8 +19,12 @@ export type Metric = {
   note?: string;
 };
 
+/** Filter groups for Selected Work. */
+export type ProjectCategory = 'Consumer Tech' | 'Entrepreneurship' | 'Art & Culture';
+
 export type Project = {
   slug: string;
+  category: ProjectCategory;
   org: string;
   title: string;
   discipline: string;
@@ -35,11 +39,15 @@ export type Project = {
   /** Concise bullets for the résumé page. */
   highlights: string[];
   overview: string;
+  /** Case study → "The context": the product, brand or business situation. */
+  challenge: string;
+  /** Case study → "What she owned": short list of her responsibilities. */
+  owned: string[];
   /** Only what the résumé documents. Omit when unknown. */
   context?: string;
   roleDetail: string;
-  /** External references (app listings, press), each verified before adding. */
-  links?: { label: string; name: string; url: string; source: string }[];
+  /** Verified YouTube video shown under Selected media (click-to-load, privacy-enhanced). */
+  video?: { youtubeId: string; title: string; caption: string };
   contributions: { heading: string; body: string }[];
   results: Metric[];
   /** Shown instead of results for projects without outcomes yet. */
@@ -63,6 +71,7 @@ export const statusLabel: Record<ProjectStatus, string> = {
 export const projects: Project[] = [
   {
     slug: 'tantan',
+    category: 'Consumer Tech',
     org: 'Tan Tan',
     title: 'Voice Communities & Creator Growth',
     discipline: 'Consumer Tech · Live Audio',
@@ -82,6 +91,14 @@ export const projects: Project[] = [
     ],
     overview:
       'Voice Rooms was a new live-audio social feature inside Tan Tan, part of Hello Group, built around engagement and monetization. As operations lead, Artemis took it from concept to launch, built how creators were recruited, onboarded, rewarded and paid, and led its expansion outside mainland China.',
+    challenge:
+      'Voice Rooms was a new live-audio social feature inside Tan Tan (Hello Group), built around engagement and monetization. It had to be launched, filled with active hosts, monetized, and taken beyond mainland China.',
+    owned: [
+      'Product and content operations for Voice Rooms, from concept to launch',
+      'Creator recruitment, onboarding, incentives and payouts',
+      'The platform’s first creator monetization program',
+      'An intern team expanding into Taiwan, Hong Kong and Germany',
+    ],
     roleDetail: 'Operations Lead, Voice Communities. Worked across product, Finance, Legal and Tax; led a team of interns on international expansion.',
     contributions: [
       {
@@ -108,8 +125,9 @@ export const projects: Project[] = [
   },
   {
     slug: 'momo',
+    category: 'Consumer Tech',
     org: 'Momo',
-    title: 'Moxie & ZAO — AI Product Growth',
+    title: 'Moxie & ZAO: AI Product Growth',
     discipline: 'Consumer AI · Beauty',
     role: 'Senior Product Operations, AI Products (Deep Lab)',
     products: 'Moxie (AI beauty try‑on) · ZAO (AI face swap)',
@@ -130,12 +148,21 @@ export const projects: Project[] = [
       'At Momo’s Deep Lab, Artemis worked on two AI products: Moxie (芒西), a beauty app for trying on hairstyles, hair colors and makeup from a single selfie, and ZAO, a face-swapping app. She led Moxie’s product operations from concept through launch — building its creator community, taking it into new markets, and shaping the training data and quality standards behind its AI — and managed creator and influencer partnerships across both products.',
     context:
       'Momo Inc. (now Hello Group, Nasdaq: MOMO). Moxie and ZAO were both AI products from its Deep Lab.',
+    challenge:
+      'Momo’s Deep Lab was bringing two consumer AI products to market: Moxie (芒西), a beauty app for trying on hairstyles, hair colors and makeup from a single selfie, and ZAO, a face-swapping app. Moxie had to launch with a creator community behind it, reach new markets, and close gaps in the training data behind its hairstyle AI.',
+    owned: [
+      'Moxie’s product operations, from concept through launch',
+      '500+ creator and influencer partnerships across Moxie and ZAO',
+      'An intern team supporting expansion into Japan, South Korea and Vietnam',
+      'Creator contracting and payment approvals with Legal and Finance',
+    ],
     roleDetail:
       'Senior Product Operations, AI Products (Deep Lab). Worked between creators, Legal and Finance, the corporate risk team and Deep Lab engineers; led an intern team on international expansion.',
-    links: [
-      { label: 'Moxie app', name: '芒西 Moxie – 百变造型', url: 'https://appraven.net/app/15298843', source: 'iOS app listing on AppRaven' },
-      { label: 'ZAO in the news', name: 'The Future Is Zao: How A Chinese Deepfake App Went Viral', url: 'https://www.youtube.com/watch?v=dJYTMhKXCAc', source: 'NBC News on YouTube · Sept 2019' },
-    ],
+    video: {
+      youtubeId: 'dJYTMhKXCAc',
+      title: 'The Future Is Zao: How A Chinese Deepfake App Went Viral',
+      caption: 'ZAO in the news — NBC News, September 2019, before Artemis joined Momo.',
+    },
     contributions: [
       {
         heading: 'Product launch & creator growth',
@@ -165,6 +192,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'missingcity',
+    category: 'Entrepreneurship',
     org: 'Missingcity',
     title: 'Independent Designer Boutique',
     discipline: 'Fashion · Curation · E-Commerce',
@@ -181,6 +209,14 @@ export const projects: Project[] = [
     ],
     overview:
       'Missingcity is an online boutique Artemis founded to introduce emerging international designers to global consumers. It grew through curation, direct designer relationships and community — not paid media.',
+    challenge:
+      'Missingcity is an online boutique Artemis founded in 2017 to introduce emerging international designers to global consumers — growing through curation, direct designer relationships and community rather than paid media.',
+    owned: [
+      'Designer and supplier relationships',
+      'Curation and product selection',
+      'Cross-border sourcing and fulfillment',
+      'Community across Taobao, Xiaohongshu (RED) and WeChat',
+    ],
     roleDetail:
       'Founder & Curator. Responsible for designer and supplier relationships, curation, cross-border sourcing and fulfillment, and community.',
     contributions: [
@@ -205,6 +241,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'esoteric-studios',
+    category: 'Entrepreneurship',
     logoBackground: '#baa46a',
     org: 'Esoteric Studios',
     title: 'Cross-Border Professional Beauty',
@@ -222,6 +259,14 @@ export const projects: Project[] = [
     ],
     overview:
       'Esoteric Studios is a cross-border business introducing Korean professional salon and skincare brands to Chinese-speaking consumers. Artemis oversees the brand end to end: suppliers, curation, logistics, positioning, content and e-commerce.',
+    challenge:
+      'Esoteric Studios introduces Korean professional salon and skincare brands to Chinese-speaking consumers — products that usually depend on specialized, in-person salon expertise.',
+    owned: [
+      'Supplier relationships and product curation',
+      'Logistics and e-commerce',
+      'Brand positioning and content',
+      'Consumer research',
+    ],
     roleDetail:
       'Founder & Brand Director, overseeing supplier relationships, product curation, logistics, positioning, content and e-commerce.',
     contributions: [
@@ -249,6 +294,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'baoxiang',
+    category: 'Art & Culture',
     logoBackground: '#704d4b',
     images: {
       cover: { alt: 'Illustration of the twelve Chinese zodiac animals around a dragon, Baoxiang brand artwork' },
@@ -271,6 +317,14 @@ export const projects: Project[] = [
     ],
     overview:
       'Baoxiang (The Eternal Path) is a cultural design project in development: a contemporary collectible-objects concept inspired by Chinese zodiac symbolism and Five Elements philosophy.',
+    challenge:
+      'Baoxiang (The Eternal Path) is a cultural design project in development: a contemporary collectible-objects concept inspired by Chinese zodiac symbolism and Five Elements philosophy, with research into how those narratives can reach international audiences.',
+    owned: [
+      'Concept and creative direction',
+      'Collection development, starting with 12 zodiac candles',
+      'Artist collaborations (being explored)',
+      'Cultural translation research',
+    ],
     roleDetail: 'Founder & Creative Director.',
     contributions: [
       {

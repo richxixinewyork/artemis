@@ -1,97 +1,122 @@
 ---
-import { Picture } from 'astro:assets';
 import { site } from '../content/site';
-import { getPortrait } from '../lib/media';
 import { emphasize } from '../lib/url';
 
-const { about, timeline, education } = site;
-const portrait = getPortrait('about');
-const degree = [education.degree, education.field].filter(Boolean).join(' in ');
+const { about, education } = site;
+const study = [education.degree, education.field].filter(Boolean).join(', ');
+const facts = [
+  { k: 'Based in', v: site.location },
+  { k: 'Studying', v: `${study} · ${education.period}` },
+  { k: 'Languages', v: about.languages.map((l) => `${l.name} (${l.level.toLowerCase()})`).join(', ') },
+  { k: 'Platforms', v: about.platforms.join(', ') },
+  { k: 'Tools', v: about.tools.join(', ') },
+];
 ---
 
-<section id="about" class="py-24 md:py-40" aria-labelledby="about-title">
-  <div class="wrap grid grid-cols-12 gap-x-6 gap-y-12">
-    <div class="col-span-12 md:col-span-3" data-reveal>
-      <p class="eyebrow">About</p>
-      {portrait && (
-        <Picture
-          src={portrait}
-          alt={`Portrait of ${site.name}`}
-          widths={[480, 768]}
-          sizes="(min-width: 768px) 22vw, 60vw"
-          formats={['avif', 'webp']}
-          class="mt-8 aspect-[3/4] w-3/5 object-cover md:w-full"
-        />
-      )}
-    </div>
-
-    <div class="col-span-12 md:col-span-9">
-      <h2 id="about-title" class="display-lg max-w-4xl" data-reveal set:html={emphasize(about.heading)} />
-      <p class="mt-10 max-w-3xl font-display text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.2] text-ink-soft md:mt-14" data-reveal>
-        {about.lead}
-      </p>
-    </div>
-
-    <!-- Three chapters, set as magazine columns on wide screens -->
-    <ol class="col-span-12 grid gap-x-10 gap-y-12 md:col-span-9 md:col-start-4 lg:grid-cols-3">
-      {about.chapters.map((c, i) => (
-        <li class="border-t border-ink pt-5" data-reveal style={`--d:${i}`}>
-          <p class="flex items-baseline gap-3">
-            <span class="font-display text-xl text-accent tabular-nums">{String(i + 1).padStart(2, '0')}</span>
-            <span class="eyebrow !text-ink">{c.label}</span>
-          </p>
-          <p class="mt-5 leading-relaxed text-ink-soft">{c.body}</p>
-        </li>
+<section id="about" class="section" aria-labelledby="about-title">
+  <div class="shell about-grid">
+    <div class="about-body" data-reveal>
+      <p class="eyebrow">About Me</p>
+      <h2 id="about-title" set:html={emphasize(about.heading)} />
+      <p class="lead">{about.lead}</p>
+      {about.chapters.map((c) => (
+        <div class="chapter">
+          <h3>{c.label}</h3>
+          <p>{c.body}</p>
+        </div>
       ))}
-    </ol>
-
-    <div class="col-span-12 md:col-span-9 md:col-start-4" data-reveal>
-      <h3 class="eyebrow mt-6">What I bring</h3>
-      <div class="mt-6 grid gap-10 sm:grid-cols-3">
-        {about.capabilities.map((c) => (
-          <div class="rule pt-5">
-            <h4 class="font-display text-2xl leading-tight">{c.title}</h4>
-            <ul class="mt-4 space-y-2 text-[0.95rem] text-ink-soft">
-              {c.items.map((it) => <li>{it}</li>)}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-
-  <!-- Timeline -->
-  <div class="wrap mt-24 md:mt-36">
-    <div class="grid grid-cols-12 gap-x-6">
-      <h3 class="eyebrow col-span-12 mb-8 md:col-span-3" data-reveal>Career timeline</h3>
-      <ol class="col-span-12 border-b border-line md:col-span-9">
-        <li class="grid grid-cols-12 gap-x-6 gap-y-1 border-t border-line py-6 md:py-8" data-reveal>
-          <span class="col-span-12 text-sm tracking-[0.08em] text-ink-mute tabular-nums md:col-span-3">{education.period}</span>
-          <span class="col-span-12 font-display text-3xl leading-tight md:col-span-5">{degree}</span>
-          <span class="col-span-12 text-ink-soft md:col-span-4">
-            {education.school || education.location}<br /><span class="text-sm text-ink-mute">Education · {education.status.toLowerCase()}</span>
-          </span>
-        </li>
-        {timeline.map((t, i) => (
-          <li class="grid grid-cols-12 gap-x-6 gap-y-1 border-t border-line py-6 md:py-8" data-reveal style={`--d:${i}`}>
-            <span class="col-span-12 text-sm tracking-[0.08em] text-ink-mute tabular-nums md:col-span-3">{t.years}</span>
-            <span class="col-span-12 font-display text-3xl leading-tight md:col-span-5">{t.title}</span>
-            <span class="col-span-12 text-ink-soft md:col-span-4">
-              {t.role}<br /><span class="text-sm text-ink-mute">{t.note}</span>
-            </span>
-          </li>
-        ))}
-      </ol>
     </div>
 
-    <div class="mt-16 grid grid-cols-12 gap-x-6 gap-y-8" data-reveal>
-      <p class="eyebrow col-span-12 md:col-span-3">Languages</p>
-      <ul class="col-span-12 flex flex-wrap gap-x-12 gap-y-4 md:col-span-9">
-        {about.languages.map((l) => (
-          <li><span class="font-display text-2xl">{l.name}</span> <span class="ml-1 text-sm text-ink-mute">{l.level}</span></li>
+    <aside class="about-card panel" data-reveal style="--d:1" aria-labelledby="facts-title">
+      <h3 id="facts-title">Quick Facts</h3>
+      <dl>
+        {facts.map((f) => (
+          <div class="fact"><dt>{f.k}</dt><dd>{f.v}</dd></div>
         ))}
-      </ul>
-    </div>
+      </dl>
+      <h3 class="mt">Coursework</h3>
+      <ul class="ticks">{education.coursework.map((c) => <li>{c}</li>)}</ul>
+    </aside>
   </div>
 </section>
 
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.62fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  h2 {
+    font-size: 2.6rem;
+  }
+  h2 :global(em) {
+    font-style: normal;
+    color: var(--color-accent);
+  }
+  .lead {
+    margin-top: 22px;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--color-ink);
+  }
+  .chapter {
+    margin-top: 26px;
+  }
+  .chapter h3 {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .chapter p {
+    margin-top: 6px;
+    font-size: 1.05rem;
+    color: #3a3632;
+  }
+  .about-card {
+    position: sticky;
+    top: 96px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+  }
+  .about-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .about-card h3.mt {
+    margin-top: 22px;
+  }
+  .fact {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-line);
+    font-size: 0.95rem;
+  }
+  .fact dt {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+  .fact dd {
+    color: #33302c;
+  }
+  @media (max-width: 920px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-card {
+      position: static;
+    }
+  }
+  @media (max-width: 680px) {
+    h2 {
+      font-size: 2rem;
+    }
+    .about-card {
+      padding: 24px 22px;
+    }
+  }
+</style>

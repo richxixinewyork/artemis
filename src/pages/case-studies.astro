@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import CaseStudy from '../components/CaseStudy.astro';
+import Contact from '../components/Contact.astro';
+import { projects } from '../content/projects';
+import { url } from '../lib/url';
+---
+
+<Base title="Case Studies" description="Five case studies from Artemis Wang: Tan Tan Voice Rooms, Momo’s Moxie and ZAO, Missingcity, Esoteric Studios and Baoxiang.">
+  <header class="article-hero on-dark">
+    <div class="shell">
+      <p class="eyebrow intro-rise" style="--d:0">Case Studies</p>
+      <h1 class="intro-rise" style="--d:1">How the Work Gets Done</h1>
+      <p class="pmeta intro-rise" style="--d:2">
+        Five projects in detail: the context, what Artemis owned, how she approached it and what changed.
+      </p>
+      <nav class="jump intro-rise" style="--d:3" aria-label="Case studies on this page">
+        {projects.map((p, i) => (
+          <a href={`#${p.slug}`}><span>{String(i + 1).padStart(2, '0')}</span>{p.org}</a>
+        ))}
+      </nav>
+    </div>
+  </header>
+
+  {projects.map((p, i) => <CaseStudy project={p} index={i} alt={i % 2 === 1} />)}
+
+  <Contact />
+</Base>
+
+<style>
+  .article-hero {
+    padding: 140px 0 70px;
+    background: var(--dark-bg);
+    color: #fff;
+  }
+  h1 {
+    max-width: 820px;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: #fff;
+  }
+  .pmeta {
+    max-width: 680px;
+    margin-top: 18px;
+    font-size: 0.95rem;
+    color: var(--color-on-dark);
+  }
+  .jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .jump a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 8px 16px;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgb(255 255 255 / 0.2);
+    border-radius: 50px;
+    color: #fff;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .jump a:hover {
+    border-color: var(--color-accent-light);
+    color: var(--color-accent-light);
+  }
+  .jump span {
+    font-size: 0.72rem;
+    color: var(--color-accent-light);
+  }
+  @media (max-width: 680px) {
+    .article-hero {
+      padding: 110px 0 52px;
+    }
+  }
+</style>

@@ -1,0 +1,77 @@
+---
+import { Picture, Image } from 'astro:assets';
+import type { Project } from '../content/projects';
+import { getProjectMedia, getLogo } from '../lib/media';
+
+/**
+ * The 16:10 project frame used by Selected Work cards (the reference's card thumb).
+ *  - Real cover photo → fills the frame (object-fit: cover).
+ *  - Logo only → contained with padding on the logo's own background colour.
+ *  - Neither → the name set as a typographic card (no fake imagery).
+ */
+interface Props {
+  project: Project;
+  sizes?: string;
+  tag?: string;
+}
+
+const { project: p, sizes = '(min-width: 1140px) 346px, (min-width: 680px) 50vw, 100vw', tag } = Astro.props;
+const cover = getProjectMedia(p).cover;
+const logo = getLogo(p.slug);
+const bg = cover ? undefined : logo ? (p.logoBackground ?? '#ffffff') : undefined;
+---
+
+<div class:list={['thumb', cover ? 'is-photo' : logo ? 'is-logo' : 'is-word']} style={bg ? `background:${bg}` : undefined}>
+  {tag && <span class="tag">{tag}</span>}
+  {cover ? (
+    <Picture src={cover.src} alt={cover.alt} widths={[400, 700, 1000]} sizes={sizes} formats={['avif', 'webp']} />
+  ) : logo ? (
+    <Image src={logo} alt={`${p.org} logo`} width={Math.min(480, logo.width)} format="webp" />
+  ) : (
+    <span class="word" aria-hidden="true">{p.org}</span>
+  )}
+</div>
+
+<style>
+  .thumb {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+  }
+  .tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 1;
+  }
+  .is-photo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-editorial);
+  }
+  .is-logo {
+    padding: 26px 30px;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .is-logo :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .is-word {
+    background: var(--color-cream);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .word {
+    display: flex;
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+</style>

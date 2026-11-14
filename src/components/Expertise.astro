@@ -1,0 +1,96 @@
+---
+import { expertise } from '../content/site';
+import { url } from '../lib/url';
+
+// Simple line icons (24×24, stroke = currentColor)
+const icons: Record<string, string> = {
+  users: '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.6 3.3-5.5 6.5-5.5s5.9 1.9 6.5 5.5"/><path d="M15.5 4.8a3.3 3.3 0 0 1 0 6.4M18 14.8c2 .7 3.2 2.4 3.5 5.2"/>',
+  trend: '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
+  launch: '<path d="M5 15c-1.5 1.5-2 5-2 5s3.5-.5 5-2"/><path d="M9 15l-3-3c1.5-4.5 5.5-9 14-9 0 8.5-4.5 12.5-9 14z"/><circle cx="14.5" cy="9.5" r="1.8"/>',
+  content: '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 13h8M8 16h5"/>',
+  globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.8 3.8 5.8 3.8 9s-1.2 6.2-3.8 9c-2.6-2.8-3.8-5.8-3.8-9S9.4 5.8 12 3z"/>',
+  culture: '<path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10.5" cy="7" r="1.2"/><circle cx="15" cy="8" r="1.2"/>',
+};
+---
+
+<section id="expertise" class="section" aria-labelledby="expertise-title">
+  <div class="shell">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">What I Do</p>
+      <h2 id="expertise-title" class="h-section">Areas of Expertise</h2>
+      <p>Six kinds of work I have led across consumer technology, my own businesses and the cultural sector — each with a documented example.</p>
+    </div>
+
+    <div class="caps-grid">
+      {expertise.map((c, i) => (
+        <article class="cap panel lift" data-reveal style={`--d:${i % 2}`}>
+          <span class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" set:html={icons[c.icon]} />
+          </span>
+          <h3>{c.title}</h3>
+          <p class="role">{c.tag}</p>
+          <p class="body">{c.body}</p>
+          <ul class="ticks">{c.examples.map((e) => <li>{e}</li>)}</ul>
+          <a href={url(`/work/${c.slug}/`)} class="arrow-link">Read the case study <span aria-hidden="true">→</span></a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .caps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .cap {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 30px 26px;
+  }
+  .ic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin-bottom: 18px;
+    border-radius: 13px;
+    background: var(--color-ink);
+    color: var(--color-accent-light);
+  }
+  h3 {
+    font-size: 1.25rem;
+  }
+  .role {
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .body {
+    margin: 12px 0 8px;
+    color: var(--color-ink);
+  }
+  .ticks {
+    flex: 1;
+    margin-bottom: 18px;
+  }
+  .arrow-link {
+    align-self: flex-start;
+  }
+  @media (max-width: 920px) {
+    .caps-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 680px) {
+    .cap {
+      padding: 24px 22px 22px;
+    }
+  }
+</style>

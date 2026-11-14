@@ -1,0 +1,180 @@
+---
+import ProjectThumb from './ProjectThumb.astro';
+import { projects, statusLabel } from '../content/projects';
+import { url } from '../lib/url';
+
+const categories = [...new Set(projects.map((p) => p.category))];
+---
+
+<section id="work" class="section" aria-labelledby="work-title">
+  <div class="shell">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Portfolio</p>
+      <h2 id="work-title" class="h-section">Selected Work &amp; Projects</h2>
+      <p>Five projects across consumer technology, businesses I founded, and art and culture.</p>
+    </div>
+
+    <div class="tabs" role="group" aria-label="Filter projects" data-reveal>
+      <button type="button" class="tab-btn" aria-pressed="true" data-filter="all">All</button>
+      {categories.map((c) => (
+        <button type="button" class="tab-btn" aria-pressed="false" data-filter={c}>{c}</button>
+      ))}
+    </div>
+
+    <ul class="cards" data-cards>
+      {projects.map((p, i) => (
+        <li class="card panel lift" data-category={p.category} data-reveal style={`--d:${i % 3}`}>
+          <a href={url(`/work/${p.slug}/`)} class="card-link" aria-label={`${p.org} — ${p.title}: read the case study`}></a>
+          <ProjectThumb project={p} tag={p.status === 'completed' ? p.category : statusLabel[p.status]} />
+          <div class="body">
+            <p class="meta">{p.discipline}</p>
+            <h3>{p.org}</h3>
+            <p class="sub">{p.title}</p>
+            <p class="desc">{p.summary}</p>
+            {p.results[0] && (
+              <p class="key"><strong>{p.results[0].value}</strong> {p.results[0].label}</p>
+            )}
+            <p class="foot">
+              <span>{p.role} · {p.period}</span>
+              <span class="arrow-link">Case study <span aria-hidden="true">→</span></span>
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: -24px 0 30px;
+  }
+  .tab-btn {
+    padding: 9px 18px;
+    font-family: var(--font-display);
+    font-size: 0.88rem;
+    font-weight: 600;
+    border: 1px solid var(--color-line);
+    border-radius: 50px;
+    background: #fff;
+    color: var(--color-ink-soft);
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .tab-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-ink);
+  }
+  .tab-btn[aria-pressed='true'] {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-ivory);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 26px;
+  }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .card[hidden] {
+    display: none;
+  }
+  /* Whole card is clickable; the overlay link sits above everything */
+  .card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+  }
+  .card:hover :global(.is-photo img) {
+    transform: scale(1.04);
+  }
+  .body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 22px;
+  }
+  .meta {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-ink-mute);
+  }
+  h3 {
+    margin-top: 6px;
+    font-size: 1.15rem;
+  }
+  .sub {
+    font-family: var(--font-display);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+  }
+  .desc {
+    margin-top: 10px;
+    font-size: 0.93rem;
+    color: #4a4540;
+  }
+  .key {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--color-line);
+    font-size: 0.86rem;
+    color: var(--color-ink-soft);
+  }
+  .key strong {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--color-accent);
+  }
+  .foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 16px;
+    font-size: 0.8rem;
+    color: var(--color-ink-mute);
+  }
+  .card:hover .arrow-link {
+    color: var(--color-accent);
+    gap: 10px;
+  }
+  @media (max-width: 920px) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 680px) {
+    .cards {
+      grid-template-columns: 1fr;
+    }
+    .tabs {
+      margin-top: -14px;
+    }
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+  const cards = document.querySelectorAll<HTMLElement>('[data-cards] > [data-category]');
+  buttons.forEach((b) =>
+    b.addEventListener('click', () => {
+      const f = b.dataset.filter;
+      buttons.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      cards.forEach((c) => (c.hidden = f !== 'all' && c.dataset.category !== f));
+    }),
+  );
+</script>

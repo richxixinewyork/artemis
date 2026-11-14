@@ -1,13 +1,9 @@
 ---
-import { Picture } from 'astro:assets';
 import Base from '../../layouts/Base.astro';
-import ProjectCover from '../../components/ProjectCover.astro';
-import StatusTag from '../../components/StatusTag.astro';
-import SectionLabel from '../../components/SectionLabel.astro';
-import LogoTile from '../../components/LogoTile.astro';
-import ProjectVideo from '../../components/ProjectVideo.astro';
-import { projects, type Project } from '../../content/projects';
-import { getProjectMedia, getLogo } from '../../lib/media';
+import CaseStudy from '../../components/CaseStudy.astro';
+import ProjectThumb from '../../components/ProjectThumb.astro';
+import Contact from '../../components/Contact.astro';
+import { projects, statusLabel, type Project } from '../../content/projects';
 import { url } from '../../lib/url';
 
 export function getStaticPaths() {
@@ -26,203 +22,173 @@ const { project: p, index } = Astro.props;
 const total = projects.length;
 const prev = projects[(index - 1 + total) % total];
 const next = projects[(index + 1) % total];
-const { cover, gallery } = getProjectMedia(p);
-// With real imagery the cover keeps its own proportions and the logo moves into the header.
-const coverStyle = cover ? `aspect-ratio:${cover.src.width}/${cover.src.height}` : undefined;
-const showHeaderLogo = Boolean(cover && getLogo(p.slug));
 const pad = (x: number) => String(x).padStart(2, '0');
-const keyResult = p.results[0];
 
 const facts = [
   { k: 'Role', v: p.role },
   ...(p.products ? [{ k: 'Products', v: p.products }] : []),
   { k: 'Timeframe', v: p.period },
   ...(p.location ? [{ k: 'Location', v: p.location }] : []),
-  { k: 'Category', v: p.discipline },
+  { k: 'Status', v: statusLabel[p.status] },
 ];
 ---
 
 <Base title={`${p.org} — ${p.title}`} description={p.summary}>
-  <article>
-    <!-- Project hero -->
-    <header class="pt-28 md:pt-40">
-      <div class="wrap">
-        <nav aria-label="Breadcrumb" class="intro-rise eyebrow flex items-center gap-3" style="--d:0">
-          <a href={url('/#work')} class="link-draw inline-flex min-h-11 items-center">Selected work</a>
-          <span aria-hidden="true">/</span>
-          <span aria-current="page" class="tabular-nums">{pad(index + 1)} of {pad(total)}</span>
+  <header class="article-hero on-dark">
+    <div class="shell hero-grid">
+      <div>
+        <nav aria-label="Breadcrumb" class="crumbs intro-rise" style="--d:0">
+          <a href={url('/case-studies/')}>Case Studies</a><span aria-hidden="true">/</span><span aria-current="page">{pad(index + 1)} of {pad(total)}</span>
         </nav>
-
-        <div class="mt-8 grid grid-cols-12 gap-x-6 gap-y-10 md:mt-12">
-          <div class="col-span-12 lg:col-span-8">
-            <div class="intro-rise flex flex-wrap items-center gap-4" style="--d:1">
-              {showHeaderLogo && <LogoTile slug={p.slug} name={p.org} size="sm" background={p.logoBackground} />}
-              <StatusTag status={p.status} />
-            </div>
-            <h1 class="display-xl intro-rise mt-6" style="--d:2">{p.org}</h1>
-            <p class="intro-rise mt-5 max-w-2xl font-display text-[clamp(1.6rem,3vw,2.5rem)] leading-tight text-ink-soft italic" style="--d:3">{p.title}</p>
-          </div>
-
-          <aside class="intro-rise col-span-12 lg:col-span-4 lg:self-end" style="--d:4" aria-label="Project facts">
-            <dl class="grid grid-cols-2 gap-x-6 gap-y-5 text-sm lg:grid-cols-1">
-              {facts.map((f) => (
-                <div class="border-t border-line pt-3">
-                  <dt class="eyebrow">{f.k}</dt>
-                  <dd class="mt-1 text-ink">{f.v}</dd>
-                </div>
-              ))}
-            </dl>
-            {keyResult && (
-              <p class="mt-6 flex items-baseline gap-4 border-t border-ink pt-4">
-                <span class="font-display text-5xl leading-none whitespace-nowrap">{keyResult.value}</span>
-                <span class="text-sm leading-snug text-ink-soft">{keyResult.label}</span>
-              </p>
-            )}
-          </aside>
-        </div>
+        <p class="eyebrow intro-rise" style="--d:1">Case Study {pad(index + 1)} · {p.discipline}</p>
+        <h1 class="intro-rise" style="--d:1">{p.org}</h1>
+        <p class="title intro-rise" style="--d:2">{p.title}</p>
+        <p class="pmeta intro-rise" style="--d:3">{p.summary}</p>
+        <dl class="facts intro-rise" style="--d:4">
+          {facts.map((f) => <div><dt>{f.k}</dt><dd>{f.v}</dd></div>)}
+        </dl>
       </div>
-
-      <div class="wrap mt-12 md:mt-20">
-        <div class="intro-unveil" style={coverStyle}>
-          <ProjectCover project={p} variant="hero" sizes="100vw" eager class={cover ? 'h-full w-full' : 'aspect-[4/5] sm:aspect-[16/9] lg:aspect-[21/9]'} />
-        </div>
+      <div class="hero-thumb intro-rise" style="--d:2">
+        <ProjectThumb project={p} sizes="(min-width: 920px) 420px, 100vw" />
       </div>
-    </header>
+    </div>
+  </header>
 
-    <!-- Overview, context & role -->
-    <section class="wrap grid grid-cols-12 gap-x-6 gap-y-10 py-20 md:py-32" aria-labelledby="overview">
-      <SectionLabel id="overview" n={1} label="Overview" />
-      <div class="col-span-12 md:col-span-9" data-reveal>
-        <p class="max-w-4xl font-display text-[clamp(1.6rem,2.8vw,2.5rem)] leading-[1.18]">{p.overview}</p>
-        <div class="mt-12 grid gap-x-10 gap-y-8 md:mt-16 md:grid-cols-2">
-          {p.context && (
-            <div class="border-t border-line pt-5">
-              <h3 class="eyebrow !text-accent">Context</h3>
-              <p class="mt-3 leading-relaxed text-ink-soft">{p.context}</p>
-            </div>
-          )}
-          <div class="border-t border-line pt-5">
-            <h3 class="eyebrow !text-accent">Artemis’s role</h3>
-            <p class="mt-3 leading-relaxed text-ink-soft">{p.roleDetail}</p>
-          </div>
-          {p.links?.map((l) => (
-            <div class="border-t border-line pt-5">
-              <h3 class="eyebrow !text-accent">{l.label}</h3>
-              <a href={l.url} target="_blank" rel="noopener noreferrer" class="group mt-3 inline-flex items-baseline gap-2 leading-relaxed text-ink">
-                <span class="link-draw">{l.name}</span><span class="transition-transform duration-500 group-hover:translate-x-1" aria-hidden="true">↗</span>
-                <span class="sr-only">(opens in a new tab)</span>
-              </a>
-              <p class="mt-1 text-sm text-ink-mute">{l.source}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+  <CaseStudy project={p} index={index} standalone />
 
-    <!-- Strategy & execution -->
-    <section class="rule" aria-labelledby="strategy">
-      <div class="wrap grid grid-cols-12 gap-x-6 gap-y-10 py-20 md:py-32">
-        <SectionLabel id="strategy" n={2} label="Strategy & execution" />
-        <ol class="col-span-12 md:col-span-9">
-          {p.contributions.map((c, i) => (
-            <li class="grid gap-x-8 gap-y-2 border-t border-line py-7 last:border-b md:grid-cols-[3rem_minmax(0,0.85fr)_minmax(0,1.15fr)] md:py-9" data-reveal>
-              <span class="font-display text-xl text-accent tabular-nums">{pad(i + 1)}</span>
-              <h3 class="font-display text-[1.65rem] leading-tight">{c.heading}</h3>
-              <p class="leading-relaxed text-ink-soft">{c.body}</p>
-            </li>
-          ))}
-        </ol>
-      </div>
-    </section>
+  <nav class="pager" aria-label="More case studies">
+    <div class="shell pager-grid">
+      <a href={url(`/work/${prev.slug}/`)} class="panel lift">
+        <span class="k">← Previous</span><span class="o">{prev.org}</span><span class="t">{prev.title}</span>
+      </a>
+      <a href={url(`/work/${next.slug}/`)} class="panel lift right">
+        <span class="k">Next →</span><span class="o">{next.org}</span><span class="t">{next.title}</span>
+      </a>
+    </div>
+  </nav>
 
-    <!-- Selected work: real imagery when available, a labeled placeholder otherwise -->
-    <section class="rule" aria-labelledby="selected">
-      <div class="wrap grid grid-cols-12 gap-x-6 gap-y-10 py-20 md:py-32">
-        <SectionLabel id="selected" n={3} label="Selected work" />
-        {gallery.length > 0 ? (
-          <div class="col-span-12 gap-6 md:col-span-9 md:columns-2">
-            {gallery.map((g) => (
-              <figure class="mb-6 break-inside-avoid" data-reveal>
-                {g.type === 'video' ? (
-                  <ProjectVideo src={g.src} poster={g.poster} alt={g.alt} />
-                ) : (
-                  <Picture
-                    src={g.src}
-                    alt={g.alt}
-                    widths={[480, 768, 1080, 1440]}
-                    sizes="(min-width: 768px) 36vw, 100vw"
-                    formats={['avif', 'webp']}
-                    class="w-full bg-cream"
-                  />
-                )}
-                {g.caption && <figcaption class="mt-3 text-sm text-ink-mute">{g.caption}</figcaption>}
-              </figure>
-            ))}
-          </div>
-        ) : (
-          <div class="col-span-12 md:col-span-9" data-reveal>
-            <div class="grain flex min-h-56 flex-col justify-between gap-8 border border-dashed border-line bg-cream p-6 md:min-h-72 md:p-10">
-              <p class="relative z-[2] eyebrow flex items-center gap-2">
-                <span class="inline-block size-2 border border-current" aria-hidden="true"></span>Placeholder
-              </p>
-              <p class="relative z-[2] max-w-xl font-display text-2xl leading-snug md:text-3xl">
-                Project imagery is being prepared and will appear here once approved.
-              </p>
-            </div>
-          </div>
-        )}
-      </div>
-    </section>
-
-    <!-- Impact / status -->
-    {p.results.length > 0 ? (
-      <section class="bg-ink text-ivory" aria-labelledby="impact">
-        <div class="wrap grid grid-cols-12 gap-x-6 gap-y-10 py-20 md:py-32">
-          <SectionLabel id="impact" n={4} label="Impact" dark />
-          <div class="col-span-12 md:col-span-9">
-            <dl class="grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
-              {p.results.map((r, i) => (
-                <div class="flex flex-col border-t border-ivory/20 pt-6 pb-10" data-reveal style={`--d:${i % 3}`}>
-                  <dt class="order-2 mt-3 text-lg leading-snug">{r.label}</dt>
-                  <dd class="order-1 font-display text-[clamp(3rem,5vw,4rem)] leading-none whitespace-nowrap">{r.value}</dd>
-                  {r.note && <dd class="order-3 mt-2 text-sm leading-relaxed text-ivory/60">{r.note}</dd>}
-                </div>
-              ))}
-            </dl>
-            <p class="mt-4 text-sm text-ivory/55">Figures as reported in Artemis’s résumé.</p>
-          </div>
-        </div>
-      </section>
-    ) : (
-      <section class="bg-cream" aria-labelledby="status">
-        <div class="wrap grid grid-cols-12 gap-x-6 gap-y-10 py-20 md:py-32">
-          <SectionLabel id="status" n={4} label="Where it stands" />
-          <div class="col-span-12 md:col-span-9" data-reveal>
-            <p class="display-md">This project is <em>in development</em>. No outcomes are reported yet.</p>
-            {p.nextSteps && (
-              <ul class="mt-10 border-t border-line">
-                {p.nextSteps.map((s) => <li class="border-b border-line py-4 text-lg text-ink-soft">{s}</li>)}
-              </ul>
-            )}
-          </div>
-        </div>
-      </section>
-    )}
-
-    <!-- Previous / next -->
-    <nav class="rule" aria-label="More projects">
-      <div class="wrap grid md:grid-cols-2">
-        <a href={url(`/work/${prev.slug}/`)} class="group flex flex-col gap-3 border-b border-line py-12 md:border-r md:border-b-0 md:py-20 md:pr-10">
-          <span class="eyebrow">← Previous project</span>
-          <span class="display-md transition-colors duration-500 group-hover:text-accent">{prev.org}</span>
-          <span class="text-sm text-ink-soft">{prev.title}</span>
-        </a>
-        <a href={url(`/work/${next.slug}/`)} class="group flex flex-col gap-3 py-12 md:items-end md:py-20 md:pl-10 md:text-right">
-          <span class="eyebrow">Next project →</span>
-          <span class="display-md transition-colors duration-500 group-hover:text-accent">{next.org}</span>
-          <span class="text-sm text-ink-soft">{next.title}</span>
-        </a>
-      </div>
-    </nav>
-  </article>
+  <Contact />
 </Base>
+
+<style>
+  .article-hero {
+    padding: 140px 0 70px;
+    background: var(--dark-bg);
+    color: #fff;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 50px;
+    align-items: center;
+  }
+  .crumbs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 18px;
+    font-size: 0.82rem;
+    color: var(--color-on-dark-mute);
+  }
+  .crumbs a {
+    color: var(--color-on-dark);
+  }
+  .crumbs a:hover {
+    color: var(--color-accent-light);
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: #fff;
+  }
+  .title {
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #e4dfd7;
+  }
+  .pmeta {
+    max-width: 600px;
+    margin-top: 14px;
+    color: var(--color-on-dark);
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 18px 24px;
+    margin-top: 28px;
+  }
+  .facts dt {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-light);
+  }
+  .facts dd {
+    margin-top: 2px;
+    font-size: 0.92rem;
+    color: #e4dfd7;
+  }
+  .hero-thumb {
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid rgb(255 255 255 / 0.08);
+    box-shadow: 0 30px 60px -25px rgb(0 0 0 / 0.8);
+  }
+  .pager {
+    padding: 56px 0;
+  }
+  .pager-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .pager a {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 24px 26px;
+  }
+  .pager .right {
+    align-items: flex-end;
+    text-align: right;
+  }
+  .k {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .o {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+  }
+  .t {
+    font-size: 0.9rem;
+    color: var(--color-ink-mute);
+  }
+  @media (max-width: 920px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+    .hero-thumb {
+      max-width: 520px;
+    }
+  }
+  @media (max-width: 680px) {
+    .article-hero {
+      padding: 110px 0 52px;
+    }
+    .pager-grid {
+      grid-template-columns: 1fr;
+    }
+    .pager .right {
+      align-items: flex-start;
+      text-align: left;
+    }
+  }
+</style>

@@ -1,40 +1,69 @@
 ---
 import { site } from '../content/site';
 import { url } from '../lib/url';
-
-const socials = site.socials.filter((s) => s.url);
-const links = [
-  { label: 'Work', href: url('/#work') },
-  { label: 'Impact', href: url('/#impact') },
-  { label: 'About', href: url('/#about') },
-  { label: 'Resume', href: url('/resume/') },
-  { label: 'Contact', href: url('/#contact') },
-];
 ---
 
-<footer class="bg-ink text-ivory">
-  <div class="wrap pt-16 pb-10 md:pt-24">
-    <div class="grid grid-cols-12 gap-x-6 gap-y-10">
-      <p class="col-span-12 font-display text-[clamp(3rem,9vw,8rem)] leading-[0.85] tracking-tight md:col-span-7">
-        {site.name}
-      </p>
-      <nav aria-label="Footer" class="col-span-6 md:col-span-2 md:col-start-9">
-        <ul class="space-y-2 text-sm text-ivory/70">
-          {links.map((l) => <li><a href={l.href} class="link-draw hover:text-ivory">{l.label}</a></li>)}
-        </ul>
-      </nav>
-      <div class="col-span-6 space-y-2 text-sm text-ivory/70 md:col-span-2">
-        {site.contact.email && <a href={`mailto:${site.contact.email}`} class="link-draw block break-all hover:text-ivory">Email</a>}
-        {socials.map((s) => (
-          <a href={s.url} target="_blank" rel="noopener noreferrer" class="link-draw block hover:text-ivory" title={s.demo ? 'Placeholder — profile link coming soon' : undefined}>{s.label}{s.demo && <span class="ml-2 text-[0.62rem] tracking-[0.14em] text-ivory/50 uppercase">Placeholder</span>}<span class="sr-only">{s.demo ? ' (placeholder link, not her profile yet;' : ' ('} opens in a new tab)</span></a>
-        ))}
-        <p>{site.location}</p>
-      </div>
-    </div>
-
-    <div class="mt-16 flex flex-col gap-4 border-t border-ivory/15 pt-6 text-xs tracking-[0.08em] text-ivory/60 uppercase md:flex-row md:items-center md:justify-between">
-      <p>© {site.copyrightYear} {site.name}</p>
-      <a href="#main" class="link-draw self-start hover:text-ivory md:self-auto">Back to top ↑</a>
-    </div>
+<footer class="footer">
+  <div class="shell footer-inner">
+    <a href={url('/')} class="brand"><span class="dot" aria-hidden="true"></span>{site.name}</a>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href={url('/#work')}>Work</a></li>
+        <li><a href={url('/case-studies/')}>Case Studies</a></li>
+        <li><a href={url('/resume/')}>Resume</a></li>
+        {site.contact.email && <li><a href={`mailto:${site.contact.email}`}>Email</a></li>}
+      </ul>
+    </nav>
+    <small>© {site.copyrightYear} {site.name} · {site.location}</small>
   </div>
 </footer>
+
+<style>
+  .footer {
+    padding: 40px 0;
+    background: #141210;
+    color: var(--color-on-dark-mute);
+  }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: #fff;
+  }
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--color-accent-light);
+  }
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    font-size: 0.88rem;
+  }
+  ul a {
+    color: var(--color-on-dark);
+  }
+  ul a:hover {
+    color: var(--color-accent-light);
+  }
+  small {
+    font-size: 0.82rem;
+  }
+  @media (max-width: 680px) {
+    .footer-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

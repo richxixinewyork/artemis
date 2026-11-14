@@ -12,9 +12,11 @@ interface Props {
   description?: string;
   /** Hide from search engines (e.g. 404). */
   noindex?: boolean;
+  /** Pages without a dark hero start with the solid navigation bar. */
+  solidNav?: boolean;
 }
 
-const { title, description = site.description, noindex = false } = Astro.props;
+const { title, description = site.description, noindex = false, solidNav = false } = Astro.props;
 const pageTitle = title ? `${title} — ${site.name}` : site.title;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
@@ -30,7 +32,7 @@ const personLd = {
   '@type': 'Person',
   name: site.name,
   url: new URL(url('/'), Astro.site).href,
-  jobTitle: 'Growth & Creator Partnerships',
+  jobTitle: site.hero.role,
   address: { '@type': 'PostalAddress', addressLocality: 'New York', addressRegion: 'NY' },
   sameAs: site.socials.filter((s) => s.url && !s.demo).map((s) => s.url),
 };
@@ -47,7 +49,7 @@ const personLd = {
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" type="image/svg+xml" href={url('/favicon.svg')} />
     <link rel="sitemap" href={url('/sitemap-index.xml')} />
-    <meta name="theme-color" content="#f7f3ec" />
+    <meta name="theme-color" content="#1c1a18" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
@@ -71,7 +73,7 @@ const personLd = {
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-sm focus:text-ivory"
     >Skip to content</a>
-    <Header />
+    <Header solid={solidNav} />
     <main id="main" tabindex="-1" class="outline-none">
       <slot />
     </main>

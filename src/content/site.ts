@@ -35,6 +35,15 @@ export const site = {
      * Wrap a word in *asterisks* to set it in italic accent.
      */
     headline: 'Strategy, with a curator’s *eye*.',
+    /** Positioning line under the name (not a job title). */
+    role: 'Growth, Creator Partnerships & Brand Building',
+    /** Small figures under the hero buttons. Every one is documented in the résumé. */
+    meta: [
+      { value: '6', label: 'International launch markets' },
+      { value: '2', label: 'Businesses founded' },
+      { value: '43K+', label: 'Missingcity community' },
+      { value: '3', label: 'Working languages' },
+    ],
     intro:
       'I build creator programs, communities and brands where consumer technology, beauty, fashion and culture meet — from 0-to-1 AI and live-audio launches at Hello Group to two cross-border businesses of my own. Now based in New York, I’m bringing that work into art business and cultural design.',
     /** Small vertical caption beside the portrait. */
@@ -101,15 +110,18 @@ export const site = {
     tools: ['ChatGPT & other generative AI tools', 'Analytics dashboards', 'Microsoft Office', 'Canva', 'Figma', 'CapCut'],
   },
 
-  /** Career timeline (newest first). */
+  /**
+   * Career timeline (newest first). `slug` pulls dates and bullets from projects.ts;
+   * `other` points at an entry in otherExperience below.
+   */
   timeline: [
-    { years: '2025 — Now', title: 'Baoxiang (The Eternal Path)', role: 'Founder & Creative Director', note: 'Cultural design project · in development' },
-    { years: '2023 — Now', title: 'Esoteric Studios', role: 'Founder & Brand Director', note: 'Cross-border professional beauty' },
-    { years: '2023', title: 'No Space Gallery', role: 'Exhibition Assistant Intern (part-time)', note: 'Beijing · spring 2023' },
-    { years: '2022 — 2023', title: 'Communication University of China', role: 'Project Assistant, School of Drama and Film', note: 'Beijing · cultural exchange programs' },
-    { years: '2021 — 2022', title: 'Tan Tan (Hello Group)', role: 'Operations Lead, Voice Communities', note: 'Beijing' },
-    { years: '2020 — 2021', title: 'Momo Inc. (Hello Group)', role: 'Senior Product Operations, AI Products', note: 'Beijing' },
-    { years: '2017 — Now', title: 'Missingcity', role: 'Founder & Curator', note: 'Online designer boutique' },
+    { years: '2025 — Now', slug: 'baoxiang', title: 'Baoxiang (The Eternal Path)', role: 'Founder & Creative Director', note: 'Cultural design project · in development' },
+    { years: '2023 — Now', slug: 'esoteric-studios', title: 'Esoteric Studios', role: 'Founder & Brand Director', note: 'Cross-border professional beauty' },
+    { years: '2023', other: 0, title: 'No Space Gallery', role: 'Exhibition Assistant Intern (part-time)', note: 'Beijing · spring 2023' },
+    { years: '2022 — 2023', other: 1, title: 'Communication University of China', role: 'Project Assistant, School of Drama and Film', note: 'Beijing · cultural exchange programs' },
+    { years: '2021 — 2022', slug: 'tantan', title: 'Tan Tan (Hello Group)', role: 'Operations Lead, Voice Communities', note: 'Beijing' },
+    { years: '2020 — 2021', slug: 'momo', title: 'Momo Inc. (Hello Group)', role: 'Senior Product Operations, AI Products', note: 'Beijing' },
+    { years: '2017 — Now', slug: 'missingcity', title: 'Missingcity', role: 'Founder & Curator', note: 'Online designer boutique' },
   ],
 
   education: {
@@ -192,36 +204,89 @@ export const site = {
   ] satisfies SocialLink[],
 };
 
-/** Featured numbers for the Impact section. Every figure is taken from the résumé. */
-export const impact = [
-  {
-    value: '500+',
-    label: 'creator and influencer partnerships managed',
-    source: 'Momo · AI Products, 2020–21',
-  },
-  {
-    value: '67%',
-    label: 'increase in Voice Rooms daily active users',
-    source: 'Tan Tan · following her redesign of partner incentives and community programs',
-  },
-  {
-    value: '45%',
-    label: 'increase in daily active users',
-    source: 'Momo · team result her creator partnerships contributed to',
-  },
-  {
-    value: 'RMB 700K+',
-    label: 'organic revenue, with no paid advertising',
-    source: 'Missingcity · as founder, over two years on Taobao',
-  },
-  {
-    value: '43,000+',
-    label: 'community followers',
-    source: 'Missingcity · across Taobao, Xiaohongshu and WeChat',
-  },
-  {
-    value: '65%+',
-    label: 'repeat-purchase rate',
-    source: 'Missingcity · as founder',
-  },
+/**
+ * Headline figures in the dark band under the hero. Each names its company and
+ * product so figures from different roles are never read as one result.
+ */
+export const stats = [
+  { value: '+67%', label: 'Daily active users', source: 'Tan Tan · Voice Rooms' },
+  { value: '+600%', label: 'First-week creator room launches', source: 'Tan Tan · Voice Rooms' },
+  { value: '20,000+', label: 'AI creations', source: 'Momo · Moxie creator program' },
+  { value: '500+', label: 'Creator & influencer partnerships', source: 'Momo · Moxie and ZAO' },
 ];
+
+/** "Areas of Expertise" cards. Examples are documented results; `slug` links the related case study. */
+export const expertise = [
+  {
+    icon: 'users',
+    title: 'Creator Partnerships & Community Growth',
+    tag: 'Partnerships',
+    body: 'Recruiting, onboarding, rewarding and retaining creators — and the communities that form around them.',
+    examples: [
+      'Managed 500+ creator and influencer partnerships across Moxie and ZAO at Momo',
+      'Redesigned creator incentives and community programs for Tan Tan Voice Rooms; daily active users rose 67%',
+      'Built a 43,000+ follower community for Missingcity across Taobao, RED and WeChat',
+    ],
+    slug: 'tantan',
+  },
+  {
+    icon: 'trend',
+    title: 'Growth Marketing & Campaign Strategy',
+    tag: 'Growth',
+    body: 'Campaigns and programs designed around a measurable growth outcome.',
+    examples: [
+      'Campaigns across Moxie and ZAO contributed to +45% daily and +200% total active users (team outcomes)',
+      'A festival-makeup campaign reached 35% next-day retention among participants',
+      'Grew Missingcity to RMB 700K+ in Taobao revenue without paid advertising',
+    ],
+    slug: 'momo',
+  },
+  {
+    icon: 'launch',
+    title: 'Product Operations & Launches',
+    tag: 'Operations',
+    body: 'Taking products from concept to launch, then iterating from creator feedback and usage data.',
+    examples: [
+      'Led Moxie’s product operations from concept through launch',
+      'Led Voice Rooms product and content operations from concept to launch',
+      'Turned feedback into three Moxie iterations; feature engagement and content-save rates rose 40%',
+    ],
+    slug: 'momo',
+  },
+  {
+    icon: 'content',
+    title: 'Content, Media & Brand Strategy',
+    tag: 'Content & Brand',
+    body: 'Content and brand storytelling that educates, builds trust and keeps people coming back.',
+    examples: [
+      'Grew Esoteric Studios to 27,000+ followers and 100,000+ content views through educational content',
+      'Developed room themes, conversation topics and interactive formats for Voice Rooms',
+      'Set content review standards and moderation keyword lists for Voice Rooms',
+    ],
+    slug: 'esoteric-studios',
+  },
+  {
+    icon: 'globe',
+    title: 'International Expansion & Localization',
+    tag: 'Global',
+    body: 'Market research, localized launch content and local creator recruitment.',
+    examples: [
+      'Led intern teams on expansion into Japan, South Korea and Vietnam (Momo)',
+      'Led intern teams on expansion into Taiwan, Hong Kong and Germany (Tan Tan)',
+      'Integrated a third-party payment provider to launch partner payouts in Taiwan',
+    ],
+    slug: 'tantan',
+  },
+  {
+    icon: 'culture',
+    title: 'Creative & Cultural Project Operations',
+    tag: 'Culture',
+    body: 'Exhibitions, cultural programs and collectible-object design.',
+    examples: [
+      'Developing Baoxiang, beginning with a 12-piece zodiac candle collection',
+      'Supported “Beauty and Sharing,” an international cultural exchange program co-produced by CCTV and the Ministry of Culture and Tourism',
+      'Exhibition installation, artist outreach and events at No Space Gallery',
+    ],
+    slug: 'baoxiang',
+  },
+] as const;

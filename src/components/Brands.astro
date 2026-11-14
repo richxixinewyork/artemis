@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import { projects } from '../content/projects';
+import { getLogo } from '../lib/media';
+import { url } from '../lib/url';
+---
+
+<section id="brands" class="logos-strip" aria-labelledby="brands-title">
+  <div class="shell">
+    <h2 id="brands-title" class="lab">Companies &amp; Projects</h2>
+    <ul class="chips">
+      {projects.map((p) => {
+        const logo = getLogo(p.slug);
+        return (
+          <li>
+            <a href={url(`/work/${p.slug}/`)} class="brand-chip lift" title={p.org} style={p.logoBackground && logo ? `background:${p.logoBackground}` : undefined}>
+              {logo ? (
+                <Image src={logo} alt={`${p.org} logo`} height={116} format="webp" loading="lazy" />
+              ) : (
+                <span class="word">{p.org}</span>
+              )}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .logos-strip {
+    padding: 54px 0;
+    background: var(--color-cream);
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .lab {
+    margin-bottom: 26px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--color-ink-mute);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+  }
+  .brand-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    height: 96px;
+    padding: 16px 22px;
+    background: #fff;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 18px -14px rgb(0 0 0 / 0.4);
+  }
+  /* Same optical height for every mark; width follows each logo's own proportions.
+     Logos drawn on a colour (logoBackground) sit on a chip of that colour, so no inner box shows. */
+  .brand-chip :global(img) {
+    width: auto;
+    height: 58px;
+    max-width: 140px;
+    object-fit: contain;
+  }
+  .word {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-ink);
+  }
+  @media (max-width: 680px) {
+    .chips {
+      gap: 12px;
+    }
+    .brand-chip {
+      min-width: 0;
+      flex: 0 1 calc(50% - 6px);
+      height: 84px;
+    }
+    li {
+      display: contents;
+    }
+  }
+</style>

@@ -5,8 +5,8 @@ Every piece of text, every link and every image can be changed without touching 
 
 ```
 src/
-  content/site.ts        ← name, hero, about, timeline, education, contact, social links, impact numbers
-  content/projects.ts    ← the five case studies (text, results, status)
+  content/site.ts        ← name, hero, figures band, expertise cards, about, timeline, education, contact, social links
+  content/projects.ts    ← the five case studies (context, what she owned, approach, results, media)
   assets/portraits/      ← hero.jpg (required), about.jpg (optional)
   assets/projects/<slug>/← cover.jpg + 01.jpg, 02.jpg … for each project
   assets/logos/          ← project logos named by slug, e.g. momo.png
@@ -68,11 +68,12 @@ npm run preview
 
 | To change… | Edit |
 | --- | --- |
-| Hero name line, statement, intro; About lead & chapters; timeline; languages | `src/content/site.ts` |
+| Hero specialties, positioning line, intro and small figures; About lead & chapters; timeline; languages | `src/content/site.ts` (`hero`, `about`, `timeline`) |
 | Email, LinkedIn, Instagram, RED, websites | `site.socials` and `site.contact` in `src/content/site.ts` |
-| Impact numbers on the homepage | `impact` at the bottom of `src/content/site.ts` |
-| Case studies | `src/content/projects.ts` |
-| Hero headline emphasis | wrap a word in `*asterisks*` to set it in italic red |
+| Figures in the dark band under the hero | `stats` in `src/content/site.ts` (always name the company/product in `source`) |
+| Areas of Expertise cards | `expertise` in `src/content/site.ts` (`slug` links the related case study) |
+| Case studies | `src/content/projects.ts`: `challenge` (The Context), `owned` (What She Owned), `contributions` (Her Approach), `results`, `category` (Selected Work filter), optional `video` (YouTube id) |
+| Accent words in About / Contact headings | wrap words in `*asterisks*` to set them in the accent colour |
 
 **Social links:** an empty `url: ''` hides a link. Entries marked `demo: true` (and commented `PLACEHOLDER`) are shown with a small "Placeholder" tag so visitors don't mistake them for her accounts, and are kept out of search-engine data. To publish a real profile, paste its full address (e.g. `https://www.linkedin.com/in/…`) and delete `demo: true`.
 
@@ -89,15 +90,30 @@ npm run preview
   - `01.jpg`, `02.jpg`, … appear as a gallery on the case study.
   - **Videos:** `02.mp4`, `03.mp4`, … (or `.webm`) appear in the same gallery, in file-name order, as silent looping clips that play only while on screen (and don't autoplay for visitors who prefer reduced motion). Add a still frame named like the video plus `.poster`, e.g. `02.poster.jpg`. Keep each clip short and under ~5 MB.
   - Add alt text/captions in `projects.ts` → `images: { cover: { alt: '…' }, '01': { alt: '…', caption: '…' } }` (videos use the same keys, e.g. `'02'`).
-  - When a project has a `cover`, the homepage switches it to a large image layout and shows its logo as a small mark beside the text; without one, it shows a compact logo panel.
+  - A `cover` fills the project's 16:10 card image and opens its Selected Media gallery; without one the card shows the logo (or the project name).
   - Example: `src/assets/projects/baoxiang/` (cover banner, product photo, two videos with posters).
-- **Logos:** `src/assets/logos/<slug>.png` (or .jpg/.svg/.webp), e.g. `momo.png`, appears centered on that project's cover and case-study header. Crop away empty margins first. If the logo file has a colored background, set `logoBackground: '#rrggbb'` on the project in `projects.ts` so the mark sits on its own color (white is the default). Logos are never stretched or cropped.
+- **Logos:** `src/assets/logos/<slug>.png` (or .jpg/.svg/.webp), e.g. `momo.png`, appears in the Companies & Projects strip and on the project card when there is no cover photo. Crop away empty margins first. If the logo file has a colored background, set `logoBackground: '#rrggbb'` on the project in `projects.ts` so the mark sits on its own color (white is the default). Logos are never stretched or cropped.
+
+- **YouTube:** set `video: { youtubeId, title, caption }` on a project. It shows as a click-to-load 16:9 player: nothing loads from YouTube until the visitor presses play, then it plays from youtube-nocookie.com.
 
 Use large JPGs (around 2000–2500px on the long side). The build automatically creates AVIF/WebP versions at several sizes and lazy-loads them. Only use real, authorized images; the site intentionally shows typographic covers until then.
 
 ---
 
-## 5. Still needed before launch
+## 5. Design system
+
+The layout follows the structure and proportions of christopherjroot.com (measured in the browser at 1440px); every colour is Artemis's own palette. Tokens live at the top of `src/styles/global.css`.
+
+| | |
+| --- | --- |
+| Type | Poppins 500–700 for headings, buttons and labels; Inter for body text (both SIL Open Font License, self-hosted via Fontsource) |
+| Colours | ivory `#f7f3ec` page · cream `#efe8db` alternate sections · ink `#1c1a18` text and dark bands · cinnabar `#9a3f2c` accent · clay `#c9a58d` accent on dark · line `#d5c9b6` |
+| Grid | 1140px max width, 24px side padding (20px on phones); sections 96px top/bottom (56px on phones) |
+| Hero | 1.35fr / 0.9fr columns; portrait frame 300×360 (5:6), 20px radius |
+| Cards | 14px radius, 1px border; project images 16:10; expertise cards 2 columns; project cards 3 → 2 → 1 columns |
+| Breakpoints | 1024px (menu becomes a drawer), 920px (columns stack), 680px (phone layout), 420px (smallest phones) |
+
+## 6. Still needed before launch
 
 **Confirm (site now follows the latest résumé, `Artemis_Wang Resume.pdf`)**
 - [ ] **School name** for the Master in Art Business (New York, Aug 2026 – 2027) — not named in the résumé. Earlier drafts listed UIBE, Beijing. Set `education.school` in `site.ts`.

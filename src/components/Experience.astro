@@ -1,0 +1,124 @@
+---
+import { site } from '../content/site';
+import { projects } from '../content/projects';
+import { url } from '../lib/url';
+
+// Each timeline entry takes its dates and bullets from the project or role it points at.
+const items = site.timeline.map((t) => {
+  const p = t.slug ? projects.find((x) => x.slug === t.slug) : undefined;
+  const o = t.other !== undefined ? site.otherExperience[t.other] : undefined;
+  const bullets: string[] = (p?.highlights ?? o?.highlights ?? []).slice(0, 3);
+  return {
+    when: p?.period ?? o?.period ?? t.years,
+    role: t.role,
+    company: t.title,
+    note: t.note,
+    bullets,
+    href: p ? url(`/work/${p.slug}/`) : undefined,
+  };
+});
+---
+
+<section id="experience" class="section section-alt" aria-labelledby="experience-title">
+  <div class="shell">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Career</p>
+      <h2 id="experience-title" class="h-section">Work History</h2>
+    </div>
+
+    <ol class="timeline">
+      {items.map((it) => (
+        <li class="tl-item" data-reveal>
+          <p class="when">{it.when}</p>
+          <h3>{it.role}</h3>
+          <p class="co">{it.company}{it.note && <span> · {it.note}</span>}</p>
+          {it.bullets.length > 0 && (
+            <ul>{it.bullets.map((b) => <li>{b}</li>)}</ul>
+          )}
+          {it.href && <a href={it.href} class="arrow-link mt-3">Read the case study <span aria-hidden="true">→</span></a>}
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 13px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--color-line);
+  }
+  .tl-item {
+    position: relative;
+    padding: 0 0 40px 48px;
+  }
+  .tl-item:last-child {
+    padding-bottom: 0;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    border: 3px solid var(--color-cream);
+    box-shadow: 0 0 0 2px var(--color-accent);
+  }
+  .when {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  h3 {
+    margin-top: 4px;
+    font-size: 1.25rem;
+  }
+  .co {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .co span {
+    font-weight: 400;
+    color: var(--color-ink-mute);
+  }
+  ul {
+    margin-top: 12px;
+    padding-left: 18px;
+    list-style: disc;
+    color: var(--color-ink-soft);
+  }
+  ul li {
+    margin-bottom: 4px;
+    font-size: 0.96rem;
+  }
+  ul li::marker {
+    color: var(--color-accent);
+  }
+  .arrow-link {
+    display: inline-flex;
+  }
+  @media (max-width: 680px) {
+    .timeline::before {
+      left: 9px;
+    }
+    .tl-item {
+      padding-left: 40px;
+    }
+    .tl-item::before {
+      left: 2px;
+    }
+  }
+</style>

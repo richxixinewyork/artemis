@@ -16,7 +16,7 @@ const groups = [
 ];
 ---
 
-<Base title="Resume" description={`Resume of ${site.name}: ${resume.headline}.`}>
+<Base title="Resume" description={`Resume of ${site.name}: ${resume.headline}.`} solidNav>
   <div class="wrap pt-28 pb-24 md:pt-40 md:pb-36">
     <header class="grid grid-cols-12 items-end gap-x-6 gap-y-8 border-b border-ink pb-10">
       <div class="col-span-12 md:col-span-8">
@@ -53,7 +53,7 @@ const groups = [
       <div class="col-span-12 md:col-span-9 md:border-l md:border-line md:pl-10">
         <section class="border-b border-line py-10 md:py-12" aria-labelledby="r-summary">
           <h2 id="r-summary" class="eyebrow">Summary</h2>
-          <p class="mt-4 max-w-3xl font-display text-2xl leading-snug md:text-[1.75rem]">{resume.summary}</p>
+          <p class="mt-4 max-w-3xl font-display text-xl leading-snug font-medium md:text-2xl">{resume.summary}</p>
         </section>
 
         {groups.map((g) => (

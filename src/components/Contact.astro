@@ -7,60 +7,150 @@ const { contact, resume } = site;
 const socials = site.socials.filter((s) => s.url);
 ---
 
-<section id="contact" class="bg-cream py-24 md:py-40" aria-labelledby="contact-title">
-  <div class="wrap grid grid-cols-12 gap-x-6 gap-y-12">
-    <p class="eyebrow col-span-12 md:col-span-3" data-reveal>Contact</p>
-    <div class="col-span-12 md:col-span-9">
-      <h2 id="contact-title" class="display-xl" data-reveal set:html={emphasize(contact.heading)} />
-      <p class="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft" data-reveal style="--d:1">{contact.blurb}</p>
+<section id="contact" class="section contact on-dark" aria-labelledby="contact-title">
+  <div class="shell contact-grid">
+    <div data-reveal>
+      <p class="eyebrow">Get in touch</p>
+      <h2 id="contact-title" class="h-section" set:html={emphasize(contact.heading)} />
+      <p class="lead">{contact.blurb}</p>
 
       {contact.email && (
-        <a
-          href={`mailto:${contact.email}`}
-          class="email group mt-12 inline-flex max-w-full items-baseline gap-4 border-b border-ink pb-3 font-display text-[clamp(1.6rem,4.6vw,3.6rem)] leading-none break-all transition-colors hover:border-accent hover:text-accent"
-          data-reveal
-          style="--d:2"
-        >
-          {contact.email}
-          <span class="shrink-0 text-[0.6em] transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true">↗</span>
+        <a href={`mailto:${contact.email}`} class="email">
+          <span class="k">Email</span>{contact.email}
         </a>
       )}
-
-      <dl class="mt-14 grid gap-x-10 gap-y-6 text-sm sm:grid-cols-3" data-reveal style="--d:3">
-        <div><dt class="eyebrow">Based in</dt><dd class="mt-2 text-base">{site.location}</dd></div>
-        <div><dt class="eyebrow">Open to</dt><dd class="mt-2 text-base">Roles, partnerships &amp; collaborations</dd></div>
-        {resume.pdf && (
-          <div>
-            <dt class="eyebrow">Resume</dt>
-            <dd class="mt-2 text-base">
-              <a href={url(resume.pdf)} download type="application/pdf" class="link-draw inline-flex min-h-11 items-center gap-2 sm:min-h-0">Download PDF <span aria-hidden="true">↓</span></a>
-            </dd>
-          </div>
-        )}
-      </dl>
+      <p class="loc"><span class="k">Based in</span>{site.location}</p>
 
       {socials.length > 0 && (
-        <ul class="mt-14 grid grid-cols-1 border-t border-line sm:grid-cols-2 lg:grid-cols-3" data-reveal style="--d:4">
+        <ul class="socials">
           {socials.map((s) => (
-            <li class="border-b border-line">
-              <a
-                href={s.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={s.demo ? 'Placeholder — Artemis’s profile link will be added soon' : undefined}
-                class="group flex items-center justify-between py-5 pr-2 text-[0.95rem] transition-colors hover:text-accent sm:pr-8"
-                              >
-                <span class="flex items-baseline gap-3">
-                  {s.label}
-                  {s.demo && <span class="rounded-full border border-line px-2 py-0.5 text-[0.62rem] tracking-[0.14em] text-ink-mute uppercase">Placeholder</span>}
-                  <span class="sr-only">{s.demo ? ' (placeholder link, not her profile yet;' : ' ('} opens in a new tab)</span>
-                </span>
-                <span class="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden="true">↗</span>
+            <li>
+              <a href={s.url} target="_blank" rel="noopener noreferrer" title={s.demo ? 'Placeholder — Artemis’s profile link will be added soon' : undefined}>
+                {s.label}
+                {s.demo && <span class="ph">Placeholder</span>}
+                <span class="sr-only">{s.demo ? ' (placeholder link, not her profile yet;' : ' ('} opens in a new tab)</span>
               </a>
             </li>
           ))}
         </ul>
       )}
     </div>
+
+    <div class="contact-cta" data-reveal style="--d:1">
+      <h3>Reviewing my background?</h3>
+      <p>Download the full résumé, or read it online.</p>
+      {resume.pdf && (
+        <a href={url(resume.pdf)} download type="application/pdf" class="btn btn-primary">Download Resume (PDF)</a>
+      )}
+      <a href={url('/resume/')} class="btn btn-ghost">View Resume Online</a>
+      {contact.email && <a href={`mailto:${contact.email}`} class="btn btn-ghost">Email Artemis</a>}
+    </div>
   </div>
 </section>
+
+<style>
+  .contact {
+    background: var(--color-ink);
+    color: #fff;
+  }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  h2 :global(em) {
+    font-style: normal;
+    color: var(--color-accent-light);
+  }
+  .lead {
+    margin-top: 16px;
+    font-size: 1.05rem;
+    color: var(--color-on-dark);
+  }
+  .email,
+  .loc {
+    display: block;
+    margin-top: 26px;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #fff;
+    overflow-wrap: anywhere;
+  }
+  .loc {
+    margin-top: 14px;
+    font-weight: 500;
+  }
+  .email:hover {
+    color: var(--color-accent-light);
+  }
+  .k {
+    display: block;
+    margin-bottom: 2px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-accent-light);
+  }
+  .socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 26px;
+  }
+  .socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-size: 0.88rem;
+    border-radius: 50px;
+    background: var(--color-charcoal);
+    color: #fff;
+    transition: background-color 0.2s;
+  }
+  .socials a:hover {
+    background: #3a3632;
+  }
+  .ph {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-on-dark-mute);
+  }
+  .contact-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 36px;
+    border: 1px solid rgb(255 255 255 / 0.08);
+    border-radius: var(--radius);
+    background: var(--color-charcoal);
+  }
+  .contact-cta h3 {
+    font-size: 1.4rem;
+    color: #fff;
+  }
+  .contact-cta p {
+    margin-bottom: 10px;
+    color: var(--color-on-dark-mute);
+  }
+  .contact-cta .btn {
+    width: 100%;
+  }
+  @media (max-width: 920px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 680px) {
+    .contact-cta {
+      padding: 26px 22px;
+    }
+    .contact-cta .btn {
+      white-space: normal;
+    }
+  }
+</style>
