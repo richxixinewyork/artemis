@@ -82,7 +82,7 @@ const [first, ...rest] = site.name.split(' ');
   .hero-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 72px;
+    gap: 52px;
     align-items: start;
   }
   .eyebrow {
@@ -109,10 +109,10 @@ const [first, ...rest] = site.name.split(' ');
   }
   /* Four-paragraph intro: slightly wider and tighter than the reference's single paragraph */
   .lead {
-    max-width: 680px;
+    max-width: 740px;
     margin-top: 20px;
     font-size: 1.02rem;
-    line-height: 1.72;
+    line-height: 1.6;
     color: var(--color-on-dark);
   }
   .lead p + p {
@@ -151,11 +151,12 @@ const [first, ...rest] = site.name.split(' ');
   }
 
   /* Portrait: the reference's 300×360 (5:6) frame */
-  /* Top of the portrait lines up with the name (below the two-line specialties) */
+  /* Top of the portrait sits level with the subtitle; the offset scales with the
+     viewport and is removed once the columns stack (≤920px) */
   .hero-photo {
     position: relative;
     justify-self: end;
-    margin-top: 52px;
+    margin-top: clamp(96px, 9vw, 132px);
   }
   .photo-frame {
     width: 300px;
