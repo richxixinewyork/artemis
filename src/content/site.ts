@@ -215,11 +215,11 @@ export const site = {
  * product so figures from different roles are never read as one result.
  */
 export const stats = [
-  { value: '+67%', label: 'Daily active users', source: 'Tan Tan — Social-audio / Voice Rooms' },
-  { value: '+600%', label: 'First-week creator room launches', source: 'Tan Tan — Social-audio / Voice Rooms' },
+  { value: '+67%', label: 'Daily active users', source: 'Tan Tan — Social-audio app' },
+  { value: '+600%', label: 'First-week creator room launches', source: 'Tan Tan — Social-audio app' },
   { value: '20,000+', label: 'AI-generated creator works', source: 'Moxie — AI beauty creator program' },
-  // The résumé ties the 500+ figure to ZAO and Moxie only. Artemis may add Tan Tan later; keep it out until she confirms.
-  { value: '500+', label: 'Creator & MCN partnerships', source: 'Hello Group — ZAO & Moxie' },
+  // The résumé ties the 500+ figure to ZAO and Moxie; Artemis confirmed it also covers Tan Tan.
+  { value: '500+', label: 'Creator & MCN partnerships', source: 'Hello Group · ZAO, Moxie & Tan Tan' },
 ];
 
 /** "Areas of Expertise" cards. Examples are documented results; `slug` links the related case study. */
