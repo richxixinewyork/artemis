@@ -209,8 +209,8 @@ export const projects: Project[] = [
     summary:
       'An online boutique introducing emerging international designers to global consumers — grown entirely without paid advertising.',
     highlights: [
-      // Source figure: RMB 700K+ (approximate USD equivalent shown)
-      'Generated ~US$100K in Taobao revenue over two years without paid advertising.',
+      // Source figure: RMB 700K+. At the 2017–2022 yearly average rates (6.45–6.91 RMB per US$) any two years come to about US$101K–109K.
+      'Generated US$100K+ in Taobao revenue over two years without paid advertising.',
       'Built a 43,000+ follower community across Taobao, RED and WeChat with a 65%+ repeat-purchase rate.',
       'Manages designer relationships, selection and international shipping.'
     ],
@@ -241,8 +241,8 @@ export const projects: Project[] = [
       },
     ],
     results: [
-      // Source figure: RMB 700K+; shown as an approximate USD equivalent for international readers
-      { value: '~US$100K', label: 'Taobao revenue over two years', note: 'Approximate US-dollar equivalent. Generated without paid advertising.' },
+      // Source figure: RMB 700K+. At the 2017–2022 yearly average rates (6.45–6.91 RMB per US$) any two years come to about US$101K–109K.
+      { value: 'US$100K+', label: 'Taobao revenue over two years', note: 'Generated without paid advertising.' },
       { value: '43,000+', label: 'community followers', note: 'Across Taobao, Xiaohongshu (RED) and WeChat.' },
       { value: '65%+', label: 'repeat-purchase rate' },
     ],

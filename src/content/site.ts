@@ -45,7 +45,7 @@ export const site = {
       { value: '3', label: 'Cross-border brands founded' },
       // Missingcity 43,000+ and Esoteric Studios 27,000+ followers
       { value: '70K+', label: 'Organic brand community' },
-      // Korea, China (incl. Hong Kong), Canada, Thailand, USA
+      // Korea, China (incl. Hong Kong), Canada, Thailand, USA — Artemis confirmed she lived and worked in each
       { value: '5+', label: 'Countries lived & worked' },
     ],
     /** Hero introduction, one string per paragraph. */
@@ -220,7 +220,7 @@ export const stats = [
   { value: '+67%', label: 'Daily active users', source: 'Tan Tan — Social-audio / Voice Rooms' },
   { value: '+600%', label: 'First-week creator room launches', source: 'Tan Tan — Social-audio / Voice Rooms' },
   { value: '20,000+', label: 'AI-generated creator works', source: 'Moxie — AI beauty creator program' },
-  // The résumé ties the 500+ figure to ZAO and Moxie only; adding Tan Tan is awaiting Artemis's confirmation.
+  // The résumé ties the 500+ figure to ZAO and Moxie only. Artemis may add Tan Tan later; keep it out until she confirms.
   { value: '500+', label: 'Creator & MCN partnerships', source: 'Hello Group — ZAO & Moxie' },
 ];
 
@@ -246,8 +246,8 @@ export const expertise = [
     examples: [
       'Campaigns across Moxie and ZAO contributed to +45% daily and +200% total active users (team outcomes)',
       'A festival-makeup campaign reached 35% next-day retention among participants',
-      // Source figure: RMB 700K+ (approximate USD equivalent shown)
-      'Grew Missingcity to ~US$100K in Taobao revenue without paid advertising',
+      // Source figure: RMB 700K+. At the 2017–2022 yearly average rates (6.45–6.91 RMB per US$) any two years come to about US$101K–109K.
+      'Grew Missingcity to US$100K+ in Taobao revenue without paid advertising',
     ],
     slug: 'momo',
   },
