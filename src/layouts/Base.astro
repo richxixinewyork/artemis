@@ -14,9 +14,11 @@ interface Props {
   noindex?: boolean;
   /** Pages without a dark hero start with the solid navigation bar. */
   solidNav?: boolean;
+  /** Use the wider frame for the navigation bar (homepage hero). */
+  wideNav?: boolean;
 }
 
-const { title, description = site.description, noindex = false, solidNav = false } = Astro.props;
+const { title, description = site.description, noindex = false, solidNav = false, wideNav = false } = Astro.props;
 const pageTitle = title ? `${title} — ${site.name}` : site.title;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
@@ -73,7 +75,7 @@ const personLd = {
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-3 focus:text-sm focus:text-ivory"
     >Skip to content</a>
-    <Header solid={solidNav} />
+    <Header solid={solidNav} wide={wideNav} />
     <main id="main" tabindex="-1" class="outline-none">
       <slot />
     </main>

@@ -92,6 +92,10 @@
     margin-inline: auto;
     padding-inline: 24px;
   }
+  /* Wider frame for the homepage hero (and the bar and band that touch it) */
+  .shell.wide {
+    max-width: 1240px;
+  }
   .section {
     padding-block: 96px;
   }

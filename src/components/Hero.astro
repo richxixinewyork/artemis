@@ -10,7 +10,7 @@ const [first, ...rest] = site.name.split(' ');
 ---
 
 <section class="hero on-dark" aria-labelledby="hero-title">
-  <div class="shell hero-grid">
+  <div class="shell wide hero-grid">
     <div class="hero-copy">
       <!-- Specialties wrap only between items, never mid-phrase -->
       <p class="eyebrow intro-rise" style="--d:0">
@@ -49,7 +49,7 @@ const [first, ...rest] = site.name.split(' ');
   </div>
 
   <!-- Figures sit in their own full-width row under the two columns -->
-  <div class="shell">
+  <div class="shell wide">
     <dl class="hero-meta intro-rise" style="--d:5">
       {hero.meta.map((m) => (
         <div><dt>{m.label}</dt><dd>{m.value}</dd></div>
@@ -59,7 +59,7 @@ const [first, ...rest] = site.name.split(' ');
 </section>
 
 <section class="stats on-dark" aria-label="Selected results">
-  <div class="shell">
+  <div class="shell wide">
     <dl class="stats-grid">
       {stats.map((s, i) => (
         <div class="stat" data-reveal style={`--d:${i}`}>
@@ -109,14 +109,14 @@ const [first, ...rest] = site.name.split(' ');
   }
   /* Four-paragraph intro: slightly wider and tighter than the reference's single paragraph */
   .lead {
-    max-width: 740px;
+    max-width: 880px;
     margin-top: 20px;
     font-size: 1.02rem;
     line-height: 1.6;
     color: var(--color-on-dark);
   }
   .lead p + p {
-    margin-top: 14px;
+    margin-top: 12px;
   }
   .hero-cta {
     display: flex;

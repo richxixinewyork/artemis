@@ -5,9 +5,11 @@ import { url } from '../lib/url';
 interface Props {
   /** Start with the dark bar (pages without a dark hero, e.g. the résumé). */
   solid?: boolean;
+  /** Match the wider homepage hero frame. */
+  wide?: boolean;
 }
 
-const { solid = false } = Astro.props;
+const { solid = false, wide = false } = Astro.props;
 const path = Astro.url.pathname.replace(/\/$/, '');
 const links = [
   { label: 'Experience', href: url('/#experience') },
@@ -22,7 +24,7 @@ const onResume = path.endsWith('/resume');
 ---
 
 <header role="banner" class:list={['nav', { 'is-solid': solid }]} data-header>
-  <div class="shell nav-inner">
+  <div class:list={['shell nav-inner', { wide }]}>
     <a href={url('/')} class="brand" aria-label={`${site.name} — home`}>
       <span class="dot" aria-hidden="true"></span>{site.name}<small>Growth &amp; Partnerships</small>
     </a>

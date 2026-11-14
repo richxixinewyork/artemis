@@ -50,10 +50,8 @@ export const site = {
     ],
     /** Hero introduction, one string per paragraph. */
     intro: [
-      'With nearly a decade of cross-border experience since 2017, I build culturally resonant brands, creator programs and consumer communities where AI, social technology, content operations and art intersect.',
-      'Currently based in New York, USA, and pursuing an M.A. in Art Business, I’m bringing my background in digital growth and brand storytelling into consumer technology and the art market.',
-      'Living across Seoul, Beijing, Hong Kong, Vancouver and Thailand, I bring a cross-cultural perspective to global go-to-market launches, strategic partnerships and business operations — from scaling 0-to-1 AI and social-audio products at Hello Group to founding three cross-border brands in beauty, fashion and lifestyle.',
-      'Across these ventures, my work spans brand positioning, social storytelling, exclusive partnerships and US–Korea supply chains.',
+      'With nearly a decade of cross-border experience since 2017, I build culturally resonant brands, creator programs and consumer communities where AI, social technology, content operations and art intersect. Currently based in New York, USA, and pursuing an M.A. in Art Business, I’m bringing my background in digital growth and brand storytelling into consumer technology and the art market.',
+      'Living across Seoul, Beijing, Hong Kong, Vancouver and Thailand, I bring a cross-cultural perspective to global go-to-market launches, strategic partnerships and business operations — from scaling 0-to-1 AI and social-audio products at Hello Group to founding three cross-border brands in beauty, fashion and lifestyle. Across these ventures, my work spans brand positioning, social storytelling, exclusive partnerships and US–Korea supply chains.',
     ],
     /** Small vertical caption beside the portrait. */
     portraitAlt: 'Portrait of Artemis Wang in a navy ribbed top against a pale studio backdrop',
