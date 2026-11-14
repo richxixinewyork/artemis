@@ -219,7 +219,7 @@ export const stats = [
   { value: '+600%', label: 'First-week creator room launches', source: 'Tan Tan — Social-audio app' },
   { value: '20,000+', label: 'AI-generated creator works', source: 'Moxie — AI beauty creator program' },
   // The résumé ties the 500+ figure to ZAO and Moxie; Artemis confirmed it also covers Tan Tan.
-  { value: '500+', label: 'Creator & MCN partnerships', source: 'Hello Group · ZAO, Moxie & Tan Tan' },
+  { value: '500+', label: 'Creator & MCN partnerships', source: 'Hello Group — ZAO, Moxie & Tan Tan' },
 ];
 
 /** "Areas of Expertise" cards. Examples are documented results; `slug` links the related case study. */
