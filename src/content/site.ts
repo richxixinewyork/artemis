@@ -16,16 +16,16 @@ export type SocialLink = {
 export const site = {
   name: 'Artemis Wang',
   /** Used in the browser tab and search results. */
-  title: 'Artemis Wang — Growth, Creator Partnerships & Brand Building',
+  title: 'Artemis Wang — Building Brands, Creator Communities & Cultural Narratives',
   description:
-    'Artemis Wang is a growth and creator-partnerships strategist and founder working across consumer technology, beauty, fashion, cross-border e-commerce and art business.',
-  location: 'New York, NY',
+    'Artemis Wang builds brands, creator programs and consumer communities across AI, social technology, content and art. Based in New York, USA.',
+  location: 'New York, USA',
   /** Shown in the footer. */
   copyrightYear: new Date().getFullYear(),
 
   hero: {
     /** Discipline line under the name. */
-    eyebrow: 'Growth Strategy · Creator Partnerships · Marketing · Media & Content · Brand Building · Art',
+    eyebrow: 'AI & Consumer Tech · Marketing · Creator Ecosystems · Brand Strategy · Art Business',
     /*
      * Statement options considered:
      *   A. "Where culture meets commerce."
@@ -36,18 +36,26 @@ export const site = {
      */
     headline: 'Strategy, with a curator’s *eye*.',
     /** Positioning line under the name (not a job title). */
-    role: 'Growth, Creator Partnerships & Brand Building',
+    role: 'Building Brands, Creator Communities & Cultural Narratives Across Tech and Art',
     /** Small figures under the hero buttons. Every one is documented in the résumé. */
     meta: [
-      { value: '6', label: 'International launch markets' },
-      { value: '2', label: 'Businesses founded' },
-      { value: '43K+', label: 'Missingcity community' },
-      { value: '3', label: 'Working languages' },
+      // Japan, South Korea, Vietnam (MoMo) + Taiwan, Hong Kong, Germany (Tan Tan)
+      { value: '6+', label: 'Global launch markets' },
+      // Missingcity, Esoteric Studios, Baoxiang (in development)
+      { value: '3', label: 'Cross-border brands founded' },
+      // Missingcity 43,000+ and Esoteric Studios 27,000+ followers
+      { value: '70K+', label: 'Organic brand community' },
+      // Korea, China (incl. Hong Kong), Canada, Thailand, USA
+      { value: '5+', label: 'Countries lived & worked' },
     ],
-    intro:
-      'I build creator programs, communities and brands where consumer technology, beauty, fashion and culture meet — from 0-to-1 AI and live-audio launches at Hello Group to two cross-border businesses of my own. Now based in New York, I’m bringing that work into art business and cultural design.',
+    /** Hero introduction, one string per paragraph. */
+    intro: [
+      'With nearly a decade of cross-border experience since 2017, I build culturally resonant brands, creator programs and consumer communities where AI, social technology, content operations and art intersect.',
+      'Currently based in New York, USA, and pursuing an M.A. in Art Business, I’m bringing my background in digital growth and brand storytelling into consumer technology and the art market.',
+      'Living across Seoul, Beijing, Hong Kong, Vancouver and Thailand, I bring a cross-cultural perspective to global go-to-market launches, strategic partnerships and business operations — from scaling 0-to-1 AI and social-audio products at Hello Group to founding three cross-border brands in beauty, fashion and lifestyle.',
+      'Across these ventures, my work spans brand positioning, social storytelling, exclusive partnerships and US–Korea supply chains.',
+    ],
     /** Small vertical caption beside the portrait. */
-    caption: 'Beijing — Seoul — New York',
     portraitAlt: 'Portrait of Artemis Wang in a navy ribbed top against a pale studio backdrop',
   },
 
@@ -59,7 +67,7 @@ export const site = {
     chapters: [
       {
         label: 'Consumer technology',
-        body: 'At Hello Group (Nasdaq: MOMO) I worked on 0-to-1 consumer launches — the AI face, hair and makeup products ZAO and Moxie at Momo, and the live-audio Voice Rooms feature at Tan Tan. I built the creator programs, partner contracting, incentive structures and payment processes behind their growth, and led intern teams taking them into Japan, South Korea, Vietnam, Taiwan, Hong Kong and Germany.',
+        body: 'At Hello Group (Nasdaq: MOMO) I worked on 0-to-1 consumer launches — the AI face, hair and makeup products ZAO and Moxie at MoMo, and the live-audio Voice Rooms feature at Tan Tan. I built the creator programs, partner contracting, incentive structures and payment processes behind their growth, and led intern teams taking them into Japan, South Korea, Vietnam, Taiwan, Hong Kong and Germany.',
       },
       {
         label: 'Entrepreneurship',
@@ -67,7 +75,7 @@ export const site = {
       },
       {
         label: 'Art & culture',
-        body: 'I have also worked inside the cultural sector — at No Space Gallery in Beijing, and on “Beauty and Sharing,” an international cultural exchange program co-produced by CCTV and the Ministry of Culture and Tourism. Today I am studying for a Master in Art Business in New York and developing Baoxiang, a collectible-objects concept drawn from Chinese zodiac symbolism and Five Elements philosophy.',
+        body: 'I have also worked inside the cultural sector — at No Space Gallery in Beijing, and on “Beauty and Sharing,” an international cultural exchange program co-produced by CCTV and the Ministry of Culture and Tourism. Today I am pursuing an M.A. in Art Business in New York, USA, and developing Baoxiang, a collectible-objects concept drawn from Chinese zodiac symbolism and Five Elements philosophy.',
       },
     ],
     /** "What I bring" columns. */
@@ -119,8 +127,8 @@ export const site = {
     { years: '2023 — Now', slug: 'esoteric-studios', title: 'Esoteric Studios', role: 'Founder & Brand Director', note: 'Cross-border professional beauty' },
     { years: '2023', other: 0, title: 'No Space Gallery', role: 'Exhibition Assistant Intern (part-time)', note: 'Beijing · spring 2023' },
     { years: '2022 — 2023', other: 1, title: 'Communication University of China', role: 'Project Assistant, School of Drama and Film', note: 'Beijing · cultural exchange programs' },
-    { years: '2021 — 2022', slug: 'tantan', title: 'Tan Tan (Hello Group)', role: 'Operations Lead, Voice Communities', note: 'Beijing' },
-    { years: '2020 — 2021', slug: 'momo', title: 'Momo Inc. (Hello Group)', role: 'Senior Product Operations, AI Products', note: 'Beijing' },
+    { years: '2021 — 2022', slug: 'tantan', title: 'Tan Tan (Hello Group)', role: 'Operations Lead, Voice Communities', note: 'Hong Kong' },
+    { years: '2020 — 2021', slug: 'momo', title: 'MoMo Inc. (Hello Group)', role: 'Senior Product Operations, AI Products', note: 'Hong Kong' },
     { years: '2017 — Now', slug: 'missingcity', title: 'Missingcity', role: 'Founder & Curator', note: 'Online designer boutique' },
   ],
 
@@ -130,8 +138,8 @@ export const site = {
      * there — add it here once confirmed. Earlier drafts listed UIBE, Beijing.
      */
     school: '',
-    location: 'New York, NY',
-    degree: 'Master',
+    location: 'New York, USA',
+    degree: 'M.A.',
     field: 'Art Business',
     period: 'Aug 2026 – 2027',
     status: 'In progress',
@@ -182,7 +190,7 @@ export const site = {
   contact: {
     heading: 'Let’s *talk*.',
     blurb:
-      'Open to roles and collaborations in growth, creator partnerships, brand strategy and art business — in New York and across markets.',
+      'Open to roles and collaborations in growth, creator partnerships, brand strategy and art business — in New York, USA, and across markets.',
     /** Public contact email (shown in Contact and on the résumé page). */
     email: 'Artemisnewyork@outlook.com',
   },
@@ -209,10 +217,11 @@ export const site = {
  * product so figures from different roles are never read as one result.
  */
 export const stats = [
-  { value: '+67%', label: 'Daily active users', source: 'Tan Tan · Voice Rooms' },
-  { value: '+600%', label: 'First-week creator room launches', source: 'Tan Tan · Voice Rooms' },
-  { value: '20,000+', label: 'AI creations', source: 'Momo · Moxie creator program' },
-  { value: '500+', label: 'Creator & influencer partnerships', source: 'Momo · Moxie and ZAO' },
+  { value: '+67%', label: 'Daily active users', source: 'Tan Tan — Social-audio / Voice Rooms' },
+  { value: '+600%', label: 'First-week creator room launches', source: 'Tan Tan — Social-audio / Voice Rooms' },
+  { value: '20,000+', label: 'AI-generated creator works', source: 'Moxie — AI beauty creator program' },
+  // The résumé ties the 500+ figure to ZAO and Moxie only; adding Tan Tan is awaiting Artemis's confirmation.
+  { value: '500+', label: 'Creator & MCN partnerships', source: 'Hello Group — ZAO & Moxie' },
 ];
 
 /** "Areas of Expertise" cards. Examples are documented results; `slug` links the related case study. */
@@ -223,7 +232,7 @@ export const expertise = [
     tag: 'Partnerships',
     body: 'Recruiting, onboarding, rewarding and retaining creators — and the communities that form around them.',
     examples: [
-      'Managed 500+ creator and influencer partnerships across Moxie and ZAO at Momo',
+      'Managed 500+ creator and influencer partnerships across Moxie and ZAO at MoMo',
       'Redesigned creator incentives and community programs for Tan Tan Voice Rooms; daily active users rose 67%',
       'Built a 43,000+ follower community for Missingcity across Taobao, RED and WeChat',
     ],
@@ -237,7 +246,8 @@ export const expertise = [
     examples: [
       'Campaigns across Moxie and ZAO contributed to +45% daily and +200% total active users (team outcomes)',
       'A festival-makeup campaign reached 35% next-day retention among participants',
-      'Grew Missingcity to RMB 700K+ in Taobao revenue without paid advertising',
+      // Source figure: RMB 700K+ (approximate USD equivalent shown)
+      'Grew Missingcity to ~US$100K in Taobao revenue without paid advertising',
     ],
     slug: 'momo',
   },
@@ -271,7 +281,7 @@ export const expertise = [
     tag: 'Global',
     body: 'Market research, localized launch content and local creator recruitment.',
     examples: [
-      'Led intern teams on expansion into Japan, South Korea and Vietnam (Momo)',
+      'Led intern teams on expansion into Japan, South Korea and Vietnam (MoMo)',
       'Led intern teams on expansion into Taiwan, Hong Kong and Germany (Tan Tan)',
       'Integrated a third-party payment provider to launch partner payouts in Taiwan',
     ],

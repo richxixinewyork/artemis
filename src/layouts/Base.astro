@@ -33,7 +33,7 @@ const personLd = {
   name: site.name,
   url: new URL(url('/'), Astro.site).href,
   jobTitle: site.hero.role,
-  address: { '@type': 'PostalAddress', addressLocality: 'New York', addressRegion: 'NY' },
+  address: { '@type': 'PostalAddress', addressLocality: 'New York', addressRegion: 'NY', addressCountry: 'US' },
   sameAs: site.socials.filter((s) => s.url && !s.demo).map((s) => s.url),
 };
 ---

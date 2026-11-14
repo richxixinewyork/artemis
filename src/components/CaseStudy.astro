@@ -23,6 +23,12 @@ const { cover, gallery } = getProjectMedia(p);
 const n = String(index + 1).padStart(2, '0');
 const id = `cs-${p.slug}`;
 const hasMedia = Boolean(cover || gallery.length || p.video);
+const h = {
+  context: p.headings?.context ?? 'The Context',
+  owned: p.headings?.owned ?? 'What She Owned',
+  approach: p.headings?.approach ?? 'Her Approach',
+  status: p.headings?.status ?? 'Where It Stands',
+};
 ---
 
 <section class:list={['cs-section', { 'is-alt': alt }]} id={standalone ? undefined : p.slug} aria-labelledby={id}>
@@ -41,16 +47,16 @@ const hasMedia = Boolean(cover || gallery.length || p.video);
     <div class="cs-cols">
       <div data-reveal>
         <div class="cs-block">
-          <h3>The Context</h3>
-          <p>{p.challenge}</p>
+          <h3>{h.context}</h3>
+          {p.challenge.split(/\n\s*\n/).map((para) => <p>{para}</p>)}
           {p.context && <p class="note">{p.context}</p>}
         </div>
         <div class="cs-block">
-          <h3>What She Owned</h3>
-          <ul class="dots">{p.owned.map((o) => <li>{o}</li>)}</ul>
+          <h3>{h.owned}</h3>
+          {p.ownedAsText ? p.owned.map((o) => <p>{o}</p>) : <ul class="dots">{p.owned.map((o) => <li>{o}</li>)}</ul>}
         </div>
         <div class="cs-block">
-          <h3>Her Approach</h3>
+          <h3>{h.approach}</h3>
           {p.contributions.map((c) => (
             <div class="step">
               <h4>{c.heading}</h4>
@@ -75,9 +81,9 @@ const hasMedia = Boolean(cover || gallery.length || p.video);
           </>
         ) : (
           <>
-            <h4>Where It Stands</h4>
-            <div class="r"><div class="big">{statusLabel[p.status]}</div><div class="lbl">No outcomes reported yet.</div></div>
-            {p.nextSteps && <ul class="next">{p.nextSteps.map((s) => <li>{s}</li>)}</ul>}
+            <h4>{h.status}</h4>
+            <div class="r"><div class="big">{statusLabel[p.status]}</div></div>
+            {p.statusNote?.map((t) => <p class="note-dark">{t}</p>)}
           </>
         )}
         {!standalone && <a href={url(`/work/${p.slug}/`)} class="btn btn-primary">Project page <span aria-hidden="true">→</span></a>}
@@ -181,6 +187,9 @@ const hasMedia = Boolean(cover || gallery.length || p.video);
   .cs-block p {
     color: #3a3632;
   }
+  .cs-block p + p {
+    margin-top: 10px;
+  }
   .cs-block .note {
     margin-top: 8px;
     font-size: 0.9rem;
@@ -247,15 +256,11 @@ const hasMedia = Boolean(cover || gallery.length || p.video);
     line-height: 1.5;
     color: var(--color-on-dark-mute);
   }
-  .next {
+  .note-dark {
     margin-top: 12px;
-    padding-left: 18px;
-    list-style: disc;
-    font-size: 0.88rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
     color: var(--color-on-dark);
-  }
-  .next li {
-    margin-bottom: 6px;
   }
   .src {
     margin-top: 14px;

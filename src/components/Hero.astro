@@ -18,7 +18,7 @@ const [first, ...rest] = site.name.split(' ');
       </p>
       <h1 id="hero-title" class="intro-rise" style="--d:1">{first} <span class="accent">{rest.join(' ')}</span></h1>
       <p class="role intro-rise" style="--d:2">{hero.role}</p>
-      <p class="lead intro-rise" style="--d:3">{hero.intro}</p>
+      <div class="lead intro-rise" style="--d:3">{hero.intro.map((para) => <p>{para}</p>)}</div>
       <div class="hero-cta intro-rise" style="--d:4">
         {site.resume.pdf && (
           <a href={url(site.resume.pdf)} download type="application/pdf" class="btn btn-primary">Download Resume</a>
@@ -73,7 +73,7 @@ const [first, ...rest] = site.name.split(' ');
     min-height: 100svh;
     display: flex;
     align-items: center;
-    padding-top: 90px;
+    padding: 124px 0 64px; /* room for the four-paragraph intro below the fixed bar */
     background: var(--dark-bg);
     color: #fff;
     overflow: hidden;
@@ -106,11 +106,16 @@ const [first, ...rest] = site.name.split(' ');
     line-height: 1.65;
     color: #e4dfd7;
   }
+  /* Four-paragraph intro: slightly wider and tighter than the reference's single paragraph */
   .lead {
-    max-width: 540px;
-    margin-top: 22px;
-    font-size: 1.08rem;
+    max-width: 580px;
+    margin-top: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
     color: var(--color-on-dark);
+  }
+  .lead p + p {
+    margin-top: 10px;
   }
   .hero-cta {
     display: flex;
@@ -244,7 +249,7 @@ const [first, ...rest] = site.name.split(' ');
       height: 340px;
     }
     .lead {
-      font-size: 1rem;
+      font-size: 0.97rem;
     }
     .hero-cta {
       width: 100%;

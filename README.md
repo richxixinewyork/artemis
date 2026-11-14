@@ -116,7 +116,7 @@ The layout follows the structure and proportions of christopherjroot.com (measur
 ## 6. Still needed before launch
 
 **Confirm (site now follows the latest résumé, `Artemis_Wang Resume.pdf`)**
-- [ ] **School name** for the Master in Art Business (New York, Aug 2026 – 2027) — not named in the résumé. Earlier drafts listed UIBE, Beijing. Set `education.school` in `site.ts`.
+- [ ] **School name** for the M.A. in Art Business (New York, USA, Aug 2026 – 2027) — not named in the résumé. Earlier drafts listed UIBE, Beijing. Set `education.school` in `site.ts`.
 - [x] **Baoxiang** kept on the site as "In development" (it is not in the latest résumé PDF).
 - [x] **Phone number** removed from the downloadable résumé PDF and from the site for privacy (the old PDF was also purged from Git history). Only email and social profiles are published as contact methods.
 - [x] **Email** set to `Artemisnewyork@outlook.com`.
@@ -131,8 +131,8 @@ The layout follows the structure and proportions of christopherjroot.com (measur
 **Media**
 - [ ] Optional second portrait (`src/assets/portraits/about.jpg`) — appears beside the About story automatically
 - [x] Baoxiang / The Eternal Path: cover artwork, product photo, two animated clips and logo added.
-- [ ] Project covers and gallery images for the other four projects. Until then each project shows a labelled "Project imagery forthcoming" placard. Suggested real materials: product screenshots or launch visuals (Momo / Tan Tan, if Hello Group permits), storefront and product photography (Missingcity, Esoteric Studios), concept sketches or candle prototypes (Baoxiang).
-- [x] Logos for Tan Tan, Momo and Esoteric Studios (added)
+- [ ] Project covers and gallery images for the other four projects. Until then each project shows a labelled "Project imagery forthcoming" placard. Suggested real materials: product screenshots or launch visuals (MoMo / Tan Tan, if Hello Group permits), storefront and product photography (Missingcity, Esoteric Studios), concept sketches or candle prototypes (Baoxiang).
+- [x] Logos for Tan Tan, MoMo and Esoteric Studios (added)
 - [ ] Optional logo for Missingcity
 
 **Optional**

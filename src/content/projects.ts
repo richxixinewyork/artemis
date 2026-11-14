@@ -39,7 +39,7 @@ export type Project = {
   /** Concise bullets for the résumé page. */
   highlights: string[];
   overview: string;
-  /** Case study → "The context": the product, brand or business situation. */
+  /** Case study → "The context": the product, brand or business situation. Blank lines split paragraphs. */
   challenge: string;
   /** Case study → "What she owned": short list of her responsibilities. */
   owned: string[];
@@ -50,8 +50,14 @@ export type Project = {
   video?: { youtubeId: string; title: string; caption: string };
   contributions: { heading: string; body: string }[];
   results: Metric[];
-  /** Shown instead of results for projects without outcomes yet. */
-  nextSteps?: string[];
+  /**
+   * Projects without results yet: paragraphs for the side panel (instead of figures).
+   * Optional `headings` rename the case-study sections, and `ownedAsText` sets
+   * `owned` as paragraphs rather than a list.
+   */
+  statusNote?: string[];
+  headings?: { context?: string; owned?: string; approach?: string; status?: string };
+  ownedAsText?: boolean;
   /**
    * Background color of the logo file in src/assets/logos/<slug>.png, so the
    * logo sits on its own color instead of a mismatched box. Defaults to white.
@@ -77,7 +83,7 @@ export const projects: Project[] = [
     discipline: 'Consumer Tech · Live Audio',
     role: 'Operations Lead, Voice Communities',
     period: 'Aug 2021 – Aug 2022',
-    location: 'Beijing',
+    location: 'Hong Kong',
     status: 'completed',
     tone: 'ink',
     summary:
@@ -126,13 +132,13 @@ export const projects: Project[] = [
   {
     slug: 'momo',
     category: 'Consumer Tech',
-    org: 'Momo',
+    org: 'MoMo',
     title: 'Moxie & ZAO: AI Product Growth',
     discipline: 'Consumer AI · Beauty',
     role: 'Senior Product Operations, AI Products (Deep Lab)',
     products: 'Moxie (AI beauty try‑on) · ZAO (AI face swap)',
     period: 'Apr 2020 – Jun 2021',
-    location: 'Beijing',
+    location: 'Hong Kong',
     status: 'completed',
     tone: 'blush',
     summary:
@@ -145,11 +151,11 @@ export const projects: Project[] = [
       'Organized real-model shoots (~500 participants, 3,000 samples in one week) and built 40,000+ image datasets, cutting data-preparation time by about 40%.',
     ],
     overview:
-      'At Momo’s Deep Lab, Artemis worked on two AI products: Moxie (芒西), a beauty app for trying on hairstyles, hair colors and makeup from a single selfie, and ZAO, a face-swapping app. She led Moxie’s product operations from concept through launch — building its creator community, taking it into new markets, and shaping the training data and quality standards behind its AI — and managed creator and influencer partnerships across both products.',
+      'At MoMo’s Deep Lab, Artemis worked on two AI products: Moxie (芒西), a beauty app for trying on hairstyles, hair colors and makeup from a single selfie, and ZAO, a face-swapping app. She led Moxie’s product operations from concept through launch — building its creator community, taking it into new markets, and shaping the training data and quality standards behind its AI — and managed creator and influencer partnerships across both products.',
     context:
-      'Momo Inc. (now Hello Group, Nasdaq: MOMO). Moxie and ZAO were both AI products from its Deep Lab.',
+      'MoMo Inc. (now Hello Group, NASDAQ: MOMO). Moxie and ZAO were both AI products from its Deep Lab.',
     challenge:
-      'Momo’s Deep Lab was bringing two consumer AI products to market: Moxie (芒西), a beauty app for trying on hairstyles, hair colors and makeup from a single selfie, and ZAO, a face-swapping app. Moxie had to launch with a creator community behind it, reach new markets, and close gaps in the training data behind its hairstyle AI.',
+      'MoMo’s Deep Lab was bringing two consumer AI products to market: Moxie (芒西), a beauty app for trying on hairstyles, hair colors and makeup from a single selfie, and ZAO, a face-swapping app. Moxie had to launch with a creator community behind it, reach new markets, and close gaps in the training data behind its hairstyle AI.',
     owned: [
       'Moxie’s product operations, from concept through launch',
       '500+ creator and influencer partnerships across Moxie and ZAO',
@@ -161,7 +167,7 @@ export const projects: Project[] = [
     video: {
       youtubeId: 'dJYTMhKXCAc',
       title: 'The Future Is Zao: How A Chinese Deepfake App Went Viral',
-      caption: 'ZAO in the news — NBC News, September 2019, before Artemis joined Momo.',
+      caption: 'ZAO in the news — NBC News, September 2019, before Artemis joined MoMo.',
     },
     contributions: [
       {
@@ -203,7 +209,8 @@ export const projects: Project[] = [
     summary:
       'An online boutique introducing emerging international designers to global consumers — grown entirely without paid advertising.',
     highlights: [
-      'Generated RMB 700K+ in Taobao revenue over two years without paid advertising.',
+      // Source figure: RMB 700K+ (approximate USD equivalent shown)
+      'Generated ~US$100K in Taobao revenue over two years without paid advertising.',
       'Built a 43,000+ follower community across Taobao, RED and WeChat with a 65%+ repeat-purchase rate.',
       'Manages designer relationships, selection and international shipping.'
     ],
@@ -234,7 +241,8 @@ export const projects: Project[] = [
       },
     ],
     results: [
-      { value: 'RMB 700K+', label: 'Taobao revenue over two years', note: 'Generated without paid advertising.' },
+      // Source figure: RMB 700K+; shown as an approximate USD equivalent for international readers
+      { value: '~US$100K', label: 'Taobao revenue over two years', note: 'Approximate US-dollar equivalent. Generated without paid advertising.' },
       { value: '43,000+', label: 'community followers', note: 'Across Taobao, Xiaohongshu (RED) and WeChat.' },
       { value: '65%+', label: 'repeat-purchase rate' },
     ],
@@ -303,48 +311,55 @@ export const projects: Project[] = [
       '03': { alt: 'Animated rabbit character from the zodiac illustration' },
     },
     org: 'Baoxiang',
-    title: 'The Eternal Path — Cultural Design Project',
-    discipline: 'Cultural Design · Collectible Objects',
+    title: 'The Eternal Path',
+    discipline: 'Cultural Design · Contemporary Collectibles · Creative Direction',
     role: 'Founder & Creative Director',
     period: '2025 – Present',
     status: 'in-development',
     tone: 'stone',
     summary:
-      'A contemporary collectible-objects concept drawn from Chinese zodiac symbolism and Five Elements philosophy.',
+      'An emerging cultural design project reinterpreting Chinese zodiac symbolism and Five Elements philosophy through contemporary collectible objects.',
     highlights: [
       'Developing a collectible-objects concept rooted in Chinese zodiac symbolism and Five Elements philosophy, starting with a 12-piece zodiac candle collection.',
       'Exploring collaborations with contemporary Asian artists.'
     ],
     overview:
-      'Baoxiang (The Eternal Path) is a cultural design project in development: a contemporary collectible-objects concept inspired by Chinese zodiac symbolism and Five Elements philosophy.',
-    challenge:
-      'Baoxiang (The Eternal Path) is a cultural design project in development: a contemporary collectible-objects concept inspired by Chinese zodiac symbolism and Five Elements philosophy, with research into how those narratives can reach international audiences.',
+      'Baoxiang — The Eternal Path is an emerging cultural design project exploring the intersection of Chinese heritage, contemporary aesthetics and collectible objects.',
+    headings: {
+      context: 'The Vision',
+      owned: 'Creative Direction',
+      approach: 'Developing the Collection',
+      status: 'Current Direction',
+    },
+    challenge: `Baoxiang — The Eternal Path is an emerging cultural design project exploring the intersection of Chinese heritage, contemporary aesthetics and collectible objects.
+
+Drawing inspiration from the Chinese zodiac and Five Elements philosophy, the project reinterprets traditional cultural symbolism through objects designed for contemporary audiences.
+
+Its first proposed collection centers on twelve zodiac-inspired candles, bringing cultural storytelling into everyday objects.`,
+    ownedAsText: true,
     owned: [
-      'Concept and creative direction',
-      'Collection development, starting with 12 zodiac candles',
-      'Artist collaborations (being explored)',
-      'Cultural translation research',
+      'As Founder & Creative Director, Artemis is shaping the project’s concept, creative direction and cultural positioning.',
+      'Her work focuses on translating traditional symbolism into a contemporary design language, while considering how culturally rooted objects can connect with international audiences.',
     ],
     roleDetail: 'Founder & Creative Director.',
     contributions: [
       {
-        heading: 'Concept development',
-        body: 'Developing the collection concept, beginning with a 12-piece zodiac candle collection.',
+        heading: 'Concept & product direction',
+        body: 'Developing the concept for a twelve-piece candle collection inspired by the Chinese zodiac, with each piece representing a different sign.',
       },
       {
-        heading: 'Artist collaborations',
-        body: 'Exploring collaborations with contemporary Asian artists.',
+        heading: 'Artistic collaboration',
+        body: 'Exploring potential collaborations with contemporary Asian artists to bring additional creative perspectives to the project.',
       },
       {
-        heading: 'Cultural translation research',
-        body: 'Researching how cultural narratives and symbolic objects can be introduced to international audiences.',
+        heading: 'Cultural storytelling & international positioning',
+        body: 'Researching how Chinese cultural narratives and symbolic objects can be presented meaningfully to audiences across different cultural markets.',
       },
     ],
     results: [],
-    nextSteps: [
-      'First collection: 12 zodiac candles, one for each sign',
-      'Collaborations with contemporary Asian artists (being explored)',
-      'Positioning for international audiences (in research)',
+    statusNote: [
+      'Baoxiang is in development, with ongoing work focused on its first collection, creative collaborations and international positioning.',
+      'The project reflects Artemis’s interest in connecting cultural heritage with contemporary design, brand storytelling and creative entrepreneurship.',
     ],
   },
 ];
