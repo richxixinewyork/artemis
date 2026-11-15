@@ -123,7 +123,7 @@ export const site = {
   timeline: [
     { years: '2025 — Now', slug: 'baoxiang', title: 'Baoxiang (The Eternal Path)', role: 'Founder & Creative Director', note: 'Cultural design project · in development' },
     { years: '2023 — Now', slug: 'esoteric-studios', title: 'Esoteric Studios', role: 'Founder & Brand Director', note: 'Cross-border professional beauty' },
-    { years: '2023', other: 0, title: 'No Space Gallery', role: 'Exhibition Assistant Intern (part-time)', note: 'Beijing · spring 2023' },
+    { years: '2023', other: 0, title: 'No Space Gallery', role: 'Exhibition Assistant Intern', note: 'Beijing · spring 2023' },
     { years: '2022 — 2023', other: 1, title: 'Communication University of China', role: 'Project Assistant, School of Drama and Film', note: 'Beijing · cultural exchange programs' },
     { years: '2021 — 2022', slug: 'tantan', title: 'Tan Tan (Hello Group)', role: 'Operations Lead, Voice Communities', note: 'Hong Kong' },
     { years: '2020 — 2021', slug: 'momo', title: 'MoMo Inc. (Hello Group)', role: 'Senior Product Operations, AI Products', note: 'Hong Kong' },
@@ -154,7 +154,7 @@ export const site = {
   otherExperience: [
     {
       org: 'No Space Gallery',
-      role: 'Exhibition Assistant Intern (part-time)',
+      role: 'Exhibition Assistant Intern',
       period: 'Spring 2023',
       location: 'Beijing',
       highlights: [
