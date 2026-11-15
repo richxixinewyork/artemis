@@ -25,7 +25,7 @@ const categories = [...new Set(projects.map((p) => p.category))];
       {projects.map((p, i) => (
         <li class="card panel lift" data-category={p.category} data-reveal style={`--d:${i % 3}`}>
           <a href={url(`/work/${p.slug}/`)} class="card-link" aria-label={`${p.org} — ${p.title}: read the case study`}></a>
-          <ProjectThumb project={p} tag={p.status === 'completed' ? p.category : statusLabel[p.status]} />
+          <ProjectThumb project={p} preferLogo={p.preferLogo} tag={p.status === 'completed' ? p.category : statusLabel[p.status]} />
           <div class="body">
             <p class="meta">{p.discipline}</p>
             <h3>{p.org}</h3>
