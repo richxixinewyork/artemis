@@ -299,6 +299,11 @@ const h = {
   .cs-gallery .wide {
     grid-column: 1 / -1;
   }
+  /* A lone gallery image (no cover) stays at a showcase size rather than spanning the page */
+  .cs-gallery figure:only-child:not(.wide) {
+    grid-column: 1 / -1;
+    max-width: 520px;
+  }
   .cs-gallery :global(img),
   .cs-gallery :global(video) {
     display: block;

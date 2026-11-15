@@ -268,6 +268,10 @@ export const projects: Project[] = [
     slug: 'esoteric-studios',
     category: 'Entrepreneurship',
     logoBackground: '#f6f6f6', // ground of the green circular logo supplied by Artemis (Nov 2026)
+    images: {
+      // The brand's earlier crest logo, kept as a showcase under Selected Media (gold margin added around it).
+      '01': { alt: 'Earlier Esoteric Studios crest logo: lion and phoenix around a crowned monogram, 2023, Esoteric Studios, New York and Seoul' },
+    },
     org: 'Esoteric Studios',
     title: 'Cross-Border Professional Beauty',
     discipline: 'Beauty · Cross-Border E-Commerce',
