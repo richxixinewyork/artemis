@@ -184,7 +184,7 @@ export const projects: Project[] = [
     video: {
       youtubeId: 'dJYTMhKXCAc',
       title: 'The Future Is Zao: How A Chinese Deepfake App Went Viral',
-      caption: 'ZAO in the news — NBC News, September 2019, before Artemis joined MoMo.',
+      caption: 'ZAO in the news — NBC News, September 2019, after Artemis joined MoMo.',
     },
     contributions: [
       {
