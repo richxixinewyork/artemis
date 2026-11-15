@@ -75,6 +75,8 @@ export type Project = {
    * underneath, instead of filling a white logo panel.
    */
   emblem?: { alt: string; caption: string };
+  /** Case-study hero shows the logo (as in the homepage logo strip) instead of the cover image. */
+  heroLogo?: boolean;
   /** Muted tone used for the typographic cover when no image exists. */
   tone: 'clay' | 'sage' | 'stone' | 'blush' | 'ink';
   images?: Record<string, { alt: string; caption?: string }>;
@@ -316,6 +318,7 @@ export const projects: Project[] = [
     slug: 'baoxiang',
     category: 'Art & Culture',
     logoBackground: '#704d4b',
+    heroLogo: true,
     images: {
       cover: { alt: 'Illustration of the twelve Chinese zodiac animals around a dragon, Baoxiang brand artwork' },
       '01': { alt: 'White tiger statue candle on its Eternal Path packaging, labeled Animal Statue Candle, soy wax' },

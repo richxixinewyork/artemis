@@ -15,11 +15,13 @@ interface Props {
   tag?: string;
   /** Typographic card with location and rule (used for the earlier-role pages only). */
   labelled?: boolean;
+  /** Use the logo even when a cover image exists (the cover still appears elsewhere). */
+  preferLogo?: boolean;
 }
 
-const { project: p, sizes = '(min-width: 1140px) 346px, (min-width: 680px) 50vw, 100vw', tag, labelled = false } = Astro.props;
-const cover = getProjectMedia(p).cover;
+const { project: p, sizes = '(min-width: 1140px) 346px, (min-width: 680px) 50vw, 100vw', tag, labelled = false, preferLogo = false } = Astro.props;
 const logo = getLogo(p.slug);
+const cover = preferLogo && logo ? undefined : getProjectMedia(p).cover;
 const emblem = !cover && logo && p.emblem ? p.emblem : undefined;
 const bg = cover || emblem ? undefined : logo ? (p.logoBackground ?? '#ffffff') : undefined;
 const kind = cover ? 'is-photo' : emblem ? 'is-emblem' : logo ? 'is-logo' : 'is-word';
