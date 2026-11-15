@@ -3,29 +3,44 @@ import Base from '../../layouts/Base.astro';
 import CaseStudy from '../../components/CaseStudy.astro';
 import ProjectThumb from '../../components/ProjectThumb.astro';
 import Contact from '../../components/Contact.astro';
-import { projects, statusLabel, type Project } from '../../content/projects';
+import { projects, roleStudies, statusLabel, type Project } from '../../content/projects';
 import { url } from '../../lib/url';
 
 export function getStaticPaths() {
-  return projects.map((project, i) => ({
+  return [...projects, ...roleStudies].map((project) => ({
     params: { slug: project.slug },
-    props: { project, index: i },
+    props: { project },
   }));
 }
 
 interface Props {
   project: Project;
-  index: number;
 }
 
-const { project: p, index } = Astro.props;
-const total = projects.length;
-const prev = projects[(index - 1 + total) % total];
-const next = projects[(index + 1) % total];
+const { project: p } = Astro.props;
 const pad = (x: number) => String(x).padStart(2, '0');
+
+// The five numbered projects page through each other, as before. Earlier roles
+// (roleStudies) sit outside that sequence: they lead back to Work History and on
+// to the other role.
+const isRole = roleStudies.includes(p);
+const group = isRole ? roleStudies : projects;
+const index = group.indexOf(p);
+const total = group.length;
+type PagerLink = { href: string; o: string; t: string; k: string };
+const toLink = (x: Project, k: string): PagerLink => ({ href: url(`/work/${x.slug}/`), o: x.org, t: x.title, k });
+const prev: PagerLink = isRole
+  ? { href: url('/#experience'), o: 'Work History', t: 'Back to the full timeline', k: '← Back' }
+  : toLink(projects[(index - 1 + total) % total], '← Previous');
+const next: PagerLink = toLink(group[(index + 1) % total], 'Next →');
+const crumb = isRole
+  ? { href: url('/#experience'), label: 'Work History', here: p.org }
+  : { href: url('/case-studies/'), label: 'Case Studies', here: `${pad(index + 1)} of ${pad(total)}` };
+const eyebrow = isRole ? `Case Study · ${p.discipline}` : `Case Study ${pad(index + 1)} · ${p.discipline}`;
 
 const facts = [
   { k: 'Role', v: p.role },
+  ...(p.department ? [{ k: 'Department', v: p.department }] : []),
   ...(p.products ? [{ k: 'Products', v: p.products }] : []),
   { k: 'Timeframe', v: p.period },
   ...(p.location ? [{ k: 'Location', v: p.location }] : []),
@@ -38,9 +53,9 @@ const facts = [
     <div class="shell hero-grid">
       <div>
         <nav aria-label="Breadcrumb" class="crumbs intro-rise" style="--d:0">
-          <a href={url('/case-studies/')}>Case Studies</a><span aria-hidden="true">/</span><span aria-current="page">{pad(index + 1)} of {pad(total)}</span>
+          <a href={crumb.href}>{crumb.label}</a><span aria-hidden="true">/</span><span aria-current="page">{crumb.here}</span>
         </nav>
-        <p class="eyebrow intro-rise" style="--d:1">Case Study {pad(index + 1)} · {p.discipline}</p>
+        <p class="eyebrow intro-rise" style="--d:1">{eyebrow}</p>
         <h1 class="intro-rise" style="--d:1">{p.org}</h1>
         <p class="title intro-rise" style="--d:2">{p.title}</p>
         <p class="pmeta intro-rise" style="--d:3">{p.summary}</p>
@@ -58,11 +73,11 @@ const facts = [
 
   <nav class="pager" aria-label="More case studies">
     <div class="shell pager-grid">
-      <a href={url(`/work/${prev.slug}/`)} class="panel lift">
-        <span class="k">← Previous</span><span class="o">{prev.org}</span><span class="t">{prev.title}</span>
+      <a href={prev.href} class="panel lift">
+        <span class="k">{prev.k}</span><span class="o">{prev.o}</span><span class="t">{prev.t}</span>
       </a>
-      <a href={url(`/work/${next.slug}/`)} class="panel lift right">
-        <span class="k">Next →</span><span class="o">{next.org}</span><span class="t">{next.title}</span>
+      <a href={next.href} class="panel lift right">
+        <span class="k">{next.k}</span><span class="o">{next.o}</span><span class="t">{next.t}</span>
       </a>
     </div>
   </nav>

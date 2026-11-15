@@ -33,6 +33,8 @@ export type Project = {
   products?: string;
   period: string;
   location?: string;
+  /** University department or division, shown in the case-study facts. */
+  department?: string;
   status: ProjectStatus;
   /** One line for the Selected Work index. */
   summary: string;
@@ -58,6 +60,11 @@ export type Project = {
   statusNote?: string[];
   headings?: { context?: string; owned?: string; approach?: string; status?: string };
   ownedAsText?: boolean;
+  /**
+   * Roles without documented figures: short labels for the side panel, shown under
+   * `headings.status` instead of a status badge or a Results & Impact list.
+   */
+  focus?: string[];
   /**
    * Background color of the logo file in src/assets/logos/<slug>.png, so the
    * logo sits on its own color instead of a mismatched box. Defaults to white.
@@ -361,5 +368,112 @@ Its first proposed collection centers on twelve zodiac-inspired candles, bringin
       'Baoxiang is in development, with ongoing work focused on its first collection, creative collaborations and international positioning.',
       'The project reflects Artemis’s interest in connecting cultural heritage with contemporary design, brand storytelling and creative entrepreneurship.',
     ],
+  },
+];
+
+/**
+ * Earlier roles with their own case-study pages at /work/<slug>/. Kept apart from
+ * `projects` so they don't appear in Selected Work, the Case Studies index, the
+ * logo strip or the résumé's project lists; the Work History timeline links to them.
+ * Responsibilities are worded as supplied by Artemis. No figures are documented.
+ */
+export const roleStudies: Project[] = [
+  {
+    slug: 'no-space-gallery',
+    category: 'Art & Culture',
+    org: 'No Space Gallery',
+    title: 'Exhibition Production & Gallery Operations',
+    discipline: 'Exhibitions · Gallery Operations · Collector Relations',
+    role: 'Exhibition & Gallery Operations Assistant',
+    period: 'Spring 2023',
+    location: 'Beijing, China',
+    status: 'completed',
+    tone: 'sage',
+    summary:
+      'Supporting exhibition production, the gallery’s Online Viewing Room, collector events and gallery records at No Space Gallery in Beijing.',
+    highlights: [
+      'Coordinated exhibition installations, artwork logistics, and artist communications in collaboration with curatorial teams.',
+      'Produced online exhibition content and promotional materials while supporting VIP viewings, collector engagement, and gallery events.',
+    ],
+    overview:
+      'Exhibition and gallery operations support at No Space Gallery in Beijing, spring 2023.',
+    headings: {
+      context: 'The Role',
+      approach: 'Areas of Responsibility',
+      status: 'Focus Areas',
+    },
+    challenge: `In spring 2023, Artemis joined No Space Gallery in Beijing as Exhibition & Gallery Operations Assistant.
+
+Working with the gallery’s curatorial team and exhibiting artists, she supported exhibitions from installation through presentation, the gallery’s online exhibition, its events for collectors, curators and VIP guests, and the records behind them.`,
+    owned: [],
+    roleDetail: 'Exhibition & Gallery Operations Assistant.',
+    contributions: [
+      {
+        heading: 'Exhibition Production & Artist Relations',
+        body: 'Partnered with curatorial teams and exhibiting artists to coordinate end-to-end exhibition installation, artwork logistics, and gallery presentation, ensuring alignment with institutional standards.',
+      },
+      {
+        heading: 'Digital Exhibition & Marketing Execution',
+        body: 'Spearheaded content editing, promotional copywriting, and the multi-channel launch of the gallery’s Online Viewing Room, using digital storytelling to elevate artist visibility and expand audience reach.',
+      },
+      {
+        heading: 'VIP Events & Collector Engagement',
+        body: 'Managed exhibition openings, private viewings, and public programs, overseeing RSVP tracking, invitation management, and on-site hospitality for collectors, curators, and VIP guests.',
+      },
+      {
+        heading: 'Archives, Documentation & Sales Collateral',
+        body: 'Maintained exhibition archives, artwork documentation, and collector contact databases while assisting with exhibition materials and pricing checklists, maintaining strict confidentiality.',
+      },
+    ],
+    results: [],
+    focus: ['Exhibition production', 'Artist relations', 'Online Viewing Room', 'Collector & VIP events', 'Archives & documentation'],
+  },
+  {
+    slug: 'communication-university-of-china',
+    category: 'Art & Culture',
+    org: 'Communication University of China',
+    title: 'International Cultural Exchange & Exhibition Coordination',
+    discipline: 'Cultural Exchange · Exhibitions · Institutional Partnerships',
+    role: 'Cultural Exchange & Exhibition Coordinator',
+    department: 'School of Drama and Film',
+    period: '2022 – 2023',
+    location: 'Beijing, China',
+    status: 'completed',
+    tone: 'blush',
+    summary:
+      'Supporting international cultural exchange exhibitions, institutional partnerships and audience strategy at the School of Drama and Film.',
+    highlights: [
+      'Supported international cultural exchange exhibitions, including “Beauty and Sharing” and the Second China Musical Creation Forum Exhibition.',
+      'Assisted with institutional partnerships, fundraising proposals, bilingual publicity, and international audience research.',
+    ],
+    overview:
+      'Cultural exchange and exhibition coordination at the Communication University of China’s School of Drama and Film, 2022–2023.',
+    headings: {
+      context: 'The Role',
+      approach: 'Areas of Responsibility',
+      status: 'Focus Areas',
+    },
+    challenge: `From 2022 to 2023, Artemis worked at the Communication University of China’s School of Drama and Film in Beijing as Cultural Exchange & Exhibition Coordinator.
+
+In a supporting role alongside faculty leadership, she contributed to international cultural exchange exhibitions, institutional partnerships and fundraising, and the audience research and publicity that presented the work to international viewers.`,
+    owned: [],
+    roleDetail: 'Cultural Exchange & Exhibition Coordinator.',
+    contributions: [
+      {
+        heading: 'National-Level Cultural & Exhibition Execution',
+        // Event names and the CCTV / Ministry of Culture and Tourism attribution are as supplied by Artemis.
+        body: 'Supported the production and exhibition of “Beauty and Sharing” — an international cultural exchange initiative described as co-presented by CCTV and the Ministry of Culture and Tourism — alongside the Second China Musical Creation Forum Exhibition.',
+      },
+      {
+        heading: 'Institutional Partnerships & Fundraising',
+        body: 'Assisted faculty leadership with sponsor outreach, fundraising proposals, and formal partnership agreements, bridging academic research with public and private cultural funding.',
+      },
+      {
+        heading: 'Cross-Cultural Audience Strategy & Publicity',
+        body: 'Conducted international audience research to tailor exhibition narratives, bilingual publicity materials, and localization strategies for global viewers.',
+      },
+    ],
+    results: [],
+    focus: ['Cultural exchange exhibitions', 'Institutional partnerships', 'Fundraising proposals', 'Bilingual publicity', 'Audience research'],
   },
 ];

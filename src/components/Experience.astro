@@ -1,15 +1,15 @@
 ---
 import { site } from '../content/site';
-import { projects } from '../content/projects';
+import { projects, roleStudies } from '../content/projects';
 import { url } from '../lib/url';
 
-// Each timeline entry takes its dates and bullets from the project or role it points at.
+// Each timeline entry takes its dates, bullets and case-study link from the project or role it points at.
+const studies = [...projects, ...roleStudies];
 const items = site.timeline.map((t) => {
-  const p = t.slug ? projects.find((x) => x.slug === t.slug) : undefined;
-  const o = t.other !== undefined ? site.otherExperience[t.other] : undefined;
-  const bullets: string[] = (p?.highlights ?? o?.highlights ?? []).slice(0, 3);
+  const p = studies.find((x) => x.slug === t.slug);
+  const bullets: string[] = (p?.highlights ?? []).slice(0, 3);
   return {
-    when: p?.period ?? o?.period ?? t.years,
+    when: p?.period ?? t.years,
     role: t.role,
     company: t.title,
     note: t.note,

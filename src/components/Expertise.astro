@@ -31,7 +31,7 @@ const icons: Record<string, string> = {
           <p class="role">{c.tag}</p>
           <p class="body">{c.body}</p>
           <ul class="ticks">{c.examples.map((e) => <li>{e}</li>)}</ul>
-          <a href={url(`/work/${c.slug}/`)} class="arrow-link">Read the case study <span aria-hidden="true">→</span></a>
+          <a href={url(`/work/${c.slug}/`)} class="arrow-link">{'linkLabel' in c ? c.linkLabel : 'Read the case study'} <span aria-hidden="true">→</span></a>
         </article>
       ))}
     </div>

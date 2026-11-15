@@ -51,10 +51,12 @@ const h = {
           {p.challenge.split(/\n\s*\n/).map((para) => <p>{para}</p>)}
           {p.context && <p class="note">{p.context}</p>}
         </div>
-        <div class="cs-block">
-          <h3>{h.owned}</h3>
-          {p.ownedAsText ? p.owned.map((o) => <p>{o}</p>) : <ul class="dots">{p.owned.map((o) => <li>{o}</li>)}</ul>}
-        </div>
+        {p.owned.length > 0 && (
+          <div class="cs-block">
+            <h3>{h.owned}</h3>
+            {p.ownedAsText ? p.owned.map((o) => <p>{o}</p>) : <ul class="dots">{p.owned.map((o) => <li>{o}</li>)}</ul>}
+          </div>
+        )}
         <div class="cs-block">
           <h3>{h.approach}</h3>
           {p.contributions.map((c) => (
@@ -78,6 +80,11 @@ const h = {
               </div>
             ))}
             <p class="src">Figures as reported in Artemis’s résumé.</p>
+          </>
+        ) : p.focus ? (
+          <>
+            <h4>{h.status}</h4>
+            {p.focus.map((f) => <div class="r"><div class="lbl">{f}</div></div>)}
           </>
         ) : (
           <>

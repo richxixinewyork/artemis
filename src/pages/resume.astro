@@ -94,8 +94,8 @@ const groups = [
                 </div>
                 <p class="mt-1 text-ink-soft">{o.role}</p>
                 <ul class="mt-4 space-y-2 leading-relaxed">
-                  {o.highlights.map((h) => (
-                    <li class="relative pl-5 before:absolute before:top-[0.7em] before:left-0 before:h-px before:w-2.5 before:bg-accent">{h}</li>
+                  {o.responsibilities.map((r) => (
+                    <li class="relative pl-5 before:absolute before:top-[0.7em] before:left-0 before:h-px before:w-2.5 before:bg-accent"><strong class="font-semibold text-ink">{r.area}.</strong> {r.text}</li>
                   ))}
                 </ul>
               </article>

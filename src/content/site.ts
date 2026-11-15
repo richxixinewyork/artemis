@@ -73,7 +73,7 @@ export const site = {
       },
       {
         label: 'Art & culture',
-        body: 'I have also worked inside the cultural sector — at No Space Gallery in Beijing, and on “Beauty and Sharing,” an international cultural exchange program co-produced by CCTV and the Ministry of Culture and Tourism. Today I am pursuing an M.A. in Art Business in New York, USA, and developing Baoxiang, a collectible-objects concept drawn from Chinese zodiac symbolism and Five Elements philosophy.',
+        body: 'My work in the cultural sector spans exhibition production, artist relations, digital exhibitions, collector engagement and international cultural programming. At No Space Gallery in Beijing, I supported exhibition installation, artist coordination, online exhibition promotion and collector-facing events. At the Communication University of China’s School of Drama and Film, I contributed to international cultural exchange exhibitions, institutional partnerships, fundraising initiatives and cross-cultural audience engagement. Today I am pursuing an M.A. in Art Business in New York, USA, while developing Baoxiang, a cultural design venture inspired by Chinese zodiac symbolism and Five Elements philosophy.',
       },
     ],
     /** Core Skills tags under the biography — one skill per tag, wording as supplied by Artemis. */
@@ -135,14 +135,14 @@ export const site = {
   },
 
   /**
-   * Career timeline (newest first). `slug` pulls dates and bullets from projects.ts;
-   * `other` points at an entry in otherExperience below.
+   * Career timeline (newest first). `slug` pulls dates, bullets and the case-study
+   * link from `projects` or `roleStudies` in projects.ts.
    */
   timeline: [
     { years: '2025 — Now', slug: 'baoxiang', title: 'Baoxiang (The Eternal Path)', role: 'Founder & Creative Director', note: 'Cultural design project · in development' },
     { years: '2023 — Now', slug: 'esoteric-studios', title: 'Esoteric Studios', role: 'Founder & Brand Director', note: 'Cross-border professional beauty' },
-    { years: '2023', other: 0, title: 'No Space Gallery', role: 'Exhibition Assistant', note: 'Beijing · spring 2023' },
-    { years: '2022 — 2023', other: 1, title: 'Communication University of China', role: 'Project Assistant, School of Drama and Film', note: 'Beijing · cultural exchange programs' },
+    { years: 'Spring 2023', slug: 'no-space-gallery', title: 'No Space Gallery', role: 'Exhibition & Gallery Operations Assistant', note: 'Beijing, China' },
+    { years: '2022 — 2023', slug: 'communication-university-of-china', title: 'Communication University of China', role: 'Cultural Exchange & Exhibition Coordinator', note: 'School of Drama and Film · Beijing, China' },
     { years: '2021 — 2022', slug: 'tantan', title: 'Tan Tan (Hello Group)', role: 'Operations Lead, Voice Communities', note: 'Hong Kong' },
     { years: '2020 — 2021', slug: 'momo', title: 'MoMo Inc. (Hello Group)', role: 'Senior Product Operations, AI Products', note: 'Hong Kong' },
     { years: '2017 — Now', slug: 'missingcity', title: 'Missingcity', role: 'Founder & Curator', note: 'Online designer boutique' },
@@ -168,26 +168,54 @@ export const site = {
     ],
   },
 
-  /** Shorter roles shown on the résumé page and timeline. */
+  /**
+   * Earlier roles on the résumé page: `responsibilities` (area + full description,
+   * wording supplied by Artemis). Their case studies live in `roleStudies` (projects.ts).
+   */
   otherExperience: [
     {
       org: 'No Space Gallery',
-      role: 'Exhibition Assistant',
+      role: 'Exhibition & Gallery Operations Assistant',
       period: 'Spring 2023',
-      location: 'Beijing',
-      highlights: [
-        'Supported curatorial staff on exhibition installation, artist outreach and public events.',
-        'Edited promotional materials and coordinated the launch of the gallery’s online exhibition.',
+      location: 'Beijing, China',
+      responsibilities: [
+        {
+          area: 'Exhibition Production & Artist Relations',
+          text: 'Partnered with curatorial teams and exhibiting artists to coordinate end-to-end exhibition installation, artwork logistics, and gallery presentation, ensuring alignment with institutional standards.',
+        },
+        {
+          area: 'Digital Exhibition & Marketing Execution',
+          text: 'Spearheaded content editing, promotional copywriting, and the multi-channel launch of the gallery’s Online Viewing Room, using digital storytelling to elevate artist visibility and expand audience reach.',
+        },
+        {
+          area: 'VIP Events & Collector Engagement',
+          text: 'Managed exhibition openings, private viewings, and public programs, overseeing RSVP tracking, invitation management, and on-site hospitality for collectors, curators, and VIP guests.',
+        },
+        {
+          area: 'Archives, Documentation & Sales Collateral',
+          text: 'Maintained exhibition archives, artwork documentation, and collector contact databases while assisting with exhibition materials and pricing checklists, maintaining strict confidentiality.',
+        },
       ],
     },
     {
       org: 'Communication University of China, School of Drama and Film',
-      role: 'Project Assistant to Dr. Wang Naliu',
+      role: 'Cultural Exchange & Exhibition Coordinator',
       period: '2022 – 2023',
-      location: 'Beijing',
-      highlights: [
-        'Supported “Beauty and Sharing,” an international cultural exchange program co-produced by CCTV and the Ministry of Culture and Tourism, and the Second China Musical Creation Forum exhibition.',
-        'Handled contracts, publicity and fundraising support; ran audience research that informed localization for international audiences.',
+      location: 'Beijing, China',
+      // Event names and the CCTV / Ministry of Culture and Tourism attribution are as supplied by Artemis.
+      responsibilities: [
+        {
+          area: 'National-Level Cultural & Exhibition Execution',
+          text: 'Supported the production and exhibition of “Beauty and Sharing” — an international cultural exchange initiative described as co-presented by CCTV and the Ministry of Culture and Tourism — alongside the Second China Musical Creation Forum Exhibition.',
+        },
+        {
+          area: 'Institutional Partnerships & Fundraising',
+          text: 'Assisted faculty leadership with sponsor outreach, fundraising proposals, and formal partnership agreements, bridging academic research with public and private cultural funding.',
+        },
+        {
+          area: 'Cross-Cultural Audience Strategy & Publicity',
+          text: 'Conducted international audience research to tailor exhibition narratives, bilingual publicity materials, and localization strategies for global viewers.',
+        },
       ],
     },
   ],
@@ -307,12 +335,14 @@ export const expertise = [
     icon: 'culture',
     title: 'Creative & Cultural Project Operations',
     tag: 'Culture',
-    body: 'Exhibitions, cultural programs and collectible-object design.',
+    body: 'Exhibition production, artist and collector relations, institutional partnerships, cultural programming, and contemporary creative ventures.',
     examples: [
-      'Developing Baoxiang, beginning with a 12-piece zodiac candle collection',
-      'Supported “Beauty and Sharing,” an international cultural exchange program co-produced by CCTV and the Ministry of Culture and Tourism',
-      'Exhibition installation, artist outreach and events at No Space Gallery',
+      'Coordinated exhibition production, artist relations, digital exhibition promotion and VIP events at No Space Gallery',
+      'Supported international cultural exchange exhibitions, institutional partnerships, fundraising and audience localization at Communication University of China',
+      'Developing Baoxiang, a contemporary collectible-objects venture inspired by Chinese cultural symbolism',
     ],
     slug: 'baoxiang',
+    /** The link covers Baoxiang only, so it is named — the other examples have no case study. */
+    linkLabel: 'Read the Baoxiang case study',
   },
 ] as const;
