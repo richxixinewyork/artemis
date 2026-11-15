@@ -70,6 +70,11 @@ export type Project = {
    * logo sits on its own color instead of a mismatched box. Defaults to white.
    */
   logoBackground?: string;
+  /**
+   * Shows the logo file as a round emblem on the cream card with a small caption
+   * underneath, instead of filling a white logo panel.
+   */
+  emblem?: { alt: string; caption: string };
   /** Muted tone used for the typographic cover when no image exists. */
   tone: 'clay' | 'sage' | 'stone' | 'blush' | 'ink';
   images?: Record<string, { alt: string; caption?: string }>;
@@ -436,6 +441,12 @@ Working with the gallery’s curatorial team and exhibiting artists, she support
     discipline: 'Cultural Exchange · Exhibitions · Institutional Partnerships',
     role: 'Cultural Exchange & Exhibition Coordinator',
     department: 'School of Drama and Film',
+    // Official school badge from the university's Identity Guidelines page:
+    // https://en.cuc.edu.cn/2144/list.htm (file saved unaltered, 353×353 JPEG).
+    emblem: {
+      alt: 'Communication University of China school badge',
+      caption: 'Communication University of China',
+    },
     period: '2022 – 2023',
     location: 'Beijing, China',
     status: 'completed',

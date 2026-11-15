@@ -13,20 +13,35 @@ interface Props {
   project: Project;
   sizes?: string;
   tag?: string;
+  /** Typographic card with location and rule (used for the earlier-role pages only). */
+  labelled?: boolean;
 }
 
-const { project: p, sizes = '(min-width: 1140px) 346px, (min-width: 680px) 50vw, 100vw', tag } = Astro.props;
+const { project: p, sizes = '(min-width: 1140px) 346px, (min-width: 680px) 50vw, 100vw', tag, labelled = false } = Astro.props;
 const cover = getProjectMedia(p).cover;
 const logo = getLogo(p.slug);
-const bg = cover ? undefined : logo ? (p.logoBackground ?? '#ffffff') : undefined;
+const emblem = !cover && logo && p.emblem ? p.emblem : undefined;
+const bg = cover || emblem ? undefined : logo ? (p.logoBackground ?? '#ffffff') : undefined;
+const kind = cover ? 'is-photo' : emblem ? 'is-emblem' : logo ? 'is-logo' : 'is-word';
 ---
 
-<div class:list={['thumb', cover ? 'is-photo' : logo ? 'is-logo' : 'is-word']} style={bg ? `background:${bg}` : undefined}>
+<div class:list={['thumb', kind]} style={bg ? `background:${bg}` : undefined}>
   {tag && <span class="tag">{tag}</span>}
   {cover ? (
     <Picture src={cover.src} alt={cover.alt} widths={[400, 700, 1000]} sizes={sizes} formats={['avif', 'webp']} />
+  ) : emblem && logo ? (
+    <span class="emblem">
+      <Image src={logo} alt={emblem.alt} width={logo.width} format="webp" />
+      <span class="cap" aria-hidden="true">{emblem.caption}</span>
+    </span>
   ) : logo ? (
     <Image src={logo} alt={`${p.org} logo`} width={Math.min(480, logo.width)} format="webp" />
+  ) : labelled ? (
+    <span class="word labelled" aria-hidden="true">
+      {p.location && <span class="w-loc">{p.location}</span>}
+      <span class="w-name">{p.org}</span>
+      <span class="w-rule"></span>
+    </span>
   ) : (
     <span class="word" aria-hidden="true">{p.org}</span>
   )}
@@ -73,5 +88,66 @@ const bg = cover ? undefined : logo ? (p.logoBackground ?? '#ffffff') : undefine
     font-weight: 700;
     letter-spacing: -0.01em;
     color: var(--color-ink);
+  }
+  /* Labelled typographic card (no authentic image yet): small location, name, terracotta rule */
+  .word.labelled {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .w-loc {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+  .w-name {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 1.7rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+  .w-rule {
+    width: 36px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--color-accent);
+  }
+
+  /* Round emblem on the cream card, with its name underneath */
+  .is-emblem {
+    background: var(--color-cream);
+    border-bottom: 1px solid var(--color-line);
+  }
+  .emblem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+    padding: 9% 24px 7%;
+  }
+  .emblem :global(img) {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+    border-radius: 50%; /* trims the white corners of the square file around the round badge */
+    box-shadow: 0 10px 24px -14px rgb(28 26 24 / 0.45);
+  }
+  .cap {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
   }
 </style>
