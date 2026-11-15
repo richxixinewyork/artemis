@@ -386,6 +386,8 @@ export const roleStudies: Project[] = [
   {
     slug: 'no-space-gallery',
     category: 'Art & Culture',
+    // Logo (無空間 / No Space) supplied by Artemis; empty grey margin trimmed, artwork untouched. Card matches its flat grey ground.
+    logoBackground: '#bfbdbc', // the grey as encoded in the served WebP
     org: 'No Space Gallery',
     title: 'Exhibition Production & Gallery Operations',
     discipline: 'Exhibitions · Gallery Operations · Collector Relations',
