@@ -154,7 +154,7 @@ export const projects: Project[] = [
     discipline: 'Consumer AI · Beauty',
     role: 'Senior Product Operations, AI Products (Deep Lab)',
     products: 'Moxie (AI-powered selfie & beauty editor) · ZAO (AI face swap)',
-    period: 'Apr 2020 – Jun 2021',
+    period: 'Sep 2019 – Jun 2021',
     location: 'Hong Kong',
     status: 'completed',
     tone: 'blush',
