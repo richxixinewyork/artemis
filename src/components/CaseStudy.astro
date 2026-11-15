@@ -25,8 +25,8 @@ const id = `cs-${p.slug}`;
 const hasMedia = Boolean(cover || gallery.length || p.video);
 const h = {
   context: p.headings?.context ?? 'The Context',
-  owned: p.headings?.owned ?? 'What She Owned',
-  approach: p.headings?.approach ?? 'Her Approach',
+  owned: p.headings?.owned ?? 'What I Owned',
+  approach: p.headings?.approach ?? 'My Approach',
   status: p.headings?.status ?? 'Where It Stands',
 };
 ---
@@ -39,7 +39,7 @@ const h = {
       <header class="cs-head" data-reveal>
         <p class="cs-num">Case Study {n}</p>
         <h2 id={id}>{p.org} <span>— {p.title}</span></h2>
-        <p class="sub">{p.summary}</p>
+        <p class="sub">{p.intro ?? p.summary}</p>
         <p class="facts">{p.role} · {p.period}{p.location && ` · ${p.location}`}{p.products && ` · ${p.products}`}</p>
       </header>
     )}
@@ -54,7 +54,13 @@ const h = {
         {p.owned.length > 0 && (
           <div class="cs-block">
             <h3>{h.owned}</h3>
-            {p.ownedAsText ? p.owned.map((o) => <p>{o}</p>) : <ul class="dots">{p.owned.map((o) => <li>{o}</li>)}</ul>}
+            {p.ownedAsText ? (
+              p.owned.map((o) => <p>{typeof o === 'string' ? o : `${o.title}. ${o.body}`}</p>)
+            ) : (
+              <ul class="dots">
+                {p.owned.map((o) => (typeof o === 'string' ? <li>{o}</li> : <li><strong>{o.title}.</strong> {o.body}</li>))}
+              </ul>
+            )}
           </div>
         )}
         <div class="cs-block">
@@ -79,7 +85,7 @@ const h = {
                 {r.note && <div class="nt">{r.note}</div>}
               </div>
             ))}
-            <p class="src">Figures as reported in Artemis’s résumé.</p>
+            <p class="src">Figures as reported by Artemis.</p>
           </>
         ) : p.focus ? (
           <>
@@ -209,6 +215,10 @@ const h = {
   }
   .dots li {
     margin-bottom: 6px;
+  }
+  .dots strong {
+    font-weight: 600;
+    color: var(--color-ink);
   }
   .dots li::marker {
     color: var(--color-accent);

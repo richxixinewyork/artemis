@@ -140,12 +140,12 @@ export const site = {
    */
   timeline: [
     { years: '2025 — Now', slug: 'baoxiang', title: 'Baoxiang (The Eternal Path)', role: 'Founder & Creative Director', note: 'Cultural design project · in development' },
-    { years: '2023 — Now', slug: 'esoteric-studios', title: 'Esoteric Studios', role: 'Founder & Brand Director', note: 'Cross-border professional beauty' },
+    { years: '2023 — Now', slug: 'esoteric-studios', title: 'Esoteric Studios', role: 'Founder & Brand Director', note: 'Luxury Korean beauty · cross-border commerce' },
     { years: 'Spring 2023', slug: 'no-space-gallery', title: 'No Space Gallery', role: 'Exhibition & Gallery Operations Assistant', note: 'Beijing, China' },
     { years: '2022 — 2023', slug: 'communication-university-of-china', title: 'Communication University of China', role: 'Cultural Exchange & Exhibition Coordinator', note: 'School of Drama and Film · Beijing, China' },
     { years: '2021 — 2022', slug: 'tantan', title: 'Tan Tan (Hello Group)', role: 'Operations Lead, Voice Communities', note: 'Hong Kong' },
     { years: '2019 — 2021', slug: 'momo', title: 'MoMo Inc. (Hello Group)', role: 'Senior Product Operations, AI Products', note: 'Hong Kong' },
-    { years: '2017 — Now', slug: 'missingcity', title: 'Missingcity', role: 'Founder & Curator', note: 'Online designer boutique' },
+    { years: '2017 — Now', slug: 'missingcity', title: 'Missingcity', role: 'Founder & Curator', note: 'Independent fashion boutique' },
   ],
 
   education: {

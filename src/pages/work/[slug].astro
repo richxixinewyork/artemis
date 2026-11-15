@@ -58,7 +58,7 @@ const facts = [
         <p class="eyebrow intro-rise" style="--d:1">{eyebrow}</p>
         <h1 class="intro-rise" style="--d:1">{p.org}</h1>
         <p class="title intro-rise" style="--d:2">{p.title}</p>
-        <p class="pmeta intro-rise" style="--d:3">{p.summary}</p>
+        <p class="pmeta intro-rise" style="--d:3">{p.intro ?? p.summary}</p>
         <dl class="facts intro-rise" style="--d:4">
           {facts.map((f) => <div><dt>{f.k}</dt><dd>{f.v}</dd></div>)}
         </dl>

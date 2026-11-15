@@ -36,15 +36,20 @@ export type Project = {
   /** University department or division, shown in the case-study facts. */
   department?: string;
   status: ProjectStatus;
-  /** One line for the Selected Work index. */
+  /** One line for the Selected Work card (and the page's meta description). */
   summary: string;
+  /** Longer introduction for the case-study hero; falls back to `summary`. */
+  intro?: string;
   /** Concise bullets for the résumé page. */
   highlights: string[];
   overview: string;
   /** Case study → "The context": the product, brand or business situation. Blank lines split paragraphs. */
   challenge: string;
-  /** Case study → "What she owned": short list of her responsibilities. */
-  owned: string[];
+  /**
+   * Case study → "What I Owned": her direct responsibilities. A titled item
+   * ({ title, body }) renders as a bold lead-in followed by the description.
+   */
+  owned: (string | { title: string; body: string })[];
   /** Only what the résumé documents. Omit when unknown. */
   context?: string;
   roleDetail: string;
@@ -96,62 +101,79 @@ export const projects: Project[] = [
     slug: 'tantan',
     category: 'Consumer Tech',
     org: 'Tan Tan',
-    title: 'Voice Communities & Creator Growth',
-    discipline: 'Consumer Tech · Live Audio',
+    title: '0-to-1 Content Strategy, Creator Ecosystems & Voice Community Growth',
+    discipline: 'Consumer Technology · Social Audio · Creator Economy',
     role: 'Operations Lead, Voice Communities',
     period: 'Aug 2021 – Aug 2022',
     location: 'Hong Kong',
     status: 'completed',
     tone: 'ink',
     summary:
-      'Led the launch and growth of live-audio communities, building creator partnerships, monetization programs, and international operations across multiple markets.',
+      'Launched and scaled Voice Rooms, Tan Tan’s live-audio feature, by building the room formats, host onboarding, gifting and payouts that kept creators and listeners coming back.',
+    intro:
+      'Led the launch and growth of Tan Tan’s voice-first social communities, building the content formats, creator partnerships, monetization systems and localized operations behind Voice Rooms across Taiwan, Hong Kong and Germany. The programs contributed to 67% growth in the feature’s daily active users and a 600% increase in first-week room launches by new creators.',
     highlights: [
-      'Built the creator operating model end to end and the platform’s first creator commercialization framework.',
-      'Single-handedly designed domestic and international partner payment and compliance processes, including a third-party provider to pay partners in Taiwan.',
-      'Redesigned partner incentives and community programs; the feature’s daily active users rose 67%.',
+      'Built the Voice Rooms creator operating model from launch, including the platform’s first creator monetization framework: virtual gifting, revenue sharing and incentives.',
       'Rebuilt creator onboarding through research and controlled experiments; first-week room launches rose 600%.',
+      'Redesigned creator incentives and community programs; the feature’s daily active users rose 67%.',
+      'Single-handedly designed domestic and international partner payment and compliance processes, including a third-party provider to pay partners in Taiwan.',
       'Led a team of interns on expansion to Taiwan, Hong Kong and Germany.',
     ],
     overview:
-      'Voice Rooms was a new live-audio social feature inside Tan Tan, part of Hello Group, built around engagement and monetization. As operations lead, Artemis took it from concept to launch, built how creators were recruited, onboarded, rewarded and paid, and led its expansion outside mainland China.',
+      'Voice Rooms was a live-audio social feature inside Tan Tan, part of Hello Group. As Operations Lead, Artemis built its creator operating model from launch: room formats, host recruitment and onboarding, gifting and revenue sharing, partner payouts, and expansion into Taiwan, Hong Kong and Germany.',
     challenge:
-      'Voice Rooms was a new live-audio social feature inside Tan Tan (Hello Group), built around engagement and monetization. It had to be launched, filled with active hosts, monetized, and taken beyond mainland China.',
+      'Tan Tan, part of Hello Group, introduced Voice Rooms as a live-audio feature to extend the app beyond photo-based dating into real-time conversation, community and creator earnings. As Operations Lead, I was responsible for its operating model from launch: the formats hosts ran, how hosts were recruited, onboarded, rewarded and paid, and how the feature reached new markets. The challenge was to fill rooms with active hosts, bring listeners back, make hosting worth a creator’s time, and adapt all of it beyond mainland China.',
     owned: [
-      'Product and content operations for Voice Rooms, from concept to launch',
-      'Creator recruitment, onboarding, incentives and payouts',
-      'The platform’s first creator monetization program',
-      'An intern team expanding into Taiwan, Hong Kong and Germany',
+      {
+        title: 'Content programming & room formats',
+        body: 'Designed interactive audio formats, conversation themes and seasonal campaigns built around real-time participation and companionship.',
+      },
+      {
+        title: 'Host recruitment & onboarding',
+        body: 'Recruited hosts through talent agencies, MCNs, influencers, micro-creators and direct outreach, and wrote the onboarding playbooks and engagement templates.',
+      },
+      {
+        title: 'Monetization & partner payouts',
+        body: 'Built virtual gifting campaigns, agency revenue-sharing rates, performance incentives, and domestic and international payout workflows with Finance, Legal and Tax.',
+      },
+      {
+        title: 'Growth analytics & localization',
+        body: 'Used host feedback, user research, controlled experiments and operating metrics to raise participation, and led an intern team expanding into Taiwan, Hong Kong and Germany.',
+      },
     ],
-    roleDetail: 'Operations Lead, Voice Communities. Worked across product, Finance, Legal and Tax; led a team of interns on international expansion.',
+    roleDetail:
+      'Operations Lead, Voice Communities. Worked across product, Finance, Legal and Tax; led a team of interns on international expansion.',
     contributions: [
       {
-        heading: 'Product launch & content strategy',
-        body: 'Led product and content operations for Voice Rooms from concept to launch. Ran the pre-launch market and competitor analysis, helped define feature requirements, and set the content review standards and moderation keyword lists used by third-party moderators. After launch, developed room themes, conversation topics and interactive formats to encourage participation and repeat visits, and brought host and user feedback to product managers to refine the live-audio experience.',
+        heading: 'Room formats that bring listeners back',
+        body: 'A new audio feature has no habits yet. Before launch, I ran the market and competitor analysis and helped define feature requirements. After launch, I built recurring room themes, conversation prompts and interactive formats around companionship, plus seasonal programming for occasions such as Valentine’s Day and Halloween, giving listeners reasons to join live and return. Host and listener feedback went straight to product managers to refine the experience.',
       },
       {
-        heading: 'Creator ecosystem & international expansion',
-        body: 'Led a team of interns on expansion into Taiwan, Hong Kong and Germany — market research, local culture, competitor analysis and cold-start content. Recruited overseas hosts through talent agencies, MCNs, influencers, micro-creators and first-time hosts, and coordinated creator acquisition and the international partnerships behind it.',
+        heading: 'Host activation & onboarding experiments',
+        body: 'Recruiting hosts was not enough: new hosts had to go live, and keep going live, in their first week. I rebuilt onboarding using user research and controlled experiments, adding playbooks, engagement templates and early incentives shaped by host feedback. The number of rooms new creators launched in their first week rose 600%.',
       },
       {
-        heading: 'Monetization & partner operations',
-        body: 'Built the platform’s first creator monetization program: virtual gifting campaigns, agency revenue-sharing rates and performance incentives. Built domestic and international partner payout workflows, coordinating with Finance, Legal and Tax on contracts, compliance documentation, invoicing, reconciliation and disbursement, and led the integration of a third-party payment provider to launch partner payouts in Taiwan.',
+        heading: 'Gifting, revenue sharing & payouts',
+        body: 'I built the platform’s first creator monetization program: virtual gifting campaigns, agency revenue-sharing rates and a four-tier creator incentive framework. To pay partners reliably, I built domestic and international payout workflows with Finance, Legal and Tax, covering contracts, compliance documentation, invoicing, reconciliation and disbursement, and led the integration of a third-party payment provider to launch partner payouts in Taiwan.',
       },
       {
-        heading: 'Growth & measurable impact',
-        body: 'Redesigned creator incentives and community programs, and the feature’s daily active users rose 67%. Rebuilt creator onboarding through user research and controlled experiments; the number of rooms creators launched in their first week rose 600%.',
+        heading: 'Community health & international launch',
+        body: 'I set the content review standards and moderation keyword lists that third-party moderators applied as rooms grew. I also led an intern team on expansion into Taiwan, Hong Kong and Germany: market and competitor research, local culture, cold-start content, and recruiting overseas hosts through local agencies, MCNs and influencers. After I redesigned creator incentives and community programs, the feature’s daily active users rose 67%.',
       },
     ],
     results: [
-      { value: '+67%', label: 'daily active users for the Voice Rooms feature', note: 'After she redesigned creator incentives and community programs.' },
-      { value: '+600%', label: 'rooms launched by creators in their first week', note: 'After she rebuilt creator onboarding through user research and controlled experiments.' },
+      { value: '+67%', label: 'daily active users for the Voice Rooms feature', note: 'After I redesigned creator incentives and community programs.' },
+      { value: '+600%', label: 'rooms launched by new creators in their first week', note: 'After I rebuilt creator onboarding through user research and controlled experiments.' },
+      { value: '3 markets', label: 'international expansion', note: 'Taiwan, Hong Kong and Germany, with an intern team I led.' },
+      { value: '4 tiers', label: 'creator incentive framework', note: 'Part of the platform’s first creator monetization program, which I built.' },
     ],
   },
   {
     slug: 'momo',
     category: 'Consumer Tech',
     org: 'MoMo',
-    title: 'Moxie & ZAO: AI Product Growth',
-    discipline: 'Consumer AI · Beauty',
+    title: 'Moxie & ZAO: AI Product Launches, Creator-Led Growth & International Expansion',
+    discipline: 'Consumer AI · Beauty Technology · Creator Marketing',
     role: 'Senior Product Operations, AI Products (Deep Lab)',
     products: 'Moxie (AI-powered selfie & beauty editor) · ZAO (AI face swap)',
     period: 'Sep 2019 – Jun 2021',
@@ -159,25 +181,40 @@ export const projects: Project[] = [
     status: 'completed',
     tone: 'blush',
     summary:
-      'Led product operations for an AI-powered beauty application, building creator partnerships, international launch programs, and data-driven product improvements.',
+      'Took Moxie, an AI beauty and styling app, from concept to launch at MoMo’s Deep Lab, connecting market research, creator campaigns, localization and AI-quality feedback to engineering.',
+    intro:
+      'Led product operations and creator growth for Moxie, an AI-powered selfie and beauty editor, while managing creator partnerships across Moxie and ZAO at MoMo’s Deep Lab. Connected market research, creator campaigns, localization for new markets, AI output evaluation and engineering feedback to support adoption and engagement.',
     highlights: [
+      'Led Moxie’s product operations from concept through launch, grounded in pre-launch market research and feature benchmarking.',
+      'Turned creator feedback and usage data into three product iterations; feature engagement and content-save rates rose 40%.',
       'Managed 500+ creator and influencer partnerships for ZAO and Moxie; daily active users rose 45% and active users 200%.',
-      'Built partner contracting with Legal and Finance, owning signing for MCN agencies and individual creators.',
-      'Led operations for ZAO and Moxie from concept through launch, plus an intern team on expansion to Japan, South Korea and Vietnam.',
       'Built a beauty creator program that generated 20,000+ AI creations.',
       'Organized real-model shoots (~500 participants, 3,000 samples in one week) and built 40,000+ image datasets, cutting data-preparation time by about 40%.',
+      'Built partner contracting with Legal and Finance, owning signing for MCN agencies and individual creators; led an intern team on expansion to Japan, South Korea and Vietnam.',
     ],
     overview:
-      'At MoMo’s Deep Lab, Artemis worked on two AI products: Moxie (芒西), a beauty app for trying on hairstyles, hair colors and makeup from a single selfie, and ZAO, a face-swapping app. She led Moxie’s product operations from concept through launch — building its creator community, taking it into new markets, and shaping the training data and quality standards behind its AI — and managed creator and influencer partnerships across both products.',
+      'At MoMo’s Deep Lab, Artemis led product operations for Moxie (芒西), an AI-powered selfie and beauty editor, from concept through launch, and managed creator and influencer partnerships across Moxie and ZAO, a face-swapping app. Her work linked market research, creator campaigns, localization, AI output evaluation and engineering feedback.',
     context:
       'MoMo Inc. (now Hello Group, NASDAQ: MOMO). Moxie and ZAO were both AI products from its Deep Lab.',
     challenge:
-      'MoMo’s Deep Lab was bringing two consumer AI products to market: Moxie (芒西), a beauty app for trying on hairstyles, hair colors and makeup from a single selfie, and ZAO, a face-swapping app. Moxie had to launch with a creator community behind it, reach new markets, and close gaps in the training data behind its hairstyle AI.',
+      'MoMo’s Deep Lab was building consumer AI products around personalized visual content. ZAO had shown how quickly AI face-swapping could spread, reaching No. 1 on China’s iOS App Store after its 2019 launch; Moxie (芒西) applied the technology to everyday beauty, letting users try hairstyles, hair colors and makeup from a single selfie. My task was to move Moxie past novelty into a repeatable beauty habit: a launch grounded in research, creators producing looks worth trying, campaigns adapted to new markets, and AI results reliable enough that users would save and share them.',
     owned: [
-      'Moxie’s product operations, from concept through launch',
-      '500+ creator and influencer partnerships across Moxie and ZAO',
-      'An intern team supporting expansion into Japan, South Korea and Vietnam',
-      'Creator contracting and payment approvals with Legal and Finance',
+      {
+        title: 'Go-to-market research & launch',
+        body: 'Ran pre-launch market research and feature benchmarking to shape Moxie’s positioning and launch content, and led its product operations from concept through launch.',
+      },
+      {
+        title: 'Creator marketing & partnerships',
+        body: 'Built Moxie’s beauty creator program and managed 500+ creator, influencer and MCN relationships across Moxie and ZAO.',
+      },
+      {
+        title: 'APAC localization',
+        body: 'Led an intern team on expansion into Japan, South Korea and Vietnam, adapting launch content and creator recruitment to each market.',
+      },
+      {
+        title: 'AI quality & cross-functional operations',
+        body: 'Coordinated content sourcing, copyright procurement and rights clearance, creator contracting, AI output evaluation and product feedback with Deep Lab engineers, Legal, Finance and the corporate risk team.',
+      },
     ],
     roleDetail:
       'Senior Product Operations, AI Products (Deep Lab). Worked between creators, Legal and Finance, the corporate risk team and Deep Lab engineers; led an intern team on international expansion.',
@@ -188,80 +225,100 @@ export const projects: Project[] = [
     },
     contributions: [
       {
-        heading: 'Product launch & creator growth',
-        body: 'Led Moxie’s product operations from concept through launch and built its beauty creator program — sourcing content, training creators on product features and coordinating campaigns. The program generated more than 20,000 AI creations, and one festival-makeup campaign reached 35% next-day retention among participants. Across Moxie and ZAO, she managed more than 500 creator and influencer partnerships, whose campaigns contributed to 45% growth in daily active users and 200% growth in active users.',
+        heading: 'Research-led launch & localization',
+        body: 'Before launch, I benchmarked competitor features and analyzed consumer preferences and beauty trends to shape Moxie’s positioning and content strategy. For Japan, South Korea and Vietnam, I led an intern team researching local aesthetics and consumer behavior, then adapted launch content, marketing campaigns and local creator recruitment to each market rather than translating a single campaign.',
       },
       {
-        heading: 'International expansion',
-        body: 'Led an intern team supporting expansion into Japan, South Korea and Vietnam: competitor research, analysis of local beauty preferences, launch content and marketing campaigns adapted to each market, and recruiting local creators.',
+        heading: 'Creator campaigns that drive feature trial',
+        body: 'An AI beauty tool is only as persuasive as the looks people see. I built Moxie’s beauty creator program: sourcing content, training creators on product features and coordinating campaigns that invited users to try AI-generated looks. It generated more than 20,000 AI creations, and one festival-makeup campaign reached 35% next-day retention among participants. Across Moxie and ZAO, my 500+ creator partnerships supported campaigns that contributed to team-level growth of 45% in daily and 200% in active users.',
       },
       {
-        heading: 'AI product development & quality',
-        body: 'Spotted gaps in the training data behind virtual hairstyle generation and partnered with a Beijing salon to photograph hairstyles from multiple angles — about 500 participants and 3,000 samples in one week — contributing to a dataset of more than 40,000 images and cutting data-preparation time by about 40%. Helped set quality standards for AI-generated looks and specified a batch review tool for comparing results, spotting defects and approving content. Turned creator feedback and usage data into requirements for Deep Lab engineers across three product iterations, which lifted feature engagement and content-save rates by 40%.',
+        heading: 'Fixing AI output at the data level',
+        body: 'Virtual hairstyles looked unrealistic from some angles, a gap in the training data rather than the interface. I partnered with a Beijing salon to photograph hairstyles from multiple angles, coordinating about 500 participants and 3,000 samples in one week. The work contributed to a dataset of more than 40,000 images and cut data-preparation time by about 40%. I also helped set quality standards for AI-generated looks and specified a batch review tool for comparing results, flagging defects and approving content.',
       },
       {
-        heading: 'Business operations',
-        body: 'Standardized creator contracting with Legal and Finance — contract templates and signing workflows for MCNs and individual creators — and managed contracts through signing and payment approval. Worked with the corporate risk team on content standards and community guidelines.',
+        heading: 'Feedback, contracts & content safety',
+        body: 'I turned creator feedback and usage data into requirements for Deep Lab engineers across three product iterations, which lifted feature engagement and content-save rates by 40%. In parallel, I standardized creator contracting with Legal and Finance, managing contracts for MCNs and individual creators through signing and payment approval. I coordinated content sourcing, copyright procurement and rights clearance, managed the official Weibo channel, and worked with the corporate risk team on content standards and community guidelines.',
       },
     ],
     results: [
-      { value: '20,000+', label: 'AI creations generated', note: 'Through the Moxie beauty creator program she built.' },
-      { value: '+45%', label: 'daily active users', note: 'Campaigns across Moxie and ZAO, supported by her 500+ creator partnerships, contributed to this team outcome.' },
-      { value: '+200%', label: 'active users', note: 'Same campaigns and partnerships across Moxie and ZAO; a team outcome.' },
-      { value: '+40%', label: 'feature engagement and content-save rates', note: 'Across three product iterations she supported.' },
+      { value: '20,000+', label: 'AI creations generated', note: 'Through the Moxie beauty creator program I built.' },
+      { value: '+45%', label: 'daily active users', note: 'Campaigns across Moxie and ZAO, supported by my 500+ creator partnerships, contributed to this team outcome.' },
+      { value: '+200%', label: 'active users', note: 'Same campaigns across Moxie and ZAO; a team outcome.' },
+      { value: '+40%', label: 'feature engagement and content-save rates', note: 'Across three Moxie product iterations I supported.' },
       { value: '35%', label: 'next-day retention', note: 'Among participants in one festival-makeup campaign.' },
-      { value: '~40%', label: 'less data-preparation time', note: 'While building a dataset of 40,000+ images.' },
     ],
   },
   {
     slug: 'missingcity',
     category: 'Entrepreneurship',
     org: 'Missingcity',
-    title: 'Independent Designer Boutique',
-    discipline: 'Fashion · Curation · E-Commerce',
+    title: 'Independent Fashion Curation, Designer Partnerships & Organic Commerce',
+    discipline: 'Fashion · Creative Curation · Social Commerce',
     role: 'Founder & Curator',
     period: '2017 – Present',
     status: 'ongoing',
     tone: 'clay',
     summary:
-      'An online boutique introducing emerging international designers to global consumers — grown entirely without paid advertising.',
+      'An independent online boutique introducing emerging international designers to global consumers, built on curation, direct designer relationships and loyal clients rather than paid advertising.',
+    intro:
+      // Source figure: RMB 700K+ over two years. At the 2017–2022 yearly average rates (6.45–6.91 RMB per US$) any two years come to about US$101K–109K.
+      'Founded an independent multi-brand fashion boutique connecting international designers and emerging labels with global consumers. Built it through editorial curation, direct designer relationships, organic social commerce and personal client service, generating about US$100K+ in Taobao revenue over two years without paid advertising.',
     highlights: [
+      'Curates 10+ international designer labels, including Who Decides War, MISBHV, Hyein Seo and I.AM.GIA, for global consumers.',
       // Source figure: RMB 700K+. At the 2017–2022 yearly average rates (6.45–6.91 RMB per US$) any two years come to about US$101K–109K.
       'Generated US$100K+ in Taobao revenue over two years without paid advertising.',
       'Built a 43,000+ follower community across Taobao, RED and WeChat with a 65%+ repeat-purchase rate.',
-      'Manages designer relationships, selection and international shipping.'
+      'Negotiates directly with designers and suppliers on wholesale terms, early-access releases and pre-orders, and manages international shipping.',
     ],
     overview:
-      'Missingcity is an online boutique Artemis founded to introduce emerging international designers to global consumers. It grew through curation, direct designer relationships and community — not paid media.',
+      'Missingcity is an independent online boutique Artemis founded in 2017 to introduce emerging international designers to global consumers. It grew through curation, direct designer relationships, editorial storytelling and loyal clients, without paid advertising.',
     challenge:
-      'Missingcity is an online boutique Artemis founded in 2017 to introduce emerging international designers to global consumers — growing through curation, direct designer relationships and community rather than paid media.',
+      'I founded Missingcity in 2017 as an independent online boutique built on discovering distinctive international fashion. Instead of competing on mass-market merchandise or paid reach, I focused on emerging designers, independent labels, women artists, and handcrafted or limited-edition pieces with a strong creative identity. The challenge was to establish a recognizable point of view, build relationships with designers as a new independent buyer, and turn an organic audience into returning clients.',
     owned: [
-      'Designer and supplier relationships',
-      'Curation and product selection',
-      'Cross-border sourcing and fulfillment',
-      'Community across Taobao, Xiaohongshu (RED) and WeChat',
+      {
+        title: 'Designer discovery & curation',
+        body: 'Selected international designers, independent studios and limited-edition collections for distinctive aesthetics, craftsmanship and cultural relevance.',
+      },
+      {
+        title: 'Designer relationships & negotiation',
+        body: 'Built direct relationships with brands and suppliers, negotiating wholesale terms, early-access releases and selected pre-order arrangements.',
+      },
+      {
+        title: 'Editorial storytelling & social commerce',
+        body: 'Wrote product stories and ran the boutique’s presence on Taobao, Xiaohongshu (RED) and WeChat, building its audience without paid advertising.',
+      },
+      {
+        title: 'VIP clienteling & cross-border fulfillment',
+        body: 'Developed personal styling advice, private-client communication and pre-order access, and ran international sourcing and delivery.',
+      },
     ],
     roleDetail:
-      'Founder & Curator. Responsible for designer and supplier relationships, curation, cross-border sourcing and fulfillment, and community.',
+      'Founder & Curator. Responsible for designer discovery and curation, designer and supplier relationships, editorial content and social commerce, client relationships, and cross-border sourcing and fulfillment.',
     contributions: [
       {
-        heading: 'Direct designer relationships',
-        body: 'Established direct relationships with international designers and suppliers to secure early-access releases, limited selections and customer benefits.',
+        heading: 'A curator’s eye for emerging designers',
+        body: 'I approached the boutique as a curator rather than a reseller, looking for independent studios and designers whose work carried a distinct creative identity. Each collection was presented through editorial product stories about its craftsmanship, artistic influences and cultural references, so Missingcity read as a place to discover designers rather than a general online store.',
       },
       {
-        heading: 'Community across three platforms',
-        body: 'Built a loyal following across Taobao, Xiaohongshu (RED) and WeChat.',
+        heading: 'Direct designer and supplier relationships',
+        body: 'I worked directly with more than 10 international labels and their suppliers, including Who Decides War, MISBHV, Hyein Seo and I.AM.GIA, to buy selected collections, limited releases and early-access pieces, negotiating wholesale terms and, for some releases, pre-order arrangements. The result was an assortment not always available through mainstream retail, with customer benefits such as early access to new releases.',
       },
       {
-        heading: 'Cross-border operations',
-        body: 'Developed sourcing and fulfillment processes that shortened international delivery times and improved the customer experience.',
+        heading: 'Clienteling that brings customers back',
+        body: 'To turn single purchases into lasting relationships, I offered personal styling advice, private-client messages and pre-order access to selected releases. Customers returned: the boutique’s repeat-purchase rate is above 65%.',
+      },
+      {
+        heading: 'Organic commerce across borders',
+        body: 'I built the audience on Xiaohongshu (RED), WeChat and Taobao, combining product discovery with direct conversations, and grew a community of more than 43,000 followers without paid advertising. Behind it, I coordinated international sourcing, shipping and fulfillment, and shortened delivery times for overseas orders. Over two years, the boutique generated about US$100K+ in Taobao revenue.',
       },
     ],
     results: [
-      // Source figure: RMB 700K+. At the 2017–2022 yearly average rates (6.45–6.91 RMB per US$) any two years come to about US$101K–109K.
-      { value: 'US$100K+', label: 'Taobao revenue over two years', note: 'Generated without paid advertising.' },
-      { value: '43,000+', label: 'community followers', note: 'Across Taobao, Xiaohongshu (RED) and WeChat.' },
+      // Source figure: RMB 700K+ over two years. At the 2017–2022 yearly average rates (6.45–6.91 RMB per US$) any two years come to about US$101K–109K.
+      { value: 'US$100K+', label: 'Taobao revenue over two years', note: 'Approximate, converted from RMB 700K+; generated without paid advertising.' },
+      { value: '43,000+', label: 'organic community followers', note: 'Across Taobao, Xiaohongshu (RED) and WeChat.' },
       { value: '65%+', label: 'repeat-purchase rate' },
+      { value: '10+', label: 'international designer labels curated or partnered with', note: 'Including Who Decides War, MISBHV, Hyein Seo and I.AM.GIA.' },
     ],
   },
   {
@@ -273,52 +330,69 @@ export const projects: Project[] = [
       '01': { alt: 'Earlier Esoteric Studios crest logo: lion and phoenix around a crowned monogram, 2023, Esoteric Studios, New York and Seoul' },
     },
     org: 'Esoteric Studios',
-    title: 'Cross-Border Professional Beauty',
-    discipline: 'Beauty · Cross-Border E-Commerce',
+    title: 'Luxury Korean Beauty, Cross-Border Commerce & Community Growth',
+    discipline: 'Beauty · Luxury Brand Strategy · Social Commerce',
     role: 'Founder & Brand Director',
     period: '2023 – Present',
     status: 'ongoing',
     tone: 'sage',
     summary:
-      'Bringing Korean professional salon and skincare brands to global customers, with a digital consultation model.',
+      'A curated premium beauty venture introducing Korean salon-exclusive skincare and haircare to global customers, reaching US$60K+ in first-month sales through specialist partnerships and personal consultations.',
+    intro:
+      'Founded a curated premium beauty venture introducing Korean salon-exclusive skincare and haircare to global customers, with sourcing and fulfillment across Korea, the United States and Hong Kong. Built the brand around specialist salon partnerships, founder-led storytelling, personalized digital consultations and cross-border commerce, generating US$60K+ in first-month sales while introducing previously unfamiliar products to a new market.',
     highlights: [
-      'Introduced Korean professional salon and skincare brands to global customers.',
-      'Grew social communities to 27,000+ followers and 100,000+ content views.',
-      'Recorded product tutorials with Korean salon owners and turned them into SOPs for customers.'
+      'Founded a curated premium beauty venture introducing Korean salon-exclusive skincare and haircare to global customers; US$60K+ in first-month sales.',
+      'Secured first-to-market brand authorizations for the US and Asia and built salon partnerships in Korea; turned specialist tutorials into customer guidance and a digital consultation model.',
+      'Positioned the assortment above US$100 on average without discounting; founder-led content reached 100K+ views and built 5,000+ high-intent community members organically.',
+      'Runs sourcing and fulfillment between Korea, the United States and Hong Kong.',
     ],
     overview:
-      'Esoteric Studios is a cross-border business introducing Korean professional salon and skincare brands to global customers. Artemis oversees the brand end to end: suppliers, curation, logistics, positioning, content and e-commerce.',
+      'Esoteric Studios is a curated premium beauty venture Artemis founded to introduce Korean salon-exclusive skincare and haircare to global customers. She leads the brand end to end: positioning, curation, salon partnerships, content, consultations, e-commerce and cross-border operations.',
     challenge:
-      'Esoteric Studios introduces Korean professional salon and skincare brands to global customers — products that usually depend on specialized, in-person salon expertise.',
+      'I conceived Esoteric Studios as a curated luxury beauty destination rather than a general retail store. Korean salon-exclusive skincare and haircare had little awareness outside the salons that use them, and the products sit at an average price above US$100, a premium that new customers had no reason yet to trust. My objective was to earn that trust without discounting, by pairing a tight edit of professional products with salon expertise, founder-led education and personal digital guidance.',
     owned: [
-      'Supplier relationships and product curation',
-      'Logistics and e-commerce',
-      'Brand positioning and content',
-      'Consumer research',
+      {
+        title: 'Luxury positioning & curation',
+        body: 'Defined the brand identity, visual direction, premium pricing strategy and curated assortment of Korean professional skincare and haircare.',
+      },
+      {
+        title: 'Brand authorizations & salon partnerships',
+        body: 'Built direct relationships with Korean salon brands and professionals, securing first-to-market brand authorizations to introduce their specialist products in the US and Asia.',
+      },
+      {
+        title: 'Founder-led content',
+        body: 'Script, film, edit and distribute original beauty content that turns professional product knowledge into accessible education.',
+      },
+      {
+        title: 'E-commerce, client advisory & cross-border operations',
+        body: 'Built the online storefront, the personal consultation workflow, and sourcing and fulfillment between Korea, the United States and Hong Kong.',
+      },
     ],
     roleDetail:
-      'Founder & Brand Director, overseeing supplier relationships, product curation, logistics, positioning, content and e-commerce.',
+      'Founder & Brand Director, leading brand positioning, curation, salon partnerships, content, consultations, e-commerce and cross-border operations.',
     contributions: [
       {
-        heading: 'A digital consultation model',
-        body: 'Created a model connecting customers with Korean salon professionals — translating specialized, in-person services into an online experience.',
+        heading: 'Premium positioning without discounts',
+        body: 'The products I chose had little local awareness, so price promotions would have undercut the expertise that makes them worth buying. I positioned Esoteric Studios on specialist knowledge, product quality and a curated luxury experience instead. I set the brand’s aesthetic and a price positioning above US$100 on average, and use ongoing customer research to refine the assortment, brand communication, conversion and retention.',
       },
       {
-        heading: 'Salon partnerships & SOPs',
-        body: 'Built trusted relationships with salon owners in Korea, recording product tutorials not available online and turning them into standard operating procedures for customers.',
+        heading: 'Salon partnerships & product education',
+        body: 'Professional salon products usually come with a professional to explain them. I built relationships with salon owners and specialists in Korea and recorded product demonstrations and tutorials not available online. I turned that expertise into step-by-step guidance and standard instructions, so customers can choose and apply products correctly without relying on an in-person salon visit.',
       },
       {
-        heading: 'Education-led content',
-        body: 'Grew social communities through educational content and brand storytelling.',
+        heading: 'Founder-led storytelling',
+        body: 'To make unfamiliar products approachable, I script, film and edit my own video content, translating salon techniques into practical demonstrations and lifestyle stories. Education rather than paid promotion drives discovery: high-performing posts have reached more than 100K views with strong engagement, building 5,000+ high-intent community members within a wider following of 27,000+.',
       },
       {
-        heading: 'Research-driven assortment',
-        body: 'Uses ongoing consumer research to refine assortment, brand communication, conversion and retention.',
+        heading: 'Personal consultations & cross-border fulfillment',
+        body: 'Premium beauty customers expect advice, not just a checkout page. I designed a digital consultation model that connects customers with Korean salon professionals, and coordinate sourcing and fulfillment between Korea, the United States and Hong Kong. The aim is to pair the reach of online commerce with the specialist guidance of a salon visit.',
       },
     ],
     results: [
-      { value: '27,000+', label: 'social community followers' },
-      { value: '100,000+', label: 'content views', note: 'Through educational content and brand storytelling.' },
+      { value: 'US$60K+', label: 'first-month sales', note: 'Following launch in a new market, with products previously unfamiliar to it.' },
+      { value: 'US$100+', label: 'average product price positioning', note: 'Premium pricing held without discounts.' },
+      { value: '100K+', label: 'views on high-performing social content', note: 'Through founder-led educational content and brand storytelling.' },
+      { value: '5,000+', label: 'high-intent community members', note: 'Built organically; part of a wider 27,000+ social following.' },
     ],
   },
   {
