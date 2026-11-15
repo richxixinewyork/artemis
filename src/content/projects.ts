@@ -262,7 +262,7 @@ export const projects: Project[] = [
   {
     slug: 'esoteric-studios',
     category: 'Entrepreneurship',
-    logoBackground: '#baa46a',
+    logoBackground: '#f6f6f6', // ground of the green circular logo supplied by Artemis (Nov 2026)
     org: 'Esoteric Studios',
     title: 'Cross-Border Professional Beauty',
     discipline: 'Beauty · Cross-Border E-Commerce',
