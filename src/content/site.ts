@@ -76,6 +76,24 @@ export const site = {
         body: 'I have also worked inside the cultural sector — at No Space Gallery in Beijing, and on “Beauty and Sharing,” an international cultural exchange program co-produced by CCTV and the Ministry of Culture and Tourism. Today I am pursuing an M.A. in Art Business in New York, USA, and developing Baoxiang, a collectible-objects concept drawn from Chinese zodiac symbolism and Five Elements philosophy.',
       },
     ],
+    /** Core Skills tags under the biography — one skill per tag, wording as supplied by Artemis. */
+    coreSkills: [
+      'Go-to-Market Strategy',
+      'Growth & Lifecycle',
+      'Cross-Border Expansion',
+      'Brand Storytelling',
+      'Content & Social Strategy',
+      'Cultural Positioning',
+      'Creator & Talent Partnerships',
+      'Community Building',
+      'VIP & Client Engagement',
+      'Campaign Analytics & Reporting',
+      'Audience Insights & Research',
+      'Event & Experience Execution',
+      'Cross-Functional Leadership',
+      'AI & Digital Tools',
+      'Operations & CRM',
+    ],
     /** "What I bring" columns. */
     capabilities: [
       {

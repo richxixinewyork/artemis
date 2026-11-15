@@ -25,6 +25,11 @@ const facts = [
           <p>{c.body}</p>
         </div>
       ))}
+
+      <h3 id="skills-title" class="eyebrow skills-title">Core Skills</h3>
+      <ul class="skill-tags" aria-labelledby="skills-title">
+        {about.coreSkills.map((s) => <li>{s}</li>)}
+      </ul>
     </div>
 
     <aside class="about-card panel" data-reveal style="--d:1" aria-labelledby="facts-title">
@@ -74,6 +79,34 @@ const facts = [
     font-size: 1.05rem;
     color: #3a3632;
   }
+  /* Core Skills: rounded tags after the reference's About section, in Artemis's tokens */
+  .skills-title {
+    margin: 34px 0 0;
+    font-size: 0.72rem;
+    line-height: 1.6;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .skill-tags li {
+    padding: 9px 16px;
+    font-size: 0.86rem;
+    font-weight: 500;
+    line-height: 1.4;
+    border: 1px solid var(--color-line);
+    border-radius: 50px;
+    background: var(--color-cream);
+    color: var(--color-ink-soft);
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .skill-tags li:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translateY(-2px);
+  }
   .about-card {
     position: sticky;
     top: 96px;
@@ -117,6 +150,13 @@ const facts = [
     }
     .about-card {
       padding: 24px 22px;
+    }
+    .skill-tags {
+      gap: 8px;
+    }
+    .skill-tags li {
+      padding: 8px 14px;
+      font-size: 0.84rem;
     }
   }
 </style>
