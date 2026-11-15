@@ -271,16 +271,16 @@ export const projects: Project[] = [
     status: 'ongoing',
     tone: 'sage',
     summary:
-      'Bringing Korean professional salon and skincare brands to Chinese-speaking consumers, with a digital consultation model.',
+      'Bringing Korean professional salon and skincare brands to global customers, with a digital consultation model.',
     highlights: [
-      'Introduced Korean professional salon and skincare brands to Chinese-speaking consumers.',
+      'Introduced Korean professional salon and skincare brands to global customers.',
       'Grew social communities to 27,000+ followers and 100,000+ content views.',
       'Recorded product tutorials with Korean salon owners and turned them into SOPs for customers.'
     ],
     overview:
-      'Esoteric Studios is a cross-border business introducing Korean professional salon and skincare brands to Chinese-speaking consumers. Artemis oversees the brand end to end: suppliers, curation, logistics, positioning, content and e-commerce.',
+      'Esoteric Studios is a cross-border business introducing Korean professional salon and skincare brands to global customers. Artemis oversees the brand end to end: suppliers, curation, logistics, positioning, content and e-commerce.',
     challenge:
-      'Esoteric Studios introduces Korean professional salon and skincare brands to Chinese-speaking consumers — products that usually depend on specialized, in-person salon expertise.',
+      'Esoteric Studios introduces Korean professional salon and skincare brands to global customers — products that usually depend on specialized, in-person salon expertise.',
     owned: [
       'Supplier relationships and product curation',
       'Logistics and e-commerce',

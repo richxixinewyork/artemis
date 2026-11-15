@@ -69,7 +69,7 @@ export const site = {
       },
       {
         label: 'Entrepreneurship',
-        body: 'Alongside that path runs a founder’s one. Since 2017 I have run Missingcity, an online boutique introducing emerging international designers to global consumers. In 2023 I launched Esoteric Studios, bringing Korean professional salon and skincare brands to Chinese-speaking customers. Both grew on curation, trusted relationships and community rather than paid reach.',
+        body: 'Alongside that path runs a founder’s one. Since 2017 I have run Missingcity, an online boutique introducing emerging international designers to global consumers. In 2023 I launched Esoteric Studios, bringing Korean professional salon and skincare brands to global customers. Both grew on curation, trusted relationships and community rather than paid reach.',
       },
       {
         label: 'Art & culture',
