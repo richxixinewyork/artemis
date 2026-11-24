@@ -140,6 +140,7 @@ export const site = {
    */
   timeline: [
     { years: '2025 — Now', slug: 'baoxiang', title: 'Baoxiang (The Eternal Path)', role: 'Founder & Creative Director', note: 'Cultural design project · in development' },
+    { years: '2024 — 2026', slug: 'marie-gallery', title: 'Marie Gallery', role: 'Gallery Assistant', note: 'Shanghai, China' },
     { years: '2023 — Now', slug: 'esoteric-studios', title: 'Esoteric Studios', role: 'Founder & Brand Director', note: 'Luxury Korean beauty · cross-border commerce' },
     { years: 'Spring 2023', slug: 'no-space-gallery', title: 'No Space Gallery', role: 'Exhibition & Gallery Operations Assistant', note: 'Beijing, China' },
     { years: '2022 — 2023', slug: 'communication-university-of-china', title: 'Communication University of China', role: 'Cultural Exchange & Exhibition Coordinator', note: 'School of Drama and Film · Beijing, China' },
@@ -173,6 +174,30 @@ export const site = {
    * wording supplied by Artemis). Their case studies live in `roleStudies` (projects.ts).
    */
   otherExperience: [
+    {
+      org: 'Marie Gallery',
+      role: 'Gallery Assistant',
+      period: 'May 2024 – Aug 2026',
+      location: 'Shanghai, China',
+      responsibilities: [
+        {
+          area: 'Artists, Clients & Exhibitions',
+          text: 'Helped oversee a roster of five active artists, an extensive client list, and multiple upcoming exhibitions and opening events.',
+        },
+        {
+          area: 'Gallery Operations',
+          text: 'Managed daily gallery operations, including accounting support, artwork inventory tracking, and shipment coordination.',
+        },
+        {
+          area: 'Artwork Research & Sales Support',
+          text: 'Conducted in-depth artwork research for public and private sales, and assisted with client proposals and sales presentations.',
+        },
+        {
+          area: 'E-Commerce & Digital Marketing',
+          text: 'Designed, launched, and maintained an e-commerce boutique featuring exclusive artist-collaboration products, and managed digital marketing and content strategy.',
+        },
+      ],
+    },
     {
       org: 'No Space Gallery',
       role: 'Exhibition & Gallery Operations Assistant',

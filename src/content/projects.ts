@@ -468,6 +468,57 @@ Its first proposed collection centers on twelve zodiac-inspired candles, bringin
  */
 export const roleStudies: Project[] = [
   {
+    slug: 'marie-gallery',
+    category: 'Art & Culture',
+    org: 'Marie Gallery',
+    title: 'Gallery Operations, Art Sales & Artist-Collaboration Commerce',
+    discipline: 'Gallery Operations · Art Sales · E-Commerce',
+    role: 'Gallery Assistant',
+    period: 'May 2024 – Aug 2026',
+    location: 'Shanghai, China',
+    status: 'completed',
+    tone: 'stone',
+    summary:
+      'Supporting artists, clients, exhibitions and daily operations at Marie Gallery in Shanghai, and launching an e-commerce boutique of exclusive artist-collaboration products.',
+    highlights: [
+      'Helped oversee five active artists, an extensive client list and upcoming exhibitions, while managing daily gallery operations.',
+      'Researched artworks for public and private sales, and launched an e-commerce boutique of exclusive artist-collaboration products.',
+    ],
+    overview:
+      'Gallery Assistant at Marie Gallery in Shanghai, May 2024 to August 2026.',
+    headings: {
+      context: 'The Role',
+      approach: 'Areas of Responsibility',
+      status: 'Focus Areas',
+    },
+    challenge: `From May 2024 to August 2026, Artemis worked at Marie Gallery in Shanghai as Gallery Assistant.
+
+She helped oversee the gallery’s five active artists, its client relationships and a calendar of upcoming exhibitions and openings; ran the daily operations behind them; researched artworks for sales; and built an e-commerce boutique for exclusive artist-collaboration products.`,
+    owned: [],
+    roleDetail: 'Gallery Assistant.',
+    // Responsibilities as supplied by Artemis, lightly edited for grammar.
+    contributions: [
+      {
+        heading: 'Artists, Clients & Exhibitions',
+        body: 'Helped oversee a roster of five active artists, an extensive client list, and multiple upcoming exhibitions and opening events.',
+      },
+      {
+        heading: 'Gallery Operations',
+        body: 'Managed daily gallery operations, including accounting support, artwork inventory tracking, and shipment coordination.',
+      },
+      {
+        heading: 'Artwork Research & Sales Support',
+        body: 'Conducted in-depth artwork research for public and private sales, and assisted with client proposals and sales presentations.',
+      },
+      {
+        heading: 'E-Commerce & Digital Marketing',
+        body: 'Designed, launched, and maintained an e-commerce boutique featuring exclusive artist-collaboration products, and managed digital marketing and content strategy.',
+      },
+    ],
+    results: [],
+    focus: ['Artist relations', 'Client management', 'Exhibitions & openings', 'Gallery operations', 'Art sales research', 'E-commerce & digital marketing'],
+  },
+  {
     slug: 'no-space-gallery',
     category: 'Art & Culture',
     // Logo (無空間 / No Space) supplied by Artemis; empty grey margin trimmed, artwork untouched. Card matches its flat grey ground.
